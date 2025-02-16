@@ -1,3 +1,4 @@
+
 import { useParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -506,6 +507,8 @@ const TripDetails = () => {
   const [children, setChildren] = useState(0);
   const [duration, setDuration] = useState("7 noches");
 
+  const tripData = destination ? tripsData[destination as keyof typeof tripsData] : tripsData.maldivas;
+
   const handleAdultsChange = (increment: boolean) => {
     if (increment && adults < 8) {
       setAdults(adults + 1);
@@ -534,8 +537,6 @@ const TripDetails = () => {
     { code: "TFN", city: "Tenerife Norte", name: "Tenerife Norte (TFN)" },
     { code: "TFS", city: "Tenerife Sur", name: "Tenerife Sur (TFS)" }
   ];
-
-  const tripData = destination ? tripsData[destination as keyof typeof tripsData] : tripsData.maldivas;
 
   const reviews = {
     average: 5.0,
@@ -576,7 +577,9 @@ const TripDetails = () => {
 
   const scrollToReviews = () => {
     const reviewsSection = document.getElementById('reviews');
-    reviewsSection?.scrollIntoView({ behavior: 'smooth' });
+    reviewsSection?.scrollIntoView({
+      behavior: 'smooth'
+    });
   };
 
   return <div className="min-h-screen bg-white">
@@ -593,7 +596,7 @@ const TripDetails = () => {
                           <div className="flex items-center gap-3">
                             <img src={tripData.userImage} alt={tripData.username} className="w-8 h-8 rounded-full border-2 border-white object-cover" />
                             <span className="text-white font-medium text-sm">
-                              {tripData.title} como {tripData.username}
+                              Viaja a Maldivas como Paula Diez
                             </span>
                           </div>
                         </div>
@@ -661,7 +664,7 @@ const TripDetails = () => {
           <div className="lg:sticky lg:top-8 space-y-6">
             <div className="flex items-center justify-between">
               <h1 className="text-3xl font-bold">
-                {tripData.title} como <span className="text-primary">Familia Caramelunchi</span>
+                Viaja a Maldivas como <span className="text-primary">Paula Diez</span>
                 <span className="inline-flex items-center gap-1 ml-2 text-sm font-medium text-primary bg-blue-50 px-2 py-1 rounded-full">
                   Traveltrend
                 </span>
