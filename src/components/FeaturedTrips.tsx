@@ -14,7 +14,7 @@ const trips = [
     title: "Viaja a Maldivas",
     username: "@pauladiez",
     userImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
-    image: "/lovable-uploads/642b528a-fea7-4ed7-93f5-5f796e87b02a.png",
+    image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
     price: "3,999",
     rating: 5.0,
     purchases: 361,
