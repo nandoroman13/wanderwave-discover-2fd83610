@@ -94,7 +94,7 @@ const tripsData = {
       description: "Llegada al aeropuerto de Male. Traslado en lancha rápida o hidroavión a tu resort. Resto del día libre para disfrutar del paraíso."
     }, {
       day: 3,
-4 title: "Actividades acuáticas",
+      title: "Actividades acuáticas",
       description: "Día dedicado a actividades acuáticas: snorkel, buceo o simplemente relax en la playa paradisíaca."
     }, {
       day: 4,
