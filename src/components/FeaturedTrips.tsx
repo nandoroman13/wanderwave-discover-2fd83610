@@ -218,10 +218,8 @@ export const FeaturedTrips = () => {
                       alt={trip.title}
                       className="w-full h-full object-cover"
                     />
-                    {/* Capa oscura siempre visible */}
                     <div className="absolute inset-0 bg-black/20" />
                     
-                    {/* Botones reposicionados */}
                     <div className="absolute bottom-28 inset-x-4 flex justify-between z-10 my-[130px]">
                       <button 
                         onClick={(e) => {
@@ -290,46 +288,49 @@ export const FeaturedTrips = () => {
           <CarouselNext />
         </Carousel>
 
-        {/* Fullscreen Carousel Modal */}
         {selectedTrip && (
-          <div className="fixed inset-0 bg-black z-50">
-            <div className="absolute top-4 left-4 z-50 flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full pl-1 pr-4 py-1">
-              <img 
-                src={selectedTrip.userImage} 
-                alt={selectedTrip.username} 
-                className="w-8 h-8 rounded-full object-cover"
-              />
-              <div className="text-white text-sm">
-                <span className="font-medium">{selectedTrip.title}</span>
-                <span className="opacity-80"> con {selectedTrip.username}</span>
-              </div>
-            </div>
-
-            <button 
-              onClick={closeFullscreenCarousel}
-              className="absolute top-4 right-4 z-50 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-            >
-              <X size={20} />
-            </button>
+          <>
+            <div className="fixed inset-0 bg-black/60 z-40" onClick={closeFullscreenCarousel} />
             
-            <Carousel className="h-full">
-              <CarouselContent>
-                {selectedTrip.videos.map((video, index) => (
-                  <CarouselItem key={index}>
-                    <div className="h-screen w-full flex items-center justify-center">
-                      <img 
-                        src={video} 
-                        alt={`${selectedTrip.title} - Imagen ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="left-4" />
-              <CarouselNext className="right-4" />
-            </Carousel>
-          </div>
+            <div className="fixed inset-4 z-50 rounded-3xl overflow-hidden bg-black">
+              <div className="absolute top-4 left-4 z-50 flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full pl-1 pr-4 py-1">
+                <img 
+                  src={selectedTrip.userImage} 
+                  alt={selectedTrip.username} 
+                  className="w-8 h-8 rounded-full object-cover"
+                />
+                <div className="text-white text-sm">
+                  <span className="font-medium">{selectedTrip.title}</span>
+                  <span className="opacity-80"> con {selectedTrip.username}</span>
+                </div>
+              </div>
+
+              <button 
+                onClick={closeFullscreenCarousel}
+                className="absolute top-4 right-4 z-50 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+              >
+                <X size={20} />
+              </button>
+              
+              <Carousel className="h-full">
+                <CarouselContent>
+                  {selectedTrip.videos.map((video, index) => (
+                    <CarouselItem key={index}>
+                      <div className="h-full w-full flex items-center justify-center">
+                        <img 
+                          src={video} 
+                          alt={`${selectedTrip.title} - Imagen ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-4" />
+                <CarouselNext className="right-4" />
+              </Carousel>
+            </div>
+          </>
         )}
       </div>
     </section>
