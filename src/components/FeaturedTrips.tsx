@@ -59,7 +59,7 @@ export const FeaturedTrips = () => {
               <CarouselItem key={trip.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
                 <div className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[3/5] p-4">
                   {/* Header con avatar y username */}
-                  <div className="absolute top-8 left-8 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full pl-1 pr-4 py-1">
+                  <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full pl-1 pr-4 py-1 whitespace-nowrap">
                     <img
                       src={trip.userImage}
                       alt={trip.username}
