@@ -60,6 +60,14 @@ const wavers = {
     rating: "5,0",
     tags: ["Tendencia", "Con amigos", "Europa", "Playas paradisiacas", "Deportes aventura"],
     bio: "Viajera apasionada y creadora de contenido. Me encanta descubrir nuevos destinos y compartir experiencias únicas. Especializada en viajes de aventura y experiencias con amigos."
+  },
+  "mikel-boisset": {
+    name: "Mikel Boisset",
+    image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952",
+    followers: "456",
+    rating: "4,9",
+    tags: ["Tendencia", "Aventura", "Destinos exóticos", "Fotografía", "Gastronomía"],
+    bio: "Aventurero y fotógrafo de viajes. Me apasiona explorar destinos únicos y capturar su esencia a través de mi lente. Especializado en viajes de aventura y experiencias gastronómicas locales."
   }
 };
 
