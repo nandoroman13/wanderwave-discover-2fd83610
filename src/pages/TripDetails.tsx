@@ -137,68 +137,87 @@ const TripDetails = () => {
             </div>
           </div>
 
-          <div className="lg:sticky lg:top-8 space-y-6 bg-white p-6 rounded-xl border">
+          <div className="lg:sticky lg:top-8 space-y-6">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-1">
-                  <span className="font-semibold">{tripData.rating}</span>
-                  <Star className="h-5 w-5 fill-current" />
+              <h1 className="text-3xl font-bold">
+                {tripData.title} como <span className="text-primary">Paula Diez</span>
+                <span className="inline-flex items-center gap-1 ml-2 text-sm font-medium text-primary bg-blue-50 px-2 py-1 rounded-full">
+                  Traveltrend
+                </span>
+              </h1>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span className="font-semibold text-lg">{tripData.rating}</span>
+                <div className="flex gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-primary fill-primary" />
+                  ))}
                 </div>
-                <button className="text-primary hover:underline">Ver reseñas</button>
+                <button className="text-primary hover:underline">
+                  Ver reseñas
+                </button>
               </div>
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-gray-600">+{tripData.purchases} comprados</span>
+              <div className="flex items-center gap-2 text-gray-600">
+                <span>+{tripData.purchases} comprados</span>
                 <button className="p-2 hover:bg-gray-100 rounded-full">
-                  <Share2 className="h-5 w-5" />
+                  <Share2 className="w-5 h-5" />
                 </button>
               </div>
             </div>
 
-            <div>
-              <span className="text-sm text-gray-600">Duración recomendada</span>
-              <p>{tripData.duration}</p>
+            <div className="space-y-1">
+              <span className="text-sm text-gray-500">Duración recomendada</span>
+              <p className="font-medium">{tripData.duration}</p>
             </div>
 
             <div className="flex flex-wrap gap-2">
               {tripData.tags.map(tag => (
-                <span key={tag} className="px-3 py-1 bg-gray-100 rounded-full text-sm">
+                <span key={tag} className="px-3 py-1.5 bg-gray-100 rounded-full text-sm">
                   {tag}
                 </span>
               ))}
             </div>
 
-            <div className="space-y-6">
+            <div className="bg-white p-6 rounded-xl border space-y-6">
               <h3 className="text-xl font-semibold">Configura tus vuelos</h3>
               
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="origin">Origen</Label>
-                  <Input id="origin" defaultValue="Madrid" />
+                  <Input id="origin" defaultValue="Madrid" className="bg-white" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="date">Fecha</Label>
-                  <Input id="date" placeholder="Selecciona fecha" />
+                  <Input id="date" placeholder="Selecciona fecha" className="bg-white" />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="duration">Duración</Label>
-                  <Input id="duration" defaultValue="7 noches" />
+                  <Input id="duration" defaultValue="7 noches" className="bg-white" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="people">Personas</Label>
-                  <Input id="people" defaultValue="2 adultos | 0 niños | 1 habitación" />
+                  <Input 
+                    id="people" 
+                    defaultValue="2 adultos | 0 niños | 1 habitación" 
+                    className="bg-white"
+                  />
                 </div>
               </div>
 
               <div className="flex items-end justify-between pt-4">
                 <div>
-                  <p className="text-sm text-gray-600">Desde</p>
+                  <p className="text-sm text-gray-500">Desde</p>
                   <p className="text-3xl font-semibold">{tripData.price} €</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-primary">Configuración rápida en {tripData.configTime} min</p>
+                  <p className="text-sm text-primary">
+                    Configuración rápida en {tripData.configTime} min
+                  </p>
                   <button className="mt-2 bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90 transition-colors">
                     Configurar ahora
                   </button>
