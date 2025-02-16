@@ -21,46 +21,53 @@ import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
 
-const TripDetails = () => {
-  const { destination } = useParams();
-  const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [selectedOrigin, setSelectedOrigin] = useState("Madrid (MAD)");
-  const [date, setDate] = useState<Date>();
-  const [adults, setAdults] = useState(2);
-  const [children, setChildren] = useState(0);
-  const [duration, setDuration] = useState("7 noches");
-
-  const handleAdultsChange = (increment: boolean) => {
-    if (increment && adults < 8) {
-      setAdults(adults + 1);
-    } else if (!increment && adults > 1) {
-      setAdults(adults - 1);
-    }
-  };
-
-  const handleChildrenChange = (increment: boolean) => {
-    if (increment && children < 6) {
-      setChildren(children + 1);
-    } else if (!increment && children > 0) {
-      setChildren(children - 1);
-    }
-  };
-
-  const airports = [
-    { code: "MAD", city: "Madrid", name: "Madrid (MAD)" },
-    { code: "BCN", city: "Barcelona", name: "Barcelona (BCN)" },
-    { code: "PMI", city: "Palma de Mallorca", name: "Palma de Mallorca (PMI)" },
-    { code: "AGP", city: "Málaga", name: "Málaga (AGP)" },
-    { code: "ALC", city: "Alicante", name: "Alicante (ALC)" },
-    { code: "VLC", city: "Valencia", name: "Valencia (VLC)" },
-    { code: "SVQ", city: "Sevilla", name: "Sevilla (SVQ)" },
-    { code: "BIO", city: "Bilbao", name: "Bilbao (BIO)" },
-    { code: "TFN", city: "Tenerife Norte", name: "Tenerife Norte (TFN)" },
-    { code: "TFS", city: "Tenerife Sur", name: "Tenerife Sur (TFS)" }
-  ];
-
-  const tripData = {
+const tripsData = {
+  chicago: {
+    title: "Viaja a Chicago",
+    username: "@familiacarameluchi",
+    userImage: "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc",
+    rating: 5.0,
+    duration: "7 días, 5 noches",
+    purchases: 750,
+    price: "5,500",
+    tags: ["En familia", "Aventura en familia", "Tendencia"],
+    configTime: "5",
+    videos: [
+      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
+      "https://images.unsplash.com/photo-1494522358652-f30e61a60313",
+      "https://images.unsplash.com/photo-1507992781348-310259076fe0"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Chicago",
+      description: "¡Empieza tu aventura! Vuelo directo desde Madrid hacia la Ciudad de los Vientos. A tu llegada, traslado al hotel y tiempo libre para empezar a explorar los alrededores."
+    }, {
+      day: 2,
+      title: "Millennium Park y The Loop",
+      description: "Descubre el corazón de Chicago. Visita el famoso 'Bean' en Millennium Park, disfruta de un paseo por The Loop y admira la impresionante arquitectura de la ciudad."
+    }, {
+      day: 3,
+      title: "Navy Pier y Magnificent Mile",
+      description: "Día para disfrutar del Navy Pier, perfecto para familias. Por la tarde, shopping en la Magnificent Mile."
+    }, {
+      day: 4,
+4 title: "Museos y Lagos",
+      description: "Visita al Field Museum o al Shedd Aquarium. Paseo en barco por el Lago Michigan si el tiempo lo permite."
+    }, {
+      day: 5,
+      title: "Willis Tower y Arte Urbano",
+      description: "Sube al mirador Skydeck de la Willis Tower. Explora los barrios artísticos de Wicker Park y Bucktown."
+    }, {
+      day: 6,
+      title: "Día libre en Chicago",
+      description: "Día libre para actividades opcionales: partidos deportivos, compras adicionales o visitas a lugares de interés pendientes."
+    }, {
+      day: 7,
+      title: "Chicago - Madrid",
+      description: "Última mañana libre en la ciudad. Traslado al aeropuerto para tomar el vuelo de regreso a Madrid."
+    }]
+  },
+  maldivas: {
     title: "Viaja a Maldivas",
     username: "@pauladiez",
     userImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
@@ -110,7 +117,297 @@ const TripDetails = () => {
         text: "Tasas aéreas"
       }
     ]
+  },
+  noruega: {
+    title: "Viaja a Noruega",
+    username: "@Mikelboisset",
+    userImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
+    rating: 5.0,
+    duration: "8 días, 6 noches",
+    purchases: 602,
+    price: "4,000",
+    tags: ["Tendencia", "Fiordos", "Naturaleza", "Aventura"],
+    configTime: "6",
+    videos: [
+      "https://images.unsplash.com/photo-1520769669658-f07657f5a307",
+      "https://images.unsplash.com/photo-1506967554329-2626e0f7d9e4",
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Oslo",
+      description: "Vuelo a Oslo. Llegada y traslado al hotel. Primera toma de contacto con la capital noruega."
+    }, {
+      day: 2,
+      title: "Oslo",
+      description: "Visita del Parque Vigeland, Museo de los Barcos Vikingos y el Ayuntamiento de Oslo."
+    }, {
+      day: 3,
+      title: "Oslo - Bergen",
+      description: "Viaje escénico en tren de Oslo a Bergen, considerado uno de los más bonitos de Europa."
+    }, {
+      day: 4,
+      title: "Bergen y Fiordos",
+      description: "Exploración de Bergen y crucero por el Fiordo de los Sueños."
+    }, {
+      day: 5,
+      title: "Fiordos Noruegos",
+      description: "Día completo explorando los majestuosos fiordos noruegos."
+    }, {
+      day: 6,
+      title: "Ålesund",
+      description: "Visita a la bella ciudad de Ålesund, famosa por su arquitectura Art Nouveau."
+    }, {
+      day: 7,
+      title: "Tromsø - Aurora Boreal",
+      description: "Vuelo a Tromsø. Por la noche, excursión para intentar ver la aurora boreal (según temporada)."
+    }, {
+      day: 8,
+      title: "Tromsø - Madrid",
+      description: "Mañana libre y vuelo de regreso a Madrid."
+    }]
+  },
+  tanzania: {
+    title: "Viaja a Tanzania",
+    username: "@olympussafaris",
+    userImage: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d",
+    rating: 5.0,
+    duration: "10 días, 8 noches",
+    purchases: 283,
+    price: "6,999",
+    tags: ["Safari", "Naturaleza", "Aventura", "Fotografía"],
+    configTime: "8",
+    videos: [
+      "https://images.unsplash.com/photo-1516426122078-c23e76319801",
+      "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e",
+      "https://images.unsplash.com/photo-1528485238486-507cca6f992c"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Kilimanjaro",
+      description: "Vuelo internacional a Tanzania. Llegada al Aeropuerto de Kilimanjaro."
+    }, {
+      day: 2,
+      title: "Parque Nacional Tarangire",
+      description: "Safari en el Parque Nacional Tarangire, famoso por sus manadas de elefantes."
+    }, {
+      day: 3,
+      title: "Cráter Ngorongoro",
+      description: "Día completo de safari en el famoso cráter, considerado la 'octava maravilla del mundo'."
+    }, {
+      day: 4,
+      title: "Serengeti (Norte)",
+      description: "Traslado al norte del Serengeti. Safari en busca de la gran migración."
+    }, {
+      day: 5,
+      title: "Serengeti (Central)",
+      description: "Safari en la zona central del Serengeti, rica en vida salvaje."
+    }, {
+      day: 6,
+      title: "Serengeti - Masai",
+      description: "Último safari matutino. Visita a una aldea Masai por la tarde."
+    }, {
+      day: 7,
+      title: "Zanzibar",
+      description: "Vuelo a Zanzibar. Tarde libre en las playas paradisíacas."
+    }, {
+      day: 8,
+      title: "Stone Town",
+      description: "Visita a Stone Town, el corazón histórico de Zanzibar."
+    }, {
+      day: 9,
+      title: "Zanzibar",
+      description: "Día libre para actividades opcionales o relax en la playa."
+    }, {
+      day: 10,
+      title: "Zanzibar - Madrid",
+      description: "Vuelo de regreso a Madrid vía Dar es Salaam."
+    }]
+  },
+  japon: {
+    title: "Viaja a Japón",
+    username: "@asiatraveller",
+    userImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+    rating: 4.9,
+    duration: "12 días, 10 noches",
+    purchases: 892,
+    price: "4,599",
+    tags: ["Cultural", "Gastronomía", "Templos", "Historia"],
+    configTime: "9",
+    videos: [
+      "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e",
+      "https://images.unsplash.com/photo-1545569341-9eb8b30979d9",
+      "https://images.unsplash.com/photo-1528360983277-13d401cdc186"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Tokio",
+      description: "Vuelo internacional a Tokio. Noche a bordo."
+    }, {
+      day: 2,
+      title: "Llegada a Tokio",
+      description: "Llegada a Tokio. Traslado al hotel y primer contacto con la ciudad."
+    }, {
+      day: 3,
+      title: "Tokio Moderno",
+      description: "Visita de Shibuya, Harajuku y Shinjuku. Experiencia en Robot Restaurant."
+    }, {
+      day: 4,
+      title: "Tokio Tradicional",
+      description: "Templo Senso-ji, Jardines del Palacio Imperial y mercado de pescado Tsukiji."
+    }, {
+      day: 5,
+      title: "Hakone - Monte Fuji",
+      description: "Excursión al Parque Nacional de Hakone. Vistas del Monte Fuji."
+    }, {
+      day: 6,
+      title: "Kioto",
+      description: "Tren bala a Kioto. Visita al Templo Dorado y al distrito de Gion."
+    }, {
+      day: 7,
+      title: "Kioto y Arashiyama",
+      description: "Bosque de bambú de Arashiyama, Templo Ryoan-ji y ceremonia del té."
+    }, {
+      day: 8,
+      title: "Nara y Osaka",
+      description: "Excursión a Nara. Tarde en Osaka explorando Dotonbori."
+    }, {
+      day: 9,
+      title: "Hiroshima y Miyajima",
+      description: "Visita a Hiroshima y la isla de Miyajima."
+    }, {
+      day: 10,
+      title: "Kioto",
+      description: "Día libre en Kioto para compras y últimas visitas."
+    }, {
+      day: 11,
+      title: "Kioto - Tokio",
+      description: "Regreso a Tokio en tren bala. Última noche en Japón."
+    }, {
+      day: 12,
+      title: "Tokio - Madrid",
+      description: "Vuelo de regreso a Madrid."
+    }]
+  },
+  "nueva-zelanda": {
+    title: "Viaja a Nueva Zelanda",
+    username: "@adventurenomad",
+    userImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
+    rating: 4.9,
+    duration: "15 días, 13 noches",
+    purchases: 447,
+    price: "5,299",
+    tags: ["Aventura", "Naturaleza", "Senderismo", "Fotografía"],
+    configTime: "10",
+    videos: [
+      "https://images.unsplash.com/photo-1469521669194-babb45599def",
+      "https://images.unsplash.com/photo-1507699622108-4be3abd695ad",
+      "https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Auckland",
+      description: "Vuelo internacional a Auckland con escalas."
+    }, {
+      day: 2,
+      title: "En vuelo",
+      description: "Día de vuelo cruzando varios husos horarios."
+    }, {
+      day: 3,
+      title: "Auckland",
+      description: "Llegada a Auckland. Visita a Sky Tower y puerto."
+    }, {
+      day: 4,
+      title: "Rotorua",
+      description: "Visita a la zona geotérmica y experiencia cultural maorí."
+    }, {
+      day: 5,
+      title: "Hobbiton",
+      description: "Visita al set de filmación de El Señor de los Anillos."
+    }, {
+      day: 6,
+      title: "Wellington",
+      description: "Viaje a Wellington. Visita al museo Te Papa."
+    }, {
+      day: 7,
+      title: "Kaikoura",
+      description: "Ferry a la Isla Sur. Avistamiento de ballenas."
+    }, {
+      day: 8,
+      title: "Christchurch",
+      description: "Exploración de Christchurch y sus jardines."
+    }, {
+      day: 9,
+      title: "Monte Cook",
+      description: "Viaje al Parque Nacional del Monte Cook."
+    }, {
+      day: 10,
+      title: "Queenstown",
+      description: "Llegada a Queenstown. Actividades de aventura opcionales."
+    }, {
+      day: 11,
+      title: "Milford Sound",
+      description: "Excursión al fiordo Milford Sound."
+    }, {
+      day: 12,
+      title: "Glaciares",
+      description: "Visita a los glaciares Franz Josef y Fox."
+    }, {
+      day: 13,
+      title: "Queenstown",
+      description: "Día libre para actividades opcionales."
+    }, {
+      day: 14,
+      title: "Auckland",
+      description: "Vuelo a Auckland. Últimas compras."
+    }, {
+      day: 15,
+      title: "Auckland - Madrid",
+      description: "Vuelo de regreso a Madrid."
+    }]
+  }
+};
+
+const TripDetails = () => {
+  const { destination } = useParams();
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [selectedOrigin, setSelectedOrigin] = useState("Madrid (MAD)");
+  const [date, setDate] = useState<Date>();
+  const [adults, setAdults] = useState(2);
+  const [children, setChildren] = useState(0);
+  const [duration, setDuration] = useState("7 noches");
+
+  const handleAdultsChange = (increment: boolean) => {
+    if (increment && adults < 8) {
+      setAdults(adults + 1);
+    } else if (!increment && adults > 1) {
+      setAdults(adults - 1);
+    }
   };
+
+  const handleChildrenChange = (increment: boolean) => {
+    if (increment && children < 6) {
+      setChildren(children + 1);
+    } else if (!increment && children > 0) {
+      setChildren(children - 1);
+    }
+  };
+
+  const airports = [
+    { code: "MAD", city: "Madrid", name: "Madrid (MAD)" },
+    { code: "BCN", city: "Barcelona", name: "Barcelona (BCN)" },
+    { code: "PMI", city: "Palma de Mallorca", name: "Palma de Mallorca (PMI)" },
+    { code: "AGP", city: "Málaga", name: "Málaga (AGP)" },
+    { code: "ALC", city: "Alicante", name: "Alicante (ALC)" },
+    { code: "VLC", city: "Valencia", name: "Valencia (VLC)" },
+    { code: "SVQ", city: "Sevilla", name: "Sevilla (SVQ)" },
+    { code: "BIO", city: "Bilbao", name: "Bilbao (BIO)" },
+    { code: "TFN", city: "Tenerife Norte", name: "Tenerife Norte (TFN)" },
+    { code: "TFS", city: "Tenerife Sur", name: "Tenerife Sur (TFS)" }
+  ];
+
+  const tripData = destination ? tripsData[destination as keyof typeof tripsData] : tripsData.maldivas;
 
   const reviews = {
     average: 5.0,
