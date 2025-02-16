@@ -14,7 +14,6 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
-
 const tripsData = {
   chicago: {
     title: "Viaja a Chicago",
@@ -26,11 +25,7 @@ const tripsData = {
     price: "5,500",
     tags: ["En familia", "Aventura en familia", "Tendencia"],
     configTime: "5",
-    videos: [
-      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
-      "https://images.unsplash.com/photo-1494522358652-f30e61a60313",
-      "https://images.unsplash.com/photo-1507992781348-310259076fe0"
-    ],
+    videos: ["https://images.unsplash.com/photo-1477959858617-67f85cf4f1df", "https://images.unsplash.com/photo-1494522358652-f30e61a60313", "https://images.unsplash.com/photo-1507992781348-310259076fe0"],
     itinerary: [{
       day: 1,
       title: "Madrid - Chicago",
@@ -45,7 +40,7 @@ const tripsData = {
       description: "Día para disfrutar del Navy Pier, perfecto para familias. Por la tarde, shopping en la Magnificent Mile."
     }, {
       day: 4,
- title: "Museos y Lagos",
+      title: "Museos y Lagos",
       description: "Visita al Field Museum o al Shedd Aquarium. Paseo en barco por el Lago Michigan si el tiempo lo permite."
     }, {
       day: 5,
@@ -60,28 +55,22 @@ const tripsData = {
       title: "Chicago - Madrid",
       description: "Última mañana libre en la ciudad. Traslado al aeropuerto para tomar el vuelo de regreso a Madrid."
     }],
-    included: [
-      {
-        icon: Bed,
-        text: "5 noches en hotel seleccionado"
-      },
-      {
-        icon: Plane,
-        text: "Vuelos directos ida y vuelta"
-      },
-      {
-        icon: Bus,
-        text: "Traslados aeropuerto - hotel"
-      },
-      {
-        icon: FileCheck,
-        text: "Seguro de viaje básico"
-      },
-      {
-        icon: Receipt,
-        text: "Tasas aéreas incluidas"
-      }
-    ]
+    included: [{
+      icon: Bed,
+      text: "5 noches en hotel seleccionado"
+    }, {
+      icon: Plane,
+      text: "Vuelos directos ida y vuelta"
+    }, {
+      icon: Bus,
+      text: "Traslados aeropuerto - hotel"
+    }, {
+      icon: FileCheck,
+      text: "Seguro de viaje básico"
+    }, {
+      icon: Receipt,
+      text: "Tasas aéreas incluidas"
+    }]
   },
   maldivas: {
     title: "Viaja a Maldivas",
@@ -93,11 +82,7 @@ const tripsData = {
     price: "3,999",
     tags: ["Tendencia", "Surf", "Buceo", "Con amigos", "Experiencia local"],
     configTime: "7",
-    videos: [
-      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
-      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd",
-      "https://images.unsplash.com/photo-1551918120-9739cb430c6d"
-    ],
+    videos: ["https://images.unsplash.com/photo-1514282401047-d79a71a590e8", "https://images.unsplash.com/photo-1573843981267-be1999ff37cd", "https://images.unsplash.com/photo-1551918120-9739cb430c6d"],
     itinerary: [{
       day: 1,
       title: "Madrid - Maldivas",
@@ -135,28 +120,22 @@ const tripsData = {
       title: "Llegada",
       description: "Llegada a Madrid. Fin del viaje y de nuestros servicios."
     }],
-    included: [
-      {
-        icon: Bed,
-        text: "7 noches en el régimen elegido"
-      },
-      {
-        icon: Plane,
-        text: "Avión ida y vuelta"
-      },
-      {
-        icon: Bus,
-        text: "Traslados aeropuerto - hotel - aeropuerto"
-      },
-      {
-        icon: FileCheck,
-        text: "Seguro de viajes básico"
-      },
-      {
-        icon: Receipt,
-        text: "Tasas aéreas incluidas"
-      }
-    ]
+    included: [{
+      icon: Bed,
+      text: "7 noches en el régimen elegido"
+    }, {
+      icon: Plane,
+      text: "Avión ida y vuelta"
+    }, {
+      icon: Bus,
+      text: "Traslados aeropuerto - hotel - aeropuerto"
+    }, {
+      icon: FileCheck,
+      text: "Seguro de viajes básico"
+    }, {
+      icon: Receipt,
+      text: "Tasas aéreas incluidas"
+    }]
   },
   noruega: {
     title: "Viaja a Noruega",
@@ -168,11 +147,7 @@ const tripsData = {
     price: "4,000",
     tags: ["Tendencia", "Fiordos", "Naturaleza", "Aventura"],
     configTime: "6",
-    videos: [
-      "https://images.unsplash.com/photo-1520769669658-f07657f5a307",
-      "https://images.unsplash.com/photo-1506967554329-2626e0f7d9e4",
-      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38"
-    ],
+    videos: ["https://images.unsplash.com/photo-1520769669658-f07657f5a307", "https://images.unsplash.com/photo-1506967554329-2626e0f7d9e4", "https://images.unsplash.com/photo-1513519245088-0e12902e5a38"],
     itinerary: [{
       day: 1,
       title: "Madrid - Oslo",
@@ -206,28 +181,22 @@ const tripsData = {
       title: "Tromsø - Madrid",
       description: "Mañana libre y vuelo de regreso a Madrid."
     }],
-    included: [
-      {
-        icon: Bed,
-        text: "6 noches en hoteles seleccionados"
-      },
-      {
-        icon: Plane,
-        text: "Vuelos internacionales"
-      },
-      {
-        icon: Bus,
-        text: "Todos los traslados terrestres"
-      },
-      {
-        icon: FileCheck,
-        text: "Seguro de viaje con cobertura de actividades"
-      },
-      {
-        icon: Receipt,
-        text: "Tasas e impuestos locales"
-      }
-    ]
+    included: [{
+      icon: Bed,
+      text: "6 noches en hoteles seleccionados"
+    }, {
+      icon: Plane,
+      text: "Vuelos internacionales"
+    }, {
+      icon: Bus,
+      text: "Todos los traslados terrestres"
+    }, {
+      icon: FileCheck,
+      text: "Seguro de viaje con cobertura de actividades"
+    }, {
+      icon: Receipt,
+      text: "Tasas e impuestos locales"
+    }]
   },
   tanzania: {
     title: "Viaja a Tanzania",
@@ -239,11 +208,7 @@ const tripsData = {
     price: "4,800",
     tags: ["Safari", "Aventura", "Naturaleza", "Fotografía", "Tendencia"],
     configTime: "8",
-    videos: [
-      "https://images.unsplash.com/photo-1516426122078-c23e76319801",
-      "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e",
-      "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36"
-    ],
+    videos: ["https://images.unsplash.com/photo-1516426122078-c23e76319801", "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e", "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36"],
     itinerary: [{
       day: 1,
       title: "Madrid - Kilimanjaro",
@@ -285,28 +250,22 @@ const tripsData = {
       title: "Regreso a Madrid",
       description: "Vuelo de regreso a Madrid. Fin de nuestros servicios."
     }],
-    included: [
-      {
-        icon: Bed,
-        text: "8 noches en lodges y hoteles"
-      },
-      {
-        icon: Plane,
-        text: "Vuelos internacionales y domésticos"
-      },
-      {
-        icon: Bus,
-        text: "Vehículo 4x4 con conductor-guía"
-      },
-      {
-        icon: FileCheck,
-        text: "Seguro de viaje premium"
-      },
-      {
-        icon: Receipt,
-        text: "Entradas a parques nacionales"
-      }
-    ]
+    included: [{
+      icon: Bed,
+      text: "8 noches en lodges y hoteles"
+    }, {
+      icon: Plane,
+      text: "Vuelos internacionales y domésticos"
+    }, {
+      icon: Bus,
+      text: "Vehículo 4x4 con conductor-guía"
+    }, {
+      icon: FileCheck,
+      text: "Seguro de viaje premium"
+    }, {
+      icon: Receipt,
+      text: "Entradas a parques nacionales"
+    }]
   },
   japon: {
     title: "Viaja a Japón",
@@ -318,11 +277,7 @@ const tripsData = {
     price: "6,200",
     tags: ["Cultura", "Gastronomía", "Historia", "Tendencia"],
     configTime: "10",
-    videos: [
-      "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e",
-      "https://images.unsplash.com/photo-1545569341-9eb8b30979d9",
-      "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36"
-    ],
+    videos: ["https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e", "https://images.unsplash.com/photo-1545569341-9eb8b30979d9", "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36"],
     itinerary: [{
       day: 1,
       title: "Madrid - Tokyo",
@@ -372,28 +327,22 @@ const tripsData = {
       title: "Tokyo - Madrid",
       description: "Traslado al aeropuerto y vuelo de regreso a Madrid."
     }],
-    included: [
-      {
-        icon: Bed,
-        text: "10 noches en hoteles categoría superior"
-      },
-      {
-        icon: Plane,
-        text: "Vuelos internacionales"
-      },
-      {
-        icon: Bus,
-        text: "Japan Rail Pass 7 días"
-      },
-      {
-        icon: FileCheck,
-        text: "Seguro de viaje internacional"
-      },
-      {
-        icon: Receipt,
-        text: "Tasas y cargos turísticos"
-      }
-    ]
+    included: [{
+      icon: Bed,
+      text: "10 noches en hoteles categoría superior"
+    }, {
+      icon: Plane,
+      text: "Vuelos internacionales"
+    }, {
+      icon: Bus,
+      text: "Japan Rail Pass 7 días"
+    }, {
+      icon: FileCheck,
+      text: "Seguro de viaje internacional"
+    }, {
+      icon: Receipt,
+      text: "Tasas y cargos turísticos"
+    }]
   },
   "nueva-zelanda": {
     title: "Viaja a Nueva Zelanda",
@@ -405,11 +354,7 @@ const tripsData = {
     price: "7,100",
     tags: ["Aventura", "Naturaleza", "Trekking", "Tendencia"],
     configTime: "12",
-    videos: [
-      "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800",
-      "https://images.unsplash.com/photo-1506146332389-18140dc7b2fb",
-      "https://images.unsplash.com/photo-1530789253388-582c481c54b0"
-    ],
+    videos: ["https://images.unsplash.com/photo-1469854523086-cc02fe5d8800", "https://images.unsplash.com/photo-1506146332389-18140dc7b2fb", "https://images.unsplash.com/photo-1530789253388-582c481c54b0"],
     itinerary: [{
       day: 1,
       title: "Madrid - Auckland",
@@ -471,33 +416,28 @@ const tripsData = {
       title: "Auckland - Madrid",
       description: "Vuelo de regreso a Madrid. Fin del viaje."
     }],
-    included: [
-      {
-        icon: Bed,
-        text: "13 noches en hoteles seleccionados"
-      },
-      {
-        icon: Plane,
-        text: "Vuelos internacionales"
-      },
-      {
-        icon: Bus,
-        text: "Coche de alquiler con seguro"
-      },
-      {
-        icon: FileCheck,
-        text: "Seguro de viaje completo"
-      },
-      {
-        icon: Receipt,
-        text: "Tasas y cargos locales"
-      }
-    ]
+    included: [{
+      icon: Bed,
+      text: "13 noches en hoteles seleccionados"
+    }, {
+      icon: Plane,
+      text: "Vuelos internacionales"
+    }, {
+      icon: Bus,
+      text: "Coche de alquiler con seguro"
+    }, {
+      icon: FileCheck,
+      text: "Seguro de viaje completo"
+    }, {
+      icon: Receipt,
+      text: "Tasas y cargos locales"
+    }]
   }
 };
-
 const TripDetails = () => {
-  const { destination } = useParams();
+  const {
+    destination
+  } = useParams();
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [selectedOrigin, setSelectedOrigin] = useState("Madrid (MAD)");
@@ -505,7 +445,6 @@ const TripDetails = () => {
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [duration, setDuration] = useState("7 noches");
-
   const handleAdultsChange = (increment: boolean) => {
     if (increment && adults < 8) {
       setAdults(adults + 1);
@@ -513,7 +452,6 @@ const TripDetails = () => {
       setAdults(adults - 1);
     }
   };
-
   const handleChildrenChange = (increment: boolean) => {
     if (increment && children < 6) {
       setChildren(children + 1);
@@ -521,64 +459,79 @@ const TripDetails = () => {
       setChildren(children - 1);
     }
   };
-
-  const airports = [
-    { code: "MAD", city: "Madrid", name: "Madrid (MAD)" },
-    { code: "BCN", city: "Barcelona", name: "Barcelona (BCN)" },
-    { code: "PMI", city: "Palma de Mallorca", name: "Palma de Mallorca (PMI)" },
-    { code: "AGP", city: "Málaga", name: "Málaga (AGP)" },
-    { code: "ALC", city: "Alicante", name: "Alicante (ALC)" },
-    { code: "VLC", city: "Valencia", name: "Valencia (VLC)" },
-    { code: "SVQ", city: "Sevilla", name: "Sevilla (SVQ)" },
-    { code: "BIO", city: "Bilbao", name: "Bilbao (BIO)" },
-    { code: "TFN", city: "Tenerife Norte", name: "Tenerife Norte (TFN)" },
-    { code: "TFS", city: "Tenerife Sur", name: "Tenerife Sur (TFS)" }
-  ];
-
+  const airports = [{
+    code: "MAD",
+    city: "Madrid",
+    name: "Madrid (MAD)"
+  }, {
+    code: "BCN",
+    city: "Barcelona",
+    name: "Barcelona (BCN)"
+  }, {
+    code: "PMI",
+    city: "Palma de Mallorca",
+    name: "Palma de Mallorca (PMI)"
+  }, {
+    code: "AGP",
+    city: "Málaga",
+    name: "Málaga (AGP)"
+  }, {
+    code: "ALC",
+    city: "Alicante",
+    name: "Alicante (ALC)"
+  }, {
+    code: "VLC",
+    city: "Valencia",
+    name: "Valencia (VLC)"
+  }, {
+    code: "SVQ",
+    city: "Sevilla",
+    name: "Sevilla (SVQ)"
+  }, {
+    code: "BIO",
+    city: "Bilbao",
+    name: "Bilbao (BIO)"
+  }, {
+    code: "TFN",
+    city: "Tenerife Norte",
+    name: "Tenerife Norte (TFN)"
+  }, {
+    code: "TFS",
+    city: "Tenerife Sur",
+    name: "Tenerife Sur (TFS)"
+  }];
   const tripData = destination ? tripsData[destination as keyof typeof tripsData] : tripsData.maldivas;
-
   const reviews = {
     average: 5.0,
     total: 1234,
-    items: [
-      {
-        id: 1,
-        author: "María",
-        date: "15/02/2024",
-        rating: 5.0,
-        comment: "¡Increíble viaje! Todo perfectamente organizado y las experiencias fueron inolvidables.",
-        images: [
-          tripData.videos[0],
-          tripData.videos[1]
-        ]
-      },
-      {
-        id: 2,
-        author: "Carlos",
-        date: "10/02/2024",
-        rating: 5.0,
-        comment: "Una experiencia única. El itinerario estaba muy bien planificado y pudimos disfrutar de todo sin prisas.",
-        images: [
-          tripData.videos[1],
-          tripData.videos[2]
-        ]
-      }
-    ]
+    items: [{
+      id: 1,
+      author: "María",
+      date: "15/02/2024",
+      rating: 5.0,
+      comment: "¡Increíble viaje! Todo perfectamente organizado y las experiencias fueron inolvidables.",
+      images: [tripData.videos[0], tripData.videos[1]]
+    }, {
+      id: 2,
+      author: "Carlos",
+      date: "10/02/2024",
+      rating: 5.0,
+      comment: "Una experiencia única. El itinerario estaba muy bien planificado y pudimos disfrutar de todo sin prisas.",
+      images: [tripData.videos[1], tripData.videos[2]]
+    }]
   };
-
   const toggleMute = () => {
     setIsMuted(!isMuted);
   };
-
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
   };
-
   const scrollToReviews = () => {
     const reviewsSection = document.getElementById('reviews');
-    reviewsSection?.scrollIntoView({ behavior: 'smooth' });
+    reviewsSection?.scrollIntoView({
+      behavior: 'smooth'
+    });
   };
-
   return <div className="min-h-screen bg-white">
       <Navbar />
       <main className="container py-8">
@@ -661,7 +614,7 @@ const TripDetails = () => {
           <div className="lg:sticky lg:top-8 space-y-6">
             <div className="flex items-center justify-between">
               <h1 className="text-3xl font-bold">
-                {tripData.title} como <span className="text-primary">Familia Caramelunchi</span>
+                {tripData.title} como <span className="text-primary">Paula Diez</span>
                 <span className="inline-flex items-center gap-1 ml-2 text-sm font-medium text-primary bg-blue-50 px-2 py-1 rounded-full">
                   Traveltrend
                 </span>
@@ -850,5 +803,4 @@ const TripDetails = () => {
       <Footer />
     </div>;
 };
-
 export default TripDetails;
