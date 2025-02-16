@@ -260,7 +260,7 @@ export const FeaturedTrips = () => {
                     <div className="absolute inset-0 bg-black/20" />
                     
                     {/* Botones reposicionados */}
-                    <div className="absolute top-4 inset-x-4 flex justify-between z-10">
+                    <div className="absolute bottom-28 inset-x-4 flex justify-between z-10">
                       <button 
                         onClick={(e) => {
                           e.stopPropagation();
