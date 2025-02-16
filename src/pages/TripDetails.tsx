@@ -218,6 +218,7 @@ const TripDetails = () => {
             </div>
           </div>
 
+          {/* Columna derecha */}
           <div className="lg:sticky lg:top-8 space-y-6">
             <div className="flex items-center justify-between">
               <h1 className="text-3xl font-bold">
@@ -303,6 +304,55 @@ const TripDetails = () => {
                     Configurar ahora
                   </button>
                 </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl border space-y-6">
+              <h3 className="text-2xl font-bold">Reseñas</h3>
+              
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="bg-black text-white text-xl font-semibold px-3 py-1 rounded-lg">
+                    {reviews.average}
+                  </span>
+                  <div className="flex gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-6 h-6 text-primary fill-primary" />
+                    ))}
+                  </div>
+                </div>
+                <span className="text-gray-600">{reviews.total} comentarios</span>
+              </div>
+
+              <div className="space-y-6">
+                {reviews.items.map((review) => (
+                  <div key={review.id} className="bg-white rounded-2xl p-6 border space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <h4 className="font-bold text-xl">{review.author}</h4>
+                        <span className="text-gray-500">{review.date}</span>
+                      </div>
+                      <div className="flex items-center gap-1 bg-black text-white px-3 py-1 rounded-lg">
+                        <span className="font-semibold">{review.rating}</span>
+                        <Star className="w-4 h-4 fill-white" />
+                      </div>
+                    </div>
+
+                    <p className="text-gray-600">{review.comment}</p>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      {review.images.map((image, index) => (
+                        <div key={index} className="aspect-video rounded-xl overflow-hidden">
+                          <img
+                            src={image}
+                            alt={`Review image ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
