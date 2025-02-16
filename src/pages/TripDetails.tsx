@@ -149,6 +149,11 @@ const TripDetails = () => {
     setIsPlaying(!isPlaying);
   };
 
+  const scrollToReviews = () => {
+    const reviewsSection = document.getElementById('reviews');
+    reviewsSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -282,7 +287,10 @@ const TripDetails = () => {
                     <Star key={i} className="w-5 h-5 text-primary fill-primary" />
                   ))}
                 </div>
-                <button className="text-primary hover:underline">
+                <button 
+                  onClick={scrollToReviews}
+                  className="text-primary hover:underline"
+                >
                   Ver reseñas
                 </button>
               </div>
