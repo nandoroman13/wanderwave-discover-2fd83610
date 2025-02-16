@@ -53,7 +53,7 @@ const wavers = {
     tags: ["Tendencia", "En familia", "Aventura en familia", "Deportes aventura"],
     bio: "Familia viajera compartiendo aventuras por el mundo. Especialistas en viajes familiares y experiencias únicas para todas las edades."
   },
-  "paula-diez": {
+  "paula-diez": {  // Aseguramos que el slug sea exactamente igual al de la URL
     name: "Paula Díez",
     image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
     followers: "678",
@@ -65,7 +65,11 @@ const wavers = {
 
 export const WaverProfile = () => {
   const { slug } = useParams<{ slug: string }>();
+  console.log("Current slug:", slug); // Añadimos este log para debug
+  console.log("Available wavers:", Object.keys(wavers)); // Añadimos este log para debug
+  
   const waver = slug ? wavers[slug as keyof typeof wavers] : null;
+  console.log("Found waver:", waver); // Añadimos este log para debug
 
   if (!waver) {
     return (
