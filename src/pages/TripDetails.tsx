@@ -6,6 +6,8 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Bed, Plane, Bus, FileCheck, Receipt } from "lucide-react";
 
 const TripDetails = () => {
   const { destination } = useParams();
@@ -26,12 +28,42 @@ const TripDetails = () => {
     itinerary: [{
       day: 1,
       title: "Madrid - Maldivas",
-      description: "Vuelo desde Madrid hacia Maldivas con escalas."
+      description: "¡Hoy es el día que tanto has esperado! Finalmente, te embarcarás en un emocionante viaje hacia las asombrosas Islas Maldivas. Prepárate para empacar con entusiasmo y dirígete al aeropuerto con tiempo de sobra para completar cualquier trámite necesario. Después, simplemente acomódate y relájate en el avión, deleitándote con un vuelo directo hacia el paraíso absoluto!"
     }, {
-      day: 2,
-      title: "Llegada a Maldivas",
-      description: "Llegada al aeropuerto y traslado al hotel."
-    }]
+      day: "2-7",
+      title: "Maldivas",
+      description: "Días libres en Maldivas"
+    }, {
+      day: 8,
+      title: "Maldivas - Madrid",
+      description: "Vuelo de regreso a Madrid"
+    }, {
+      day: 9,
+      title: "Origen",
+      description: "Llegada a origen"
+    }],
+    included: [
+      {
+        icon: Bed,
+        text: "7 noches en el régimen elegido"
+      },
+      {
+        icon: Plane,
+        text: "Avión ida y vuelta"
+      },
+      {
+        icon: Bus,
+        text: "Traslado aeropuerto - hotel y viceversa a la llegada y salida"
+      },
+      {
+        icon: FileCheck,
+        text: "Seguro de viajes obligatorio"
+      },
+      {
+        icon: Receipt,
+        text: "Tasas aéreas"
+      }
+    ]
   };
 
   const toggleMute = () => {
@@ -124,15 +156,35 @@ const TripDetails = () => {
             <div className="mt-8">
               <h3 className="text-xl font-semibold mb-4">Descripción del paquete</h3>
               <div className="space-y-4">
-                <h4 className="font-medium">Itinerario</h4>
-                {tripData.itinerary.map(day => (
-                  <div key={day.day} className="border rounded-lg p-4">
-                    <button className="w-full flex items-center justify-between">
-                      <span className="font-medium">Día {day.day}: {day.title}</span>
-                      <ChevronDown className="h-5 w-5" />
-                    </button>
-                  </div>
+                <h4 className="text-xl font-bold mb-4">Itinerario</h4>
+                {tripData.itinerary.map((day, index) => (
+                  <Collapsible key={index} className="border rounded-lg">
+                    <CollapsibleTrigger className="w-full p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <span className="text-primary font-medium">Día {day.day}</span>
+                          <span className="text-gray-900 font-medium">{day.title}</span>
+                        </div>
+                        <ChevronDown className="h-5 w-5 text-gray-500" />
+                      </div>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="px-4 pb-4 text-gray-600">
+                      {day.description}
+                    </CollapsibleContent>
+                  </Collapsible>
                 ))}
+
+                <div className="mt-8">
+                  <h4 className="text-xl font-bold mb-4">Incluidos en tu viaje</h4>
+                  <div className="space-y-4">
+                    {tripData.included.map((item, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <item.icon className="w-6 h-6 text-gray-500 flex-shrink-0" />
+                        <span className="text-gray-600">{item.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
