@@ -250,24 +250,32 @@ export const FeaturedTrips = () => {
                     </div>
                   </div>
                   
-                  <div className="relative h-full rounded-2xl overflow-hidden group">
+                  <div className="relative h-full rounded-2xl overflow-hidden">
                     <img
                       src={trip.image}
                       alt={trip.title}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-100 opacity-0" />
+                    {/* Capa oscura siempre visible */}
+                    <div className="absolute inset-0 bg-black/20" />
                     
-                    <div className="absolute bottom-4 right-4 flex gap-2">
+                    {/* Botones siempre visibles */}
+                    <div className="absolute bottom-32 right-4 flex gap-2 z-10">
                       <button 
-                        onClick={toggleMute}
-                        className="w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/30 transition-colors"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleMute();
+                        }}
+                        className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/60 transition-colors"
                       >
                         {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
                       </button>
                       <button 
-                        onClick={() => openFullscreenCarousel(trip)}
-                        className="w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/30 transition-colors"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openFullscreenCarousel(trip);
+                        }}
+                        className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/60 transition-colors"
                       >
                         <Play className="w-5 h-5" />
                       </button>
