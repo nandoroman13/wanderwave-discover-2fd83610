@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Star, ChevronDown, ChevronUp, Share2, Volume2, VolumeX, Play, Pause, CalendarIcon, Plus, Minus } from "lucide-react";
+import { Star, ChevronDown, ChevronUp, Share2, Volume2, VolumeX, Play, Pause, CalendarIcon, Plus, Minus, Pencil } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,6 +14,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
+import React from "react";
 
 const tripsData = {
   chicago: {
@@ -437,9 +438,7 @@ const tripsData = {
 };
 
 const TripDetails = () => {
-  const {
-    destination
-  } = useParams();
+  const { destination } = useParams();
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [selectedOrigin, setSelectedOrigin] = useState("Madrid (MAD)");
@@ -447,6 +446,18 @@ const TripDetails = () => {
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [duration, setDuration] = useState("7 noches");
+  const [isEditingTitle, setIsEditingTitle] = useState(false);
+  const [customTitle, setCustomTitle] = useState("");
+  const [customUsername, setCustomUsername] = useState("");
+
+  const tripData = destination ? tripsData[destination as keyof typeof tripsData] : tripsData.maldivas;
+
+  // Inicializar los títulos personalizados cuando se carga el componente
+  React.useEffect(() => {
+    setCustomTitle(tripData.title);
+    setCustomUsername(tripData.username);
+  }, [tripData]);
+
   const handleAdultsChange = (increment: boolean) => {
     if (increment && adults < 8) {
       setAdults(adults + 1);
@@ -502,7 +513,6 @@ const TripDetails = () => {
     city: "Tenerife Sur",
     name: "Tenerife Sur (TFS)"
   }];
-  const tripData = destination ? tripsData[destination as keyof typeof tripsData] : tripsData.maldivas;
   const reviews = {
     average: 5.0,
     total: 1234,
@@ -615,12 +625,41 @@ const TripDetails = () => {
 
           <div className="lg:sticky lg:top-8 space-y-6">
             <div className="flex items-center justify-between">
-              <h1 className="text-3xl font-bold">
-                {tripData.title} como <span className="text-primary">Paula Diez</span>
-                <span className="inline-flex items-center gap-1 ml-2 text-sm font-medium text-primary bg-blue-50 px-2 py-1 rounded-full">
-                  Traveltrend
-                </span>
-              </h1>
+              {isEditingTitle ? (
+                <div className="space-y-2 w-full">
+                  <div className="flex gap-2 items-center">
+                    <Input
+                      value={customTitle}
+                      onChange={(e) => setCustomTitle(e.target.value)}
+                      placeholder="Título del viaje"
+                      className="text-3xl font-bold"
+                    />
+                    <span className="text-3xl font-bold">como</span>
+                    <Input
+                      value={customUsername}
+                      onChange={(e) => setCustomUsername(e.target.value)}
+                      placeholder="@username"
+                      className="text-3xl font-bold text-primary"
+                    />
+                  </div>
+                  <button
+                    onClick={() => setIsEditingTitle(false)}
+                    className="text-sm text-primary hover:underline"
+                  >
+                    Guardar cambios
+                  </button>
+                </div>
+              ) : (
+                <h1 className="text-3xl font-bold flex items-center gap-2">
+                  {customTitle} como <span className="text-primary">{customUsername}</span>
+                  <button
+                    onClick={() => setIsEditingTitle(true)}
+                    className="p-1 hover:bg-gray-100 rounded-full"
+                  >
+                    <Pencil className="w-4 h-4" />
+                  </button>
+                </h1>
+              )}
             </div>
 
             <div className="flex items-center gap-4">
@@ -647,162 +686,4 @@ const TripDetails = () => {
             </div>
 
             <div className="flex flex-wrap gap-2">
-              {tripData.tags.map(tag => <span key={tag} className="px-3 py-1.5 bg-gray-100 rounded-full text-sm">
-                  {tag}
-                </span>)}
-            </div>
-
-            <div className="bg-white p-6 rounded-xl border space-y-6">
-              <h3 className="text-xl font-semibold">Configura tus vuelos</h3>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="origin">Origen</Label>
-                  <Select value={selectedOrigin} onValueChange={setSelectedOrigin}>
-                    <SelectTrigger className="w-full bg-white">
-                      <SelectValue placeholder="Selecciona origen" />
-                    </SelectTrigger>
-                    <SelectContent sideOffset={4} className="bg-white z-50" side="bottom" position="popper" align="start">
-                      {airports.map(airport => <SelectItem key={airport.code} value={airport.name}>
-                          {airport.name}
-                        </SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="date">Fecha</Label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button variant="outline" className={`w-full justify-start text-left font-normal bg-white ${!date && "text-muted-foreground"}`}>
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {date ? format(date, "d 'de' MMMM yyyy", {
-                        locale: es
-                      }) : "Selecciona fecha"}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent sideOffset={4} className="bg-white z-50 shadow-lg border rounded-md" align="start" side="bottom">
-                      <Calendar mode="single" selected={date} onSelect={setDate} initialFocus locale={es} className="bg-white" />
-                    </PopoverContent>
-                  </Popover>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="duration">Duración</Label>
-                  <Select value={duration} onValueChange={setDuration}>
-                    <SelectTrigger className="w-full bg-white">
-                      <SelectValue placeholder="Selecciona duración" />
-                    </SelectTrigger>
-                    <SelectContent sideOffset={4} className="bg-white z-50" side="bottom" position="popper" align="start">
-                      <SelectItem value="7 noches">7 noches</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="people">Personas</Label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button variant="outline" className="w-full justify-start font-normal bg-white">
-                        {adults} adultos | {children} niños
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent sideOffset={4} className="w-80 bg-white z-50 p-4 shadow-lg border rounded-md" align="start" side="bottom">
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="font-medium">Adultos</p>
-                            <p className="text-sm text-gray-500">Mayores de 12 años</p>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <button onClick={() => handleAdultsChange(false)} className={`p-1.5 rounded-full ${adults > 1 ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 text-gray-300'}`} disabled={adults <= 1}>
-                              <Minus className="w-4 h-4" />
-                            </button>
-                            <span className="w-6 text-center font-medium">{adults}</span>
-                            <button onClick={() => handleAdultsChange(true)} className={`p-1.5 rounded-full ${adults < 8 ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 text-gray-300'}`} disabled={adults >= 8}>
-                              <Plus className="w-4 h-4" />
-                            </button>
-                          </div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="font-medium">Niños</p>
-                            <p className="text-sm text-gray-500">De 2 a 12 años</p>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <button onClick={() => handleChildrenChange(false)} className={`p-1.5 rounded-full ${children > 0 ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 text-gray-300'}`} disabled={children <= 0}>
-                              <Minus className="w-4 h-4" />
-                            </button>
-                            <span className="w-6 text-center font-medium">{children}</span>
-                            <button onClick={() => handleChildrenChange(true)} className={`p-1.5 rounded-full ${children < 6 ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 text-gray-300'}`} disabled={children >= 6}>
-                              <Plus className="w-4 h-4" />
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </PopoverContent>
-                  </Popover>
-                </div>
-              </div>
-
-              <div className="flex items-end justify-between pt-4">
-                <div>
-                  <p className="text-sm text-gray-500">Desde</p>
-                  <p className="text-3xl font-semibold">{tripData.price} €</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-sm text-primary">
-                    Configuración rápida en {tripData.configTime} min
-                  </p>
-                  <button className="mt-2 bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90 transition-colors">
-                    Configurar ahora
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white p-6 rounded-xl border space-y-6">
-              <h3 className="text-2xl font-bold">Reseñas</h3>
-              
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <span className="bg-black text-white text-xl font-semibold px-3 py-1 rounded-lg">
-                    {reviews.average}
-                  </span>
-                  <div className="flex gap-0.5">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="w-6 h-6 text-primary fill-primary" />)}
-                  </div>
-                </div>
-                <span className="text-gray-600">{reviews.total} comentarios</span>
-              </div>
-
-              <div className="space-y-6">
-                {reviews.items.map(review => <div key={review.id} className="bg-white rounded-2xl p-6 border space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <h4 className="font-bold text-xl">{review.author}</h4>
-                        <span className="text-gray-500">{review.date}</span>
-                      </div>
-                      <div className="flex items-center gap-1 bg-black text-white px-3 py-1 rounded-lg">
-                        <span className="font-semibold">{review.rating}</span>
-                        <Star className="w-4 h-4 fill-white" />
-                      </div>
-                    </div>
-
-                    <p className="text-gray-600">{review.comment}</p>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      {review.images.map((image, index) => <div key={index} className="aspect-video rounded-xl overflow-hidden">
-                          <img src={image} alt={`Review image ${index + 1}`} className="w-full h-full object-cover" />
-                        </div>)}
-                    </div>
-                  </div>)}
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-      <Footer />
-    </div>;
-};
-export default TripDetails;
+              {tripData.tags.map(tag => <span key={tag} className="px-3 py-
