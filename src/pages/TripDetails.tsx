@@ -65,7 +65,29 @@ const tripsData = {
       day: 7,
       title: "Chicago - Madrid",
       description: "Última mañana libre en la ciudad. Traslado al aeropuerto para tomar el vuelo de regreso a Madrid."
-    }]
+    }],
+    included: [
+      {
+        icon: Bed,
+        text: "5 noches en hotel seleccionado"
+      },
+      {
+        icon: Plane,
+        text: "Vuelos directos ida y vuelta"
+      },
+      {
+        icon: Bus,
+        text: "Traslados aeropuerto - hotel"
+      },
+      {
+        icon: FileCheck,
+        text: "Seguro de viaje básico"
+      },
+      {
+        icon: Receipt,
+        text: "Tasas aéreas incluidas"
+      }
+    ]
   },
   maldivas: {
     title: "Viaja a Maldivas",
@@ -165,7 +187,29 @@ const tripsData = {
       day: 8,
       title: "Tromsø - Madrid",
       description: "Mañana libre y vuelo de regreso a Madrid."
-    }]
+    }],
+    included: [
+      {
+        icon: Bed,
+        text: "6 noches en hoteles seleccionados"
+      },
+      {
+        icon: Plane,
+        text: "Vuelos ida y vuelta"
+      },
+      {
+        icon: Bus,
+        text: "Todos los traslados terrestres"
+      },
+      {
+        icon: FileCheck,
+        text: "Seguro de viaje con cobertura de actividades"
+      },
+      {
+        icon: Receipt,
+        text: "Tasas e impuestos locales"
+      }
+    ]
   },
   tanzania: {
     title: "Viaja a Tanzania",
@@ -222,7 +266,29 @@ const tripsData = {
       day: 10,
       title: "Zanzibar - Madrid",
       description: "Vuelo de regreso a Madrid vía Dar es Salaam."
-    }]
+    }],
+    included: [
+      {
+        icon: Bed,
+        text: "8 noches en lodges y hoteles"
+      },
+      {
+        icon: Plane,
+        text: "Vuelos internacionales y domésticos"
+      },
+      {
+        icon: Bus,
+        text: "Vehículo 4x4 con conductor-guía"
+      },
+      {
+        icon: FileCheck,
+        text: "Seguro de viaje premium"
+      },
+      {
+        icon: Receipt,
+        text: "Entradas a parques nacionales"
+      }
+    ]
   },
   japon: {
     title: "Viaja a Japón",
@@ -287,7 +353,29 @@ const tripsData = {
       day: 12,
       title: "Tokio - Madrid",
       description: "Vuelo de regreso a Madrid."
-    }]
+    }],
+    included: [
+      {
+        icon: Bed,
+        text: "10 noches en hoteles categoría superior"
+      },
+      {
+        icon: Plane,
+        text: "Vuelos internacionales"
+      },
+      {
+        icon: Bus,
+        text: "Japan Rail Pass 7 días"
+      },
+      {
+        icon: FileCheck,
+        text: "Seguro de viaje internacional"
+      },
+      {
+        icon: Receipt,
+        text: "Tasas y cargos turísticos"
+      }
+    ]
   },
   "nueva-zelanda": {
     title: "Viaja a Nueva Zelanda",
@@ -364,7 +452,29 @@ const tripsData = {
       day: 15,
       title: "Auckland - Madrid",
       description: "Vuelo de regreso a Madrid."
-    }]
+    }],
+    included: [
+      {
+        icon: Bed,
+        text: "13 noches en hoteles seleccionados"
+      },
+      {
+        icon: Plane,
+        text: "Vuelos internacionales"
+      },
+      {
+        icon: Bus,
+        text: "Coche de alquiler con seguro"
+      },
+      {
+        icon: FileCheck,
+        text: "Seguro de viaje completo"
+      },
+      {
+        icon: Receipt,
+        text: "Tasas y cargos locales"
+      }
+    ]
   }
 };
 
