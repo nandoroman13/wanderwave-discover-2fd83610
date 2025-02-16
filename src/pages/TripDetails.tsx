@@ -1,13 +1,16 @@
 import { useParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Star, ChevronDown, ChevronUp, Share2 } from "lucide-react";
+import { Star, ChevronDown, ChevronUp, Share2, Volume2, VolumeX, Play, Pause } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useState } from "react";
 
 const TripDetails = () => {
   const { destination } = useParams();
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const tripData = {
     title: "Viaja a Maldivas",
@@ -31,60 +34,93 @@ const TripDetails = () => {
     }]
   };
 
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+  };
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
       <main className="container py-8">
         <div className="grid lg:grid-cols-2 gap-8 my-[50px]">
           <div className="space-y-6">
-            <Carousel className="w-full max-w-[400px] mx-auto">
-              <CarouselContent>
-                {tripData.videos.map((video, index) => (
-                  <CarouselItem key={index}>
-                    <div className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-gray-900">
-                      <div className="absolute top-0 left-0 right-0 z-20 p-4 bg-gradient-to-b from-black/50 to-transparent">
-                        <div className="flex items-center gap-3">
-                          <img
-                            src={tripData.userImage}
-                            alt={tripData.username}
-                            className="w-8 h-8 rounded-full border-2 border-white object-cover"
-                          />
-                          <span className="text-white font-medium text-sm">
-                            {tripData.title} como {tripData.username}
-                          </span>
-                        </div>
-                      </div>
-                      <img
-                        src={video}
-                        alt={`Story ${index + 1} de ${tripData.title}`}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent">
-                        <div className="flex items-center gap-2 mb-2">
-                          {tripData.videos.map((_, i) => (
-                            <div
-                              key={i}
-                              className={`h-1 flex-1 rounded-full ${
-                                i === index ? "bg-white" : "bg-white/40"
-                              }`}
+            <div className="w-full max-w-[400px] mx-auto">
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {tripData.videos.map((video, index) => (
+                    <CarouselItem key={index}>
+                      <div className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-gray-900">
+                        <div className="absolute top-0 left-0 right-0 z-20 p-4 bg-gradient-to-b from-black/50 to-transparent">
+                          <div className="flex items-center gap-3">
+                            <img
+                              src={tripData.userImage}
+                              alt={tripData.username}
+                              className="w-8 h-8 rounded-full border-2 border-white object-cover"
                             />
-                          ))}
+                            <span className="text-white font-medium text-sm">
+                              {tripData.title} como {tripData.username}
+                            </span>
+                          </div>
                         </div>
-                        <div className="text-white text-sm font-medium">
-                          Día {index + 1}
+                        <img
+                          src={video}
+                          alt={`Story ${index + 1} de ${tripData.title}`}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent">
+                          <div className="flex items-center gap-2 mb-2">
+                            {tripData.videos.map((_, i) => (
+                              <div
+                                key={i}
+                                className={`h-1 flex-1 rounded-full ${
+                                  i === index ? "bg-white" : "bg-white/40"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <div className="text-white text-sm font-medium">
+                            Día {index + 1}
+                          </div>
                         </div>
+                        <button className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white">
+                          ←
+                        </button>
+                        <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white">
+                          →
+                        </button>
                       </div>
-                      <button className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white">
-                        ←
-                      </button>
-                      <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white">
-                        →
-                      </button>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+              
+              <div className="flex justify-between items-center mt-4 px-2">
+                <button
+                  onClick={toggleMute}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  {isMuted ? (
+                    <VolumeX className="w-6 h-6 text-gray-600" />
+                  ) : (
+                    <Volume2 className="w-6 h-6 text-gray-600" />
+                  )}
+                </button>
+                <button
+                  onClick={togglePlay}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  {isPlaying ? (
+                    <Pause className="w-6 h-6 text-gray-600" />
+                  ) : (
+                    <Play className="w-6 h-6 text-gray-600" />
+                  )}
+                </button>
+              </div>
+            </div>
 
             <div className="mt-8">
               <h3 className="text-xl font-semibold mb-4">Descripción del paquete</h3>
