@@ -1,6 +1,6 @@
 
 import { Share2, Star } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import {
@@ -15,7 +15,6 @@ const waverTrips = [
   {
     id: 1,
     title: "Viaja a Maldivas",
-    waverId: "paula-diez",
     image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
     price: "3,999",
     rating: "5,0",
@@ -26,7 +25,6 @@ const waverTrips = [
   {
     id: 2,
     title: "Viaja a Mallorca",
-    waverId: "mikel-boisset",
     image: "https://images.unsplash.com/photo-1437719417032-8595fd9e9dc6",
     price: "899",
     rating: "4,9",
@@ -37,7 +35,6 @@ const waverTrips = [
   {
     id: 3,
     title: "Viaja a Punta Cana",
-    waverId: "mikel-boisset",
     image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
     price: "2,499",
     rating: "4,8",
@@ -45,101 +42,9 @@ const waverTrips = [
     tags: ["Caribe", "Todo incluido", "Playas paradisíacas", "Con amigos"],
     slug: "punta-cana"
   },
-  {
-    id: 4,
-    title: "Viaja a Noruega",
-    waverId: "mikel-boisset",
-    image: "https://images.unsplash.com/photo-1520769669658-f07657f5a307",
-    price: "4,000",
-    rating: "5,0",
-    purchases: 602,
-    tags: ["Tendencia", "Naturaleza", "Aurora Boreal", "Fiordos"],
-    slug: "noruega"
-  },
-  {
-    id: 5,
-    title: "Viaja a Chicago",
-    waverId: "familia-carameluchi",
-    image: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
-    price: "5,500",
-    rating: "5,0",
-    purchases: 750,
-    tags: ["En familia", "Aventura en familia", "Tendencia"],
-    slug: "chicago"
-  },
-  {
-    id: 6,
-    title: "Viaja a Costa Rica",
-    waverId: "familia-carameluchi",
-    image: "https://images.unsplash.com/photo-1580094345379-9f41f1bf8290",
-    price: "3,999",
-    rating: "4,9",
-    purchases: 324,
-    tags: ["En familia", "Naturaleza", "Aventura en familia", "Ecoturismo"],
-    slug: "costa-rica"
-  }
 ];
 
-const wavers = {
-  "familia-carameluchi": {
-    name: "Familia Carameluchi",
-    image: "https://images.unsplash.com/photo-1655185497004-f3018eab9cb8",
-    followers: "123",
-    rating: "5,0",
-    tags: ["Tendencia", "En familia", "Aventura en familia", "Deportes aventura"],
-    bio: "Familia viajera compartiendo aventuras por el mundo. Especialistas en viajes familiares y experiencias únicas para todas las edades."
-  },
-  "paula-diez": {
-    name: "Paula Díez",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
-    followers: "678",
-    rating: "5,0",
-    tags: ["Tendencia", "Con amigos", "Europa", "Playas paradisiacas", "Deportes aventura"],
-    bio: "Viajera apasionada y creadora de contenido. Me encanta descubrir nuevos destinos y compartir experiencias únicas. Especializada en viajes de aventura y experiencias con amigos."
-  },
-  "mikel-boisset": {
-    name: "Mikel Boisset",
-    image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952",
-    followers: "456",
-    rating: "4,9",
-    tags: ["Tendencia", "Aventura", "Destinos exóticos", "Fotografía", "Gastronomía"],
-    bio: "Aventurero y fotógrafo de viajes. Me apasiona explorar destinos únicos y capturar su esencia a través de mi lente. Especializado en viajes de aventura y experiencias gastronómicas locales."
-  }
-};
-
 export const WaverProfile = () => {
-  const { slug } = useParams<{ slug: string }>();
-  console.log("Current slug:", slug);
-  console.log("Available wavers:", Object.keys(wavers));
-  
-  // Normalizar el slug: decodificar URL y convertir a minúsculas sin tildes
-  const normalizedSlug = slug ? decodeURIComponent(slug)
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "") : null;
-  
-  console.log("Normalized slug:", normalizedSlug);
-  
-  const waver = normalizedSlug ? wavers[normalizedSlug as keyof typeof wavers] : null;
-  console.log("Found waver:", waver);
-
-  // Filtrar los viajes por waver
-  const waverTripsFiltered = normalizedSlug ? waverTrips.filter(trip => trip.waverId === normalizedSlug) : [];
-  console.log("Waver trips:", waverTripsFiltered);
-
-  if (!waver) {
-    return (
-      <>
-        <Navbar />
-        <div className="container py-16">
-          <h1 className="text-2xl font-bold text-red-600">Waver no encontrado</h1>
-          <p className="mt-2 text-gray-600">Lo sentimos, no pudimos encontrar información sobre este waver.</p>
-        </div>
-        <Footer />
-      </>
-    );
-  }
-
   return (
     <>
       <Navbar />
@@ -150,15 +55,15 @@ export const WaverProfile = () => {
             <div className="flex items-start gap-8">
               <div className="w-48 h-48 flex-shrink-0">
                 <img
-                  src={waver.image}
-                  alt={waver.name}
+                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2"
+                  alt="Paula Díez"
                   className="w-full h-full rounded-2xl object-cover"
                 />
               </div>
               
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-4">
-                  <h1 className="text-4xl font-semibold">{waver.name}</h1>
+                  <h1 className="text-4xl font-semibold">Paula Díez</h1>
                   <div className="flex items-center gap-4">
                     <button className="border border-black text-black hover:bg-black hover:text-white px-6 py-2 rounded-full transition-colors flex items-center gap-2">
                       Seguir <span className="text-lg">+</span>
@@ -170,15 +75,15 @@ export const WaverProfile = () => {
                 </div>
                 
                 <div className="flex items-center gap-6 mb-6 text-gray-600">
-                  <span className="text-lg">{waver.followers} seguidores</span>
+                  <span className="text-lg">678 seguidores</span>
                   <div className="flex items-center gap-1 bg-black text-white px-3 py-1 rounded-md">
-                    <span className="text-lg">{waver.rating}</span>
+                    <span className="text-lg">5,0</span>
                     <Star className="fill-current" size={18} />
                   </div>
                 </div>
                 
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {waver.tags.map((tag) => (
+                  {["Tendencia", "Con amigos", "Europa", "Playas paradisiacas", "Deportes aventura"].map((tag) => (
                     <span
                       key={tag}
                       className="px-4 py-1.5 bg-gray-100 rounded-full text-sm"
@@ -189,7 +94,7 @@ export const WaverProfile = () => {
                 </div>
                 
                 <p className="text-gray-600 max-w-2xl">
-                  {waver.bio}
+                  Viajera apasionada y creadora de contenido. Me encanta descubrir nuevos destinos y compartir experiencias únicas. Especializada en viajes de aventura y experiencias con amigos.
                 </p>
               </div>
             </div>
@@ -199,11 +104,11 @@ export const WaverProfile = () => {
         {/* Viajes Section */}
         <section className="py-16">
           <div className="container">
-            <h2 className="text-3xl font-semibold mb-8">Viajes de {waver.name}</h2>
+            <h2 className="text-3xl font-semibold mb-8">Viajes de Paula</h2>
             
             <Carousel className="w-full">
               <CarouselContent className="-ml-4">
-                {waverTripsFiltered.map((trip) => (
+                {waverTrips.map((trip) => (
                   <CarouselItem key={trip.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
                     <div className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[3/5]">
                       <div className="relative h-full rounded-2xl overflow-hidden">
@@ -216,7 +121,7 @@ export const WaverProfile = () => {
                         
                         <div className="absolute inset-x-0 top-0 p-8 text-white">
                           <span className="text-sm font-medium tracking-wider">
-                            {waver.name.toUpperCase()}
+                            PAULA DÍEZ
                           </span>
                           <h3 className="text-2xl font-semibold mt-2">
                             {trip.title}
