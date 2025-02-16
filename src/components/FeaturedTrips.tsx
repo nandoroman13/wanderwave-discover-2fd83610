@@ -57,9 +57,9 @@ export const FeaturedTrips = () => {
           <CarouselContent className="-ml-4">
             {trips.map((trip) => (
               <CarouselItem key={trip.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                <div className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up">
+                <div className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[3/5] p-4">
                   {/* Header con avatar y username */}
-                  <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full pl-1 pr-4 py-1">
+                  <div className="absolute top-8 left-8 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full pl-1 pr-4 py-1">
                     <img
                       src={trip.userImage}
                       alt={trip.username}
@@ -72,7 +72,7 @@ export const FeaturedTrips = () => {
                   </div>
                   
                   {/* Imagen principal */}
-                  <div className="relative aspect-[3/4]">
+                  <div className="relative h-full rounded-2xl overflow-hidden">
                     <img
                       src={trip.image}
                       alt={trip.title}
@@ -81,7 +81,7 @@ export const FeaturedTrips = () => {
                   </div>
                   
                   {/* Contenido superpuesto */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-4 rounded-t-3xl">
+                  <div className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-sm p-4 rounded-2xl">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-2">
                         <div className="bg-black text-white text-sm px-2 py-1 rounded-full flex items-center gap-1">
