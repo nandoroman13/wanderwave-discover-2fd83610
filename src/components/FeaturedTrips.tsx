@@ -293,7 +293,7 @@ export const FeaturedTrips = () => {
           <>
             <div className="fixed inset-0 bg-black/60 z-40" onClick={closeFullscreenCarousel} />
             
-            <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[520px] z-50 rounded-3xl overflow-hidden bg-black aspect-[3/5]">
+            <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[520px] z-50 rounded-3xl overflow-hidden bg-black">
               <div className="absolute top-4 left-4 z-50 flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full pl-1 pr-4 py-1">
                 <img 
                   src={selectedTrip.userImage} 
@@ -316,13 +316,27 @@ export const FeaturedTrips = () => {
               <Carousel className="h-full">
                 <CarouselContent>
                   {selectedTrip.videos.map((video, index) => (
-                    <CarouselItem key={index}>
-                      <div className="h-full w-full flex items-center justify-center">
+                    <CarouselItem key={index} className="h-full">
+                      <div className="relative h-full">
                         <img 
                           src={video} 
                           alt={`${selectedTrip.title} - Imagen ${index + 1}`}
                           className="w-full h-full object-cover"
                         />
+                        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/80 to-transparent" />
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <div className="flex gap-2 mb-2">
+                            {selectedTrip.videos.map((_, i) => (
+                              <div 
+                                key={i}
+                                className={`h-1 rounded-full flex-1 ${i === index ? 'bg-white' : 'bg-white/30'}`}
+                              />
+                            ))}
+                          </div>
+                          <h3 className="text-white text-sm font-medium">
+                            Día {index + 1} - {selectedTrip.title}
+                          </h3>
+                        </div>
                       </div>
                     </CarouselItem>
                   ))}
