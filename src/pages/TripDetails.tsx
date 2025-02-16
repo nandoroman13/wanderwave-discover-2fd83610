@@ -1,19 +1,12 @@
 import { useParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Star, ChevronDown, ChevronUp, Share2, Volume2, VolumeX, Play, Pause, CalendarIcon, Plus, Minus, Pencil } from "lucide-react";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Star, ChevronDown, Share2, Volume2, VolumeX, Play, Pause, CalendarIcon, Plus, Minus, Pencil } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Bed, Plane, Bus, FileCheck, Receipt } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { format } from "date-fns";
-import { es } from "date-fns/locale";
-import { Button } from "@/components/ui/button";
 import React from "react";
 
 const tripsData = {
@@ -452,7 +445,6 @@ const TripDetails = () => {
 
   const tripData = destination ? tripsData[destination as keyof typeof tripsData] : tripsData.maldivas;
 
-  // Inicializar los títulos personalizados cuando se carga el componente
   React.useEffect(() => {
     setCustomTitle(tripData.title);
     setCustomUsername(tripData.username);
@@ -465,6 +457,7 @@ const TripDetails = () => {
       setAdults(adults - 1);
     }
   };
+
   const handleChildrenChange = (increment: boolean) => {
     if (increment && children < 6) {
       setChildren(children + 1);
@@ -472,79 +465,24 @@ const TripDetails = () => {
       setChildren(children - 1);
     }
   };
-  const airports = [{
-    code: "MAD",
-    city: "Madrid",
-    name: "Madrid (MAD)"
-  }, {
-    code: "BCN",
-    city: "Barcelona",
-    name: "Barcelona (BCN)"
-  }, {
-    code: "PMI",
-    city: "Palma de Mallorca",
-    name: "Palma de Mallorca (PMI)"
-  }, {
-    code: "AGP",
-    city: "Málaga",
-    name: "Málaga (AGP)"
-  }, {
-    code: "ALC",
-    city: "Alicante",
-    name: "Alicante (ALC)"
-  }, {
-    code: "VLC",
-    city: "Valencia",
-    name: "Valencia (VLC)"
-  }, {
-    code: "SVQ",
-    city: "Sevilla",
-    name: "Sevilla (SVQ)"
-  }, {
-    code: "BIO",
-    city: "Bilbao",
-    name: "Bilbao (BIO)"
-  }, {
-    code: "TFN",
-    city: "Tenerife Norte",
-    name: "Tenerife Norte (TFN)"
-  }, {
-    code: "TFS",
-    city: "Tenerife Sur",
-    name: "Tenerife Sur (TFS)"
-  }];
-  const reviews = {
-    average: 5.0,
-    total: 1234,
-    items: [{
-      id: 1,
-      author: "María",
-      date: "15/02/2024",
-      rating: 5.0,
-      comment: "¡Increíble viaje! Todo perfectamente organizado y las experiencias fueron inolvidables.",
-      images: [tripData.videos[0], tripData.videos[1]]
-    }, {
-      id: 2,
-      author: "Carlos",
-      date: "10/02/2024",
-      rating: 5.0,
-      comment: "Una experiencia única. El itinerario estaba muy bien planificado y pudimos disfrutar de todo sin prisas.",
-      images: [tripData.videos[1], tripData.videos[2]]
-    }]
-  };
+
   const toggleMute = () => {
     setIsMuted(!isMuted);
   };
+
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
   };
+
   const scrollToReviews = () => {
     const reviewsSection = document.getElementById('reviews');
     reviewsSection?.scrollIntoView({
       behavior: 'smooth'
     });
   };
-  return <div className="min-h-screen bg-white">
+
+  return (
+    <div className="min-h-screen bg-white">
       <Navbar />
       <main className="container py-8">
         <div className="grid lg:grid-cols-2 gap-8 my-[50px]">
@@ -552,13 +490,14 @@ const TripDetails = () => {
             <div className="w-full max-w-[400px] mx-auto">
               <Carousel className="w-full">
                 <CarouselContent>
-                  {tripData.videos.map((video, index) => <CarouselItem key={index}>
+                  {tripData.videos.map((video, index) => (
+                    <CarouselItem key={index}>
                       <div className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-gray-900">
                         <div className="absolute top-0 left-0 right-0 z-20 p-4 bg-gradient-to-b from-black/50 to-transparent">
                           <div className="flex items-center gap-3">
                             <img src={tripData.userImage} alt={tripData.username} className="w-8 h-8 rounded-full border-2 border-white object-cover" />
                             <span className="text-white font-medium text-sm">
-                              {tripData.title} como {tripData.username}
+                              {customTitle} como {customUsername}
                             </span>
                           </div>
                         </div>
@@ -573,20 +512,17 @@ const TripDetails = () => {
                             </button>
                           </div>
                           <div className="flex items-center gap-2 mb-2">
-                            {tripData.videos.map((_, i) => <div key={i} className={`h-1 flex-1 rounded-full ${i === index ? "bg-white" : "bg-white/40"}`} />)}
+                            {tripData.videos.map((_, i) => (
+                              <div key={i} className={`h-1 flex-1 rounded-full ${i === index ? "bg-white" : "bg-white/40"}`} />
+                            ))}
                           </div>
                           <div className="text-white text-sm font-medium">
                             Día {index + 1}
                           </div>
                         </div>
-                        <button className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white">
-                          ←
-                        </button>
-                        <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white">
-                          →
-                        </button>
                       </div>
-                    </CarouselItem>)}
+                    </CarouselItem>
+                  ))}
                 </CarouselContent>
               </Carousel>
             </div>
@@ -595,7 +531,8 @@ const TripDetails = () => {
               <h3 className="text-xl font-semibold mb-4">Descripción del paquete</h3>
               <div className="space-y-4">
                 <h4 className="text-xl font-bold mb-4">Itinerario</h4>
-                {tripData.itinerary.map((day, index) => <Collapsible key={index} className="border rounded-lg">
+                {tripData.itinerary.map((day, index) => (
+                  <Collapsible key={index} className="border rounded-lg">
                     <CollapsibleTrigger className="w-full p-4">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -608,17 +545,8 @@ const TripDetails = () => {
                     <CollapsibleContent className="px-4 pb-4 text-gray-600">
                       {day.description}
                     </CollapsibleContent>
-                  </Collapsible>)}
-
-                <div className="mt-8">
-                  <h4 className="text-xl font-bold mb-4">Incluidos en tu viaje</h4>
-                  <div className="space-y-4">
-                    {tripData.included.map((item, index) => <div key={index} className="flex items-start gap-3">
-                        <item.icon className="w-6 h-6 text-gray-500 flex-shrink-0" />
-                        <span className="text-gray-600">{item.text}</span>
-                      </div>)}
-                  </div>
-                </div>
+                  </Collapsible>
+                ))}
               </div>
             </div>
           </div>
@@ -666,7 +594,9 @@ const TripDetails = () => {
               <div className="flex items-center gap-2">
                 <span className="font-semibold text-lg">{tripData.rating}</span>
                 <div className="flex gap-0.5">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-primary fill-primary" />)}
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-primary fill-primary" />
+                  ))}
                 </div>
                 <button onClick={scrollToReviews} className="text-primary hover:underline">
                   Ver reseñas
@@ -679,11 +609,12 @@ const TripDetails = () => {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+};
 
-            <div className="space-y-1">
-              <span className="text-sm text-gray-500">Duración recomendada</span>
-              <p className="font-medium">{tripData.duration}</p>
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              {tripData.tags.map(tag => <span key={tag} className="px-3 py-
+export default TripDetails;
