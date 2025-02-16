@@ -71,7 +71,7 @@ const waverTrips = [
     id: 6,
     title: "Viaja a Costa Rica",
     waverId: "familia-carameluchi",
-    image: "https://images.unsplash.com/photo-1501439332512-b9e1be54e066",
+    image: "https://images.unsplash.com/photo-1580094345379-9f41f1bf8290",
     price: "3,999",
     rating: "4,9",
     purchases: 324,
