@@ -244,21 +244,16 @@ const tripsData = {
 };
 
 const TripDetails = () => {
-  const { destination } = useParams();
-  const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [selectedOrigin, setSelectedOrigin] = useState("Madrid (MAD)");
-  const [date, setDate] = useState<Date>();
-  const [adults, setAdults] = useState(2);
-  const [children, setChildren] = useState(0);
-  const [duration, setDuration] = useState("7 noches");
+  const { destination } = useParams<{ destination: string }>();
+  console.log("URL destination parameter:", destination);
+  console.log("Available destinations:", Object.keys(tripsData));
 
-  console.log("URL destination parameter:", destination); // Para debug
-  console.log("Available destinations:", Object.keys(tripsData)); // Para debug
+  // Eliminar el prefijo "viajes/" si está presente
+  const cleanDestination = destination?.replace('viajes/', '');
+  console.log("Clean destination:", cleanDestination);
 
-  const tripData = destination ? tripsData[destination as keyof typeof tripsData] : null;
-
-  console.log("Found trip data:", tripData); // Para debug
+  const tripData = cleanDestination ? tripsData[cleanDestination as keyof typeof tripsData] : null;
+  console.log("Found trip data:", tripData);
 
   if (!tripData) {
     return <div className="container py-8">
@@ -266,6 +261,14 @@ const TripDetails = () => {
       <p className="mt-2 text-gray-600">Lo sentimos, no pudimos encontrar información sobre este destino.</p>
     </div>;
   }
+
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [selectedOrigin, setSelectedOrigin] = useState("Madrid (MAD)");
+  const [date, setDate] = useState<Date>();
+  const [adults, setAdults] = useState(2);
+  const [children, setChildren] = useState(0);
+  const [duration, setDuration] = useState("7 noches");
 
   const handleAdultsChange = (increment: boolean) => {
     if (increment && adults < 8) {
@@ -567,7 +570,7 @@ const TripDetails = () => {
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-xl border space-y-6">
+            <div className="bg-white p-6 rounded-xl border space-y-6" id="reviews">
               <h3 className="text-2xl font-bold">Reseñas</h3>
               
               <div className="flex items-center gap-4">
