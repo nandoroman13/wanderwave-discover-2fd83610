@@ -45,7 +45,7 @@ const tripsData = {
       description: "Día para disfrutar del Navy Pier, perfecto para familias. Por la tarde, shopping en la Magnificent Mile."
     }, {
       day: 4,
-      title: "Museos y Lagos",
+ title: "Museos y Lagos",
       description: "Visita al Field Museum o al Shedd Aquarium. Paseo en barco por el Lago Michigan si el tiempo lo permite."
     }, {
       day: 5,
@@ -226,6 +226,271 @@ const tripsData = {
       {
         icon: Receipt,
         text: "Tasas e impuestos locales"
+      }
+    ]
+  },
+  tanzania: {
+    title: "Viaja a Tanzania",
+    username: "@carlacortes",
+    userImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+    rating: 5.0,
+    duration: "10 días, 8 noches",
+    purchases: 425,
+    price: "4,800",
+    tags: ["Safari", "Aventura", "Naturaleza", "Fotografía", "Tendencia"],
+    configTime: "8",
+    videos: [
+      "https://images.unsplash.com/photo-1516426122078-c23e76319801",
+      "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e",
+      "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Kilimanjaro",
+      description: "Vuelo desde Madrid hacia el Aeropuerto Internacional de Kilimanjaro. Llegada y traslado al hotel en Arusha."
+    }, {
+      day: 2,
+      title: "Parque Nacional del Tarangire",
+      description: "Safari en el Parque Nacional del Tarangire, famoso por sus manadas de elefantes y icónicos baobabs."
+    }, {
+      day: 3,
+      title: "Cráter del Ngorongoro",
+      description: "Día completo explorando el famoso cráter, un paraíso de vida salvaje y hogar de los 'Big Five'."
+    }, {
+      day: 4,
+      title: "Serengeti (Norte)",
+      description: "Traslado al norte del Serengeti. Safari por la tarde buscando la gran migración."
+    }, {
+      day: 5,
+      title: "Serengeti (Safari)",
+      description: "Día completo de safari en el Serengeti, observando leones, leopardos, jirafas y más."
+    }, {
+      day: 6,
+      title: "Serengeti - Zanzibar",
+      description: "Vuelo a Zanzibar. Tarde libre para disfrutar de las playas paradisíacas."
+    }, {
+      day: 7,
+      title: "Stone Town",
+      description: "Visita guiada por Stone Town, Patrimonio de la Humanidad, y sus mercados de especias."
+    }, {
+      day: 8,
+      title: "Playas de Zanzibar",
+      description: "Día libre para actividades opcionales: snorkel, buceo o simplemente relax en la playa."
+    }, {
+      day: 9,
+      title: "Último día en Tanzania",
+      description: "Mañana libre en Zanzibar. Por la tarde, traslado al aeropuerto."
+    }, {
+      day: 10,
+      title: "Regreso a Madrid",
+      description: "Vuelo de regreso a Madrid. Fin de nuestros servicios."
+    }],
+    included: [
+      {
+        icon: Bed,
+        text: "8 noches en lodges y hoteles"
+      },
+      {
+        icon: Plane,
+        text: "Vuelos internacionales y domésticos"
+      },
+      {
+        icon: Bus,
+        text: "Vehículo 4x4 con conductor-guía"
+      },
+      {
+        icon: FileCheck,
+        text: "Seguro de viaje premium"
+      },
+      {
+        icon: Receipt,
+        text: "Entradas a parques nacionales"
+      }
+    ]
+  },
+  japon: {
+    title: "Viaja a Japón",
+    username: "@mariasanchez",
+    userImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
+    rating: 5.0,
+    duration: "12 días, 10 noches",
+    purchases: 892,
+    price: "6,200",
+    tags: ["Cultura", "Gastronomía", "Historia", "Tendencia"],
+    configTime: "10",
+    videos: [
+      "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e",
+      "https://images.unsplash.com/photo-1545569341-9eb8b30979d9",
+      "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Tokyo",
+      description: "Vuelo desde Madrid a Tokyo. Noche a bordo."
+    }, {
+      day: 2,
+      title: "Llegada a Tokyo",
+      description: "Llegada al aeropuerto de Narita. Traslado al hotel y primera toma de contacto con la ciudad."
+    }, {
+      day: 3,
+      title: "Tokyo Tradicional",
+      description: "Visita al Templo Senso-ji, jardines del Palacio Imperial y mercado de Tsukiji."
+    }, {
+      day: 4,
+      title: "Tokyo Moderno",
+      description: "Exploración de Shibuya, Harajuku y Akihabara. Cena en un Robot Restaurant."
+    }, {
+      day: 5,
+      title: "Hakone y Monte Fuji",
+      description: "Excursión a Hakone, crucero por el lago Ashi y vistas del Monte Fuji."
+    }, {
+      day: 6,
+      title: "Kyoto",
+      description: "Viaje en tren bala a Kyoto. Visita al Templo Dorado y al barrio de Gion."
+    }, {
+      day: 7,
+      title: "Arashiyama",
+      description: "Visita al bosque de bambú, templo Tenryu-ji y puente Togetsukyo."
+    }, {
+      day: 8,
+      title: "Nara y Osaka",
+      description: "Excursión a Nara. Por la tarde, exploración gastronómica en Osaka."
+    }, {
+      day: 9,
+      title: "Hiroshima y Miyajima",
+      description: "Visita a Hiroshima y la isla de Miyajima con su famoso torii flotante."
+    }, {
+      day: 10,
+      title: "Kyoto - Tokyo",
+      description: "Último día en Kyoto. Regreso a Tokyo en tren bala."
+    }, {
+      day: 11,
+      title: "Tokyo libre",
+      description: "Día libre para compras y últimas visitas."
+    }, {
+      day: 12,
+      title: "Tokyo - Madrid",
+      description: "Traslado al aeropuerto y vuelo de regreso a Madrid."
+    }],
+    included: [
+      {
+        icon: Bed,
+        text: "10 noches en hoteles categoría superior"
+      },
+      {
+        icon: Plane,
+        text: "Vuelos internacionales"
+      },
+      {
+        icon: Bus,
+        text: "Japan Rail Pass 7 días"
+      },
+      {
+        icon: FileCheck,
+        text: "Seguro de viaje internacional"
+      },
+      {
+        icon: Receipt,
+        text: "Tasas y cargos turísticos"
+      }
+    ]
+  },
+  "nueva-zelanda": {
+    title: "Viaja a Nueva Zelanda",
+    username: "@davidlopez",
+    userImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+    rating: 5.0,
+    duration: "15 días, 13 noches",
+    purchases: 317,
+    price: "7,100",
+    tags: ["Aventura", "Naturaleza", "Trekking", "Tendencia"],
+    configTime: "12",
+    videos: [
+      "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800",
+      "https://images.unsplash.com/photo-1506146332389-18140dc7b2fb",
+      "https://images.unsplash.com/photo-1530789253388-582c481c54b0"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Auckland",
+      description: "Vuelo desde Madrid hacia Auckland. Noche a bordo."
+    }, {
+      day: 2,
+      title: "Llegada a Auckland",
+      description: "Llegada a Auckland. Traslado al hotel y descanso."
+    }, {
+      day: 3,
+      title: "Auckland",
+      description: "Tour por Auckland, incluyendo Sky Tower y puerto Viaduct."
+    }, {
+      day: 4,
+      title: "Rotorua",
+      description: "Viaje a Rotorua. Visita a un pueblo maorí y cena hangi tradicional."
+    }, {
+      day: 5,
+      title: "Hobbiton y Waitomo",
+      description: "Visita al set de Hobbiton y las cuevas brillantes de Waitomo."
+    }, {
+      day: 6,
+      title: "Wellington",
+      description: "Viaje a Wellington. Visita al museo Te Papa y teleférico."
+    }, {
+      day: 7,
+      title: "Kaikoura",
+      description: "Cruce en ferry a la Isla Sur. Viaje a Kaikoura para avistamiento de ballenas."
+    }, {
+      day: 8,
+      title: "Christchurch",
+      description: "Exploración de Christchurch y sus jardines botánicos."
+    }, {
+      day: 9,
+      title: "Monte Cook",
+      description: "Viaje al Parque Nacional del Monte Cook. Trekking por glaciares."
+    }, {
+      day: 10,
+      title: "Queenstown",
+      description: "Llegada a Queenstown. Tarde de actividades de aventura."
+    }, {
+      day: 11,
+      title: "Milford Sound",
+      description: "Excursión al fiordo Milford Sound. Crucero por el fiordo."
+    }, {
+      day: 12,
+      title: "Wanaka",
+      description: "Día en Wanaka. Trekking y actividades al aire libre."
+    }, {
+      day: 13,
+      title: "Franz Josef",
+      description: "Visita al Glaciar Franz Josef. Vuelo en helicóptero opcional."
+    }, {
+      day: 14,
+      title: "Auckland",
+      description: "Vuelo de regreso a Auckland. Últimas compras."
+    }, {
+      day: 15,
+      title: "Auckland - Madrid",
+      description: "Vuelo de regreso a Madrid. Fin del viaje."
+    }],
+    included: [
+      {
+        icon: Bed,
+        text: "13 noches en hoteles seleccionados"
+      },
+      {
+        icon: Plane,
+        text: "Vuelos internacionales"
+      },
+      {
+        icon: Bus,
+        text: "Coche de alquiler con seguro"
+      },
+      {
+        icon: FileCheck,
+        text: "Seguro de viaje completo"
+      },
+      {
+        icon: Receipt,
+        text: "Tasas y cargos locales"
       }
     ]
   }
