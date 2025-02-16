@@ -253,7 +253,11 @@ const TripDetails = () => {
   const [children, setChildren] = useState(0);
   const [duration, setDuration] = useState("7 noches");
 
-  const tripData = destination ? tripsData[destination as keyof typeof tripsData] : tripsData.maldivas;
+  const tripData = destination ? tripsData[destination as keyof typeof tripsData] : null;
+
+  if (!tripData) {
+    return <div>Destino no encontrado</div>;
+  }
 
   const handleAdultsChange = (increment: boolean) => {
     if (increment && adults < 8) {
