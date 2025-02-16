@@ -73,7 +73,7 @@ const trips = [
     price: "5,299",
     rating: 4.9,
     purchases: 447,
-    tags: ["Aventura", "Naturaleza", "Senderismo"],
+    tags: ["Aventura", "Naturaleza", "Senderismo", "Fotografía"],
   },
 ];
 
