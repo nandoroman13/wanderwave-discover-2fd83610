@@ -57,22 +57,22 @@ export const FeaturedTrips = () => {
           <CarouselContent className="-ml-4">
             {trips.map((trip) => (
               <CarouselItem key={trip.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                <div className="relative bg-gradient-to-b from-blue-100/50 to-white/50 rounded-[32px] overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[4/5]">
-                  {/* Header con título y username */}
-                  <div className="absolute top-4 left-4 right-4 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full p-2 pr-6">
+                <div className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up">
+                  {/* Header con avatar y username */}
+                  <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full pl-1 pr-4 py-1">
                     <img
                       src={trip.userImage}
                       alt={trip.username}
-                      className="w-10 h-10 rounded-full object-cover"
+                      className="w-8 h-8 rounded-full object-cover"
                     />
-                    <div className="text-base font-medium">
-                      <span>{trip.title}</span>
+                    <div className="text-sm">
+                      <span className="text-gray-900">{trip.title}</span>
                       <span className="text-gray-600"> como {trip.username}</span>
                     </div>
                   </div>
                   
                   {/* Imagen principal */}
-                  <div className="w-full h-full">
+                  <div className="relative aspect-[3/4]">
                     <img
                       src={trip.image}
                       alt={trip.title}
@@ -81,39 +81,37 @@ export const FeaturedTrips = () => {
                   </div>
                   
                   {/* Contenido superpuesto */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-6 space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className="bg-black text-white px-2 py-1 rounded-lg flex items-center gap-1">
-                          <span className="font-medium">{trip.rating}</span>
-                          <div className="flex">
-                            {[...Array(5)].map((_, i) => (
-                              <Star key={i} className="fill-current" size={14} />
-                            ))}
-                          </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-4 rounded-t-3xl">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <div className="bg-black text-white text-sm px-2 py-1 rounded-full flex items-center gap-1">
+                          <span>{trip.rating}</span>
+                          <Star className="fill-current" size={14} />
                         </div>
-                        <span className="text-gray-600">+{trip.purchases} comprados</span>
+                        <span className="text-sm text-gray-600">+{trip.purchases} comprados</span>
                       </div>
-                      <Share2 size={20} className="text-gray-600 cursor-pointer" />
+                      <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                        <Share2 size={20} className="text-gray-600" />
+                      </button>
                     </div>
                     
-                    <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+                    <div className="flex flex-wrap gap-2 mb-4">
                       {trip.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-sm px-4 py-1.5 bg-gray-100 rounded-full whitespace-nowrap"
+                          className="text-sm px-3 py-1 bg-gray-100 rounded-full"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
                     
-                    <div className="flex items-center justify-between pt-2">
+                    <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-gray-600 text-sm">Desde</p>
-                        <p className="text-2xl font-semibold">{trip.price} €</p>
+                        <span className="text-sm text-gray-600">Desde</span>
+                        <p className="text-xl font-semibold">{trip.price} €</p>
                       </div>
-                      <button className="bg-[#FFD233] hover:bg-[#FFD233]/90 text-black px-6 py-2.5 rounded-full font-medium transition-colors">
+                      <button className="bg-[#FFD233] hover:bg-[#FFD233]/90 text-black px-4 py-2 rounded-full transition-colors">
                         Configura paquete
                       </button>
                     </div>
