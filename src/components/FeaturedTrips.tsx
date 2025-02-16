@@ -56,7 +56,7 @@ export const FeaturedTrips = () => {
         <Carousel className="w-full">
           <CarouselContent className="-ml-4">
             {trips.map((trip) => (
-              <CarouselItem key={trip.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+              <CarouselItem key={trip.id} className="pl-4 md:basis-1/2">
                 <div className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up">
                   {/* Header con avatar y username */}
                   <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full pl-1 pr-4 py-1">
@@ -72,7 +72,7 @@ export const FeaturedTrips = () => {
                   </div>
                   
                   {/* Imagen principal */}
-                  <div className="relative aspect-[4/3]">
+                  <div className="relative aspect-[16/9]">
                     <img
                       src={trip.image}
                       alt={trip.title}
