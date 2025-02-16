@@ -1,3 +1,4 @@
+
 import { Share2, Star } from "lucide-react";
 import {
   Carousel,
@@ -61,7 +62,7 @@ const trips = [
     price: "4,599",
     rating: 4.9,
     purchases: 892,
-    tags: ["Cultural", "Gastronomía", "Tendencia"],
+    tags: ["Cultural", "Gastronomía", "Tendencia", "Templos", "Historia"],
   },
   {
     id: 6,
