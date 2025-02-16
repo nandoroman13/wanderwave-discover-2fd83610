@@ -1,4 +1,3 @@
-
 import { Share2, Star } from "lucide-react";
 import {
   Carousel,
@@ -114,7 +113,7 @@ export const FeaturedTrips = () => {
                   </div>
                   
                   {/* Contenido superpuesto */}
-                  <div className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-sm p-4 rounded-2xl h-[156px]">
+                  <div className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-sm p-4 rounded-2xl">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-2">
                         <div className="bg-black text-white text-sm px-2 py-1 rounded-full flex items-center gap-1">
