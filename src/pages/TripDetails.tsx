@@ -14,6 +14,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
+
 const tripsData = {
   chicago: {
     title: "Viaja a Chicago",
@@ -93,7 +94,7 @@ const tripsData = {
       description: "Llegada al aeropuerto de Male. Traslado en lancha rápida o hidroavión a tu resort. Resto del día libre para disfrutar del paraíso."
     }, {
       day: 3,
-      title: "Actividades acuáticas",
+4 title: "Actividades acuáticas",
       description: "Día dedicado a actividades acuáticas: snorkel, buceo o simplemente relax en la playa paradisíaca."
     }, {
       day: 4,
@@ -434,6 +435,7 @@ const tripsData = {
     }]
   }
 };
+
 const TripDetails = () => {
   const {
     destination
