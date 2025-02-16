@@ -14,6 +14,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
+
 const tripsData = {
   chicago: {
     title: "Viaja a Chicago",
@@ -93,7 +94,7 @@ const tripsData = {
       description: "Llegada al aeropuerto de Male. Traslado en lancha rápida o hidroavión a tu resort. Resto del día libre para disfrutar del paraíso."
     }, {
       day: 3,
-      title: "Actividades acuáticas",
+4 title: "Actividades acuáticas",
       description: "Día dedicado a actividades acuáticas: snorkel, buceo o simplemente relax en la playa paradisíaca."
     }, {
       day: 4,
@@ -139,7 +140,7 @@ const tripsData = {
   },
   noruega: {
     title: "Viaja a Noruega",
-    username: "@mikelboisset",
+    username: "@Mikelboisset",
     userImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
     rating: 5.0,
     duration: "8 días, 6 noches",
@@ -200,8 +201,8 @@ const tripsData = {
   },
   tanzania: {
     title: "Viaja a Tanzania",
-    username: "@carlacortes",
-    userImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+    username: "@olympussafaris",
+    userImage: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d",
     rating: 5.0,
     duration: "10 días, 8 noches",
     purchases: 425,
@@ -269,8 +270,8 @@ const tripsData = {
   },
   japon: {
     title: "Viaja a Japón",
-    username: "@mariasanchez",
-    userImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
+    username: "@asiatraveller",
+    userImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
     rating: 5.0,
     duration: "12 días, 10 noches",
     purchases: 892,
@@ -346,8 +347,8 @@ const tripsData = {
   },
   "nueva-zelanda": {
     title: "Viaja a Nueva Zelanda",
-    username: "@davidlopez",
-    userImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+    username: "@adventurenomad",
+    userImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
     rating: 5.0,
     duration: "15 días, 13 noches",
     purchases: 317,
@@ -434,6 +435,7 @@ const tripsData = {
     }]
   }
 };
+
 const TripDetails = () => {
   const {
     destination
