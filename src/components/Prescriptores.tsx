@@ -9,7 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-const prescriptores = [
+const wavers = [
   {
     id: 1,
     name: "Familia Carameluchi",
@@ -34,50 +34,50 @@ export const Prescriptores = () => {
       <div className="container">
         <div className="flex items-center justify-between mb-8">
           <div className="space-y-2">
-            <h2 className="text-3xl font-semibold">Prescriptores</h2>
+            <h2 className="text-3xl font-semibold">Wavers</h2>
             <p className="text-gray-600 max-w-2xl">
-              Viaja como tu prescriptor favorito. Descubre destinos tops, actividades, hoteles y
+              Viaja como tu waver favorito. Descubre destinos tops, actividades, hoteles y
               vuelos incluidos en tu paquete.
             </p>
           </div>
           <Link to="/prescriptores" className="text-primary hover:underline flex items-center gap-2">
-            Ver todos los prescriptores
+            Ver todos los wavers
             <span className="text-xl">→</span>
           </Link>
         </div>
 
         <Carousel className="w-full">
           <CarouselContent className="-ml-4">
-            {prescriptores.map((prescriptor) => (
-              <CarouselItem key={prescriptor.id} className="pl-4 md:basis-1/2">
+            {wavers.map((waver) => (
+              <CarouselItem key={waver.id} className="pl-4 md:basis-1/2">
                 <div className="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-md transition-shadow h-[280px]">
                   <div className="flex gap-6 h-full">
                     <div className="w-48 h-48 flex-shrink-0">
                       <img
-                        src={prescriptor.image}
-                        alt={prescriptor.name}
+                        src={waver.image}
+                        alt={waver.name}
                         className="w-full h-full rounded-2xl object-cover"
                       />
                     </div>
                     
                     <div className="flex-1 flex flex-col min-w-0">
                       <div className="flex items-center justify-between mb-4 gap-4">
-                        <h3 className="text-xl font-semibold truncate">{prescriptor.name}</h3>
+                        <h3 className="text-xl font-semibold truncate">{waver.name}</h3>
                         <button className="border border-black text-black hover:bg-black hover:text-white px-4 py-1.5 rounded-full transition-colors flex items-center gap-1 flex-shrink-0">
                           Seguir <span className="text-lg">+</span>
                         </button>
                       </div>
                       
                       <div className="flex items-center gap-4 mb-4 text-gray-600 text-sm">
-                        <span>{prescriptor.followers} seguidores</span>
+                        <span>{waver.followers} seguidores</span>
                         <div className="flex items-center gap-1 bg-black text-white px-2 py-0.5 rounded-md">
-                          <span>{prescriptor.rating}</span>
+                          <span>{waver.rating}</span>
                           <Star className="fill-current" size={14} />
                         </div>
                       </div>
                       
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {prescriptor.tags.map((tag) => (
+                        {waver.tags.map((tag) => (
                           <span
                             key={tag}
                             className="text-xs px-3 py-1 bg-gray-100 rounded-full"
@@ -88,7 +88,7 @@ export const Prescriptores = () => {
                       </div>
                       
                       <Link
-                        to={`/prescriptor/${prescriptor.id}/viajes`}
+                        to={`/prescriptor/${waver.id}/viajes`}
                         className="text-primary hover:underline mt-auto text-right text-sm"
                       >
                         Ver viajes →
