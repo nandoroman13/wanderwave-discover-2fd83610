@@ -56,6 +56,28 @@ const waverTrips = [
     tags: ["Tendencia", "Naturaleza", "Aurora Boreal", "Fiordos"],
     slug: "noruega"
   },
+  {
+    id: 5,
+    title: "Viaja a Chicago",
+    waverId: "familia-carameluchi",
+    image: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
+    price: "5,500",
+    rating: "5,0",
+    purchases: 750,
+    tags: ["En familia", "Aventura en familia", "Tendencia"],
+    slug: "chicago"
+  },
+  {
+    id: 6,
+    title: "Viaja a Costa Rica",
+    waverId: "familia-carameluchi",
+    image: "https://images.unsplash.com/photo-1502115264275-fe2bd9a3644a",
+    price: "3,999",
+    rating: "4,9",
+    purchases: 324,
+    tags: ["En familia", "Naturaleza", "Aventura en familia", "Ecoturismo"],
+    slug: "costa-rica"
+  }
 ];
 
 const wavers = {
