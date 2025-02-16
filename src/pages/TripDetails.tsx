@@ -1,4 +1,3 @@
-
 import { useParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -17,125 +16,68 @@ import { es } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
 
 const tripsData = {
-  chicago: {
-    title: "Viaja a Chicago",
-    username: "@familiacarameluchi",
-    userImage: "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc",
-    rating: 5.0,
-    duration: "7 días, 5 noches",
-    purchases: 750,
-    price: "5,500",
-    tags: ["En familia", "Aventura en familia", "Tendencia"],
-    configTime: "5",
-    videos: [
-      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
-      "https://images.unsplash.com/photo-1494522358652-f30e61a60313",
-      "https://images.unsplash.com/photo-1507992781348-310259076fe0"
-    ],
-    itinerary: [{
-      day: 1,
-      title: "Madrid - Chicago",
-      description: "¡Empieza tu aventura! Vuelo directo desde Madrid hacia la Ciudad de los Vientos. A tu llegada, traslado al hotel y tiempo libre para empezar a explorar los alrededores."
-    }, {
-      day: 2,
-      title: "Millennium Park y The Loop",
-      description: "Descubre el corazón de Chicago. Visita el famoso 'Bean' en Millennium Park, disfruta de un paseo por The Loop y admira la impresionante arquitectura de la ciudad."
-    }, {
-      day: 3,
-      title: "Navy Pier y Magnificent Mile",
-      description: "Día para disfrutar del Navy Pier, perfecto para familias. Por la tarde, shopping en la Magnificent Mile."
-    }, {
-      day: 4,
- title: "Museos y Lagos",
-      description: "Visita al Field Museum o al Shedd Aquarium. Paseo en barco por el Lago Michigan si el tiempo lo permite."
-    }, {
-      day: 5,
-      title: "Willis Tower y Arte Urbano",
-      description: "Sube al mirador Skydeck de la Willis Tower. Explora los barrios artísticos de Wicker Park y Bucktown."
-    }, {
-      day: 6,
-      title: "Día libre en Chicago",
-      description: "Día libre para actividades opcionales: partidos deportivos, compras adicionales o visitas a lugares de interés pendientes."
-    }, {
-      day: 7,
-      title: "Chicago - Madrid",
-      description: "Última mañana libre en la ciudad. Traslado al aeropuerto para tomar el vuelo de regreso a Madrid."
-    }],
-    included: [
-      {
-        icon: Bed,
-        text: "5 noches en hotel seleccionado"
-      },
-      {
-        icon: Plane,
-        text: "Vuelos directos ida y vuelta"
-      },
-      {
-        icon: Bus,
-        text: "Traslados aeropuerto - hotel"
-      },
-      {
-        icon: FileCheck,
-        text: "Seguro de viaje básico"
-      },
-      {
-        icon: Receipt,
-        text: "Tasas aéreas incluidas"
-      }
-    ]
-  },
   maldivas: {
     title: "Viaja a Maldivas",
     username: "@pauladiez",
-    userImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
+    userImage: "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
     rating: 5.0,
     duration: "9 días, 7 noches",
     purchases: 361,
     price: "3,999",
-    tags: ["Tendencia", "Surf", "Buceo", "Con amigos", "Experiencia local"],
+    tags: ["Tendencia", "Surf", "Buceo", "Con amigos"],
     configTime: "7",
     videos: [
       "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
       "https://images.unsplash.com/photo-1573843981267-be1999ff37cd",
       "https://images.unsplash.com/photo-1551918120-9739cb430c6d"
     ],
-    itinerary: [{
-      day: 1,
-      title: "Madrid - Maldivas",
-      description: "¡Hoy es el día que tanto has esperado! Finalmente, te embarcarás en un emocionante viaje hacia las asombrosas Islas Maldivas. Prepárate para empacar con entusiasmo y dirígete al aeropuerto con tiempo de sobra para completar cualquier trámite necesario."
-    }, {
-      day: 2,
-      title: "Llegada a Maldivas",
-      description: "Llegada al aeropuerto de Male. Traslado en lancha rápida o hidroavión a tu resort. Resto del día libre para disfrutar del paraíso."
-    }, {
-      day: 3,
-      title: "Actividades acuáticas",
-      description: "Día dedicado a actividades acuáticas: snorkel, buceo o simplemente relax en la playa paradisíaca."
-    }, {
-      day: 4,
-      title: "Crucero al atardecer",
-      description: "Mañana libre y por la tarde, crucero para ver delfines y el espectacular atardecer maldivo."
-    }, {
-      day: 5,
-      title: "Isla local",
-      description: "Excursión opcional a una isla local para conocer la cultura maldiva y su gente."
-    }, {
-      day: 6,
-      title: "Spa y relax",
-      description: "Día dedicado al relax con tratamientos de spa y actividades tranquilas."
-    }, {
-      day: 7,
-      title: "Día libre",
-      description: "Último día completo para disfrutar de las instalaciones del resort y el entorno paradisíaco."
-    }, {
-      day: 8,
-      title: "Regreso",
-      description: "Traslado al aeropuerto de Male para tomar el vuelo de regreso."
-    }, {
-      day: 9,
-      title: "Llegada",
-      description: "Llegada a Madrid. Fin del viaje y de nuestros servicios."
-    }],
+    itinerary: [
+      {
+        day: 1,
+        title: "Madrid - Maldivas",
+        description: "¡Hoy es el día que tanto has esperado! Finalmente, te embarcarás en un emocionante viaje hacia las asombrosas Islas Maldivas. Prepárate para empacar con entusiasmo y dirígete al aeropuerto con tiempo de sobra para completar cualquier trámite necesario."
+      },
+      {
+        day: 2,
+        title: "Llegada a Maldivas",
+        description: "Llegada al aeropuerto de Male. Traslado en lancha rápida o hidroavión a tu resort. Resto del día libre para disfrutar del paraíso."
+      },
+      {
+        day: 3,
+        title: "Actividades acuáticas",
+        description: "Día dedicado a actividades acuáticas: snorkel, buceo o simplemente relax en la playa paradisíaca."
+      },
+      {
+        day: 4,
+        title: "Crucero al atardecer",
+        description: "Mañana libre y por la tarde, crucero para ver delfines y el espectacular atardecer maldivo."
+      },
+      {
+        day: 5,
+        title: "Isla local",
+        description: "Excursión opcional a una isla local para conocer la cultura maldiva y su gente."
+      },
+      {
+        day: 6,
+        title: "Spa y relax",
+        description: "Día dedicado al relax con tratamientos de spa y actividades tranquilas."
+      },
+      {
+        day: 7,
+        title: "Día libre",
+        description: "Último día completo para disfrutar de las instalaciones del resort y el entorno paradisíaco."
+      },
+      {
+        day: 8,
+        title: "Regreso",
+        description: "Traslado al aeropuerto de Male para tomar el vuelo de regreso."
+      },
+      {
+        day: 9,
+        title: "Llegada",
+        description: "Llegada a Madrid. Fin del viaje y de nuestros servicios."
+      }
+    ],
     included: [
       {
         icon: Bed,
@@ -159,145 +101,135 @@ const tripsData = {
       }
     ]
   },
-  noruega: {
-    title: "Viaja a Noruega",
-    username: "@mikelboisset",
-    userImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
-    rating: 5.0,
-    duration: "8 días, 6 noches",
-    purchases: 602,
-    price: "4,000",
-    tags: ["Tendencia", "Fiordos", "Naturaleza", "Aventura"],
-    configTime: "6",
+  mallorca: {
+    title: "Viaja a Mallorca",
+    username: "@pauladiez",
+    userImage: "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
+    rating: 4.9,
+    duration: "5 días, 4 noches",
+    purchases: 245,
+    price: "899",
+    tags: ["Playa", "Mediterráneo", "Gastronomía", "Relax"],
+    configTime: "5",
     videos: [
-      "https://images.unsplash.com/photo-1520769669658-f07657f5a307",
-      "https://images.unsplash.com/photo-1506967554329-2626e0f7d9e4",
-      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38"
+      "https://images.unsplash.com/photo-1437719417032-8595fd9e9dc6",
+      "https://images.unsplash.com/photo-1582071007433-3a24cbde3c54",
+      "https://images.unsplash.com/photo-1586967440513-612f348591c9"
     ],
-    itinerary: [{
-      day: 1,
-      title: "Madrid - Oslo",
-      description: "Vuelo a Oslo. Llegada y traslado al hotel. Primera toma de contacto con la capital noruega."
-    }, {
-      day: 2,
-      title: "Oslo",
-      description: "Visita del Parque Vigeland, Museo de los Barcos Vikingos y el Ayuntamiento de Oslo."
-    }, {
-      day: 3,
-      title: "Oslo - Bergen",
-      description: "Viaje escénico en tren de Oslo a Bergen, considerado uno de los más bonitos de Europa."
-    }, {
-      day: 4,
-      title: "Bergen y Fiordos",
-      description: "Exploración de Bergen y crucero por el Fiordo de los Sueños."
-    }, {
-      day: 5,
-      title: "Fiordos Noruegos",
-      description: "Día completo explorando los majestuosos fiordos noruegos."
-    }, {
-      day: 6,
-      title: "Ålesund",
-      description: "Visita a la bella ciudad de Ålesund, famosa por su arquitectura Art Nouveau."
-    }, {
-      day: 7,
-      title: "Tromsø - Aurora Boreal",
-      description: "Vuelo a Tromsø. Por la noche, excursión para intentar ver la aurora boreal (según temporada)."
-    }, {
-      day: 8,
-      title: "Tromsø - Madrid",
-      description: "Mañana libre y vuelo de regreso a Madrid."
-    }],
+    itinerary: [
+      {
+        day: 1,
+        title: "Madrid - Mallorca",
+        description: "Vuelo desde Madrid a Palma de Mallorca. Traslado al hotel y tiempo libre para explorar la zona."
+      },
+      {
+        day: 2,
+        title: "Calas y Playas",
+        description: "Ruta por las mejores calas de Mallorca. Visita a Cala Varques y Cala Mesquida."
+      },
+      {
+        day: 3,
+        title: "Sierra de Tramuntana",
+        description: "Excursión a la Sierra de Tramuntana, Patrimonio de la Humanidad. Visita a Valldemossa y Deià."
+      },
+      {
+        day: 4,
+        title: "Palma y Gastronomía",
+        description: "Tour por Palma: Catedral, Castillo de Bellver y mercados locales. Cena gastronómica."
+      },
+      {
+        day: 5,
+        title: "Regreso a Madrid",
+        description: "Mañana libre y vuelo de regreso a Madrid."
+      }
+    ],
     included: [
       {
         icon: Bed,
-        text: "6 noches en hoteles seleccionados"
+        text: "4 noches en hotel seleccionado"
       },
       {
         icon: Plane,
-        text: "Vuelos internacionales"
+        text: "Vuelos ida y vuelta"
       },
       {
         icon: Bus,
-        text: "Todos los traslados terrestres"
+        text: "Traslados aeropuerto - hotel"
       },
       {
         icon: FileCheck,
-        text: "Seguro de viaje con cobertura de actividades"
+        text: "Seguro de viaje básico"
       },
       {
         icon: Receipt,
-        text: "Tasas e impuestos locales"
+        text: "Tasas incluidas"
       }
     ]
   },
-  tanzania: {
-    title: "Viaja a Tanzania",
-    username: "@carlacortes",
-    userImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
-    rating: 5.0,
-    duration: "10 días, 8 noches",
-    purchases: 425,
-    price: "4,800",
-    tags: ["Safari", "Aventura", "Naturaleza", "Fotografía", "Tendencia"],
-    configTime: "8",
+  "punta-cana": {
+    title: "Viaja a Punta Cana",
+    username: "@pauladiez",
+    userImage: "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
+    rating: 4.8,
+    duration: "7 días, 6 noches",
+    purchases: 183,
+    price: "2,499",
+    tags: ["Caribe", "Todo incluido", "Playas paradisíacas", "Con amigos"],
+    configTime: "6",
     videos: [
-      "https://images.unsplash.com/photo-1516426122078-c23e76319801",
-      "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e",
-      "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36"
+      "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
+      "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57",
+      "https://images.unsplash.com/photo-1517300906457-a05522e7c2cb"
     ],
-    itinerary: [{
-      day: 1,
-      title: "Madrid - Kilimanjaro",
-      description: "Vuelo desde Madrid hacia el Aeropuerto Internacional de Kilimanjaro. Llegada y traslado al hotel en Arusha."
-    }, {
-      day: 2,
-      title: "Parque Nacional del Tarangire",
-      description: "Safari en el Parque Nacional del Tarangire, famoso por sus manadas de elefantes y icónicos baobabs."
-    }, {
-      day: 3,
-      title: "Cráter del Ngorongoro",
-      description: "Día completo explorando el famoso cráter, un paraíso de vida salvaje y hogar de los 'Big Five'."
-    }, {
-      day: 4,
-      title: "Serengeti (Norte)",
-      description: "Traslado al norte del Serengeti. Safari por la tarde buscando la gran migración."
-    }, {
-      day: 5,
-      title: "Serengeti (Safari)",
-      description: "Día completo de safari en el Serengeti, observando leones, leopardos, jirafas y más."
-    }, {
-      day: 6,
-      title: "Serengeti - Zanzibar",
-      description: "Vuelo a Zanzibar. Tarde libre para disfrutar de las playas paradisíacas."
-    }, {
-      day: 7,
-      title: "Stone Town",
-      description: "Visita guiada por Stone Town, Patrimonio de la Humanidad, y sus mercados de especias."
-    }, {
-      day: 8,
-      title: "Playas de Zanzibar",
-      description: "Día libre para actividades opcionales: snorkel, buceo o simplemente relax en la playa."
-    }, {
-      day: 9,
-      title: "Último día en Tanzania",
-      description: "Mañana libre en Zanzibar. Por la tarde, traslado al aeropuerto."
-    }, {
-      day: 10,
-      title: "Regreso a Madrid",
-      description: "Vuelo de regreso a Madrid. Fin de nuestros servicios."
-    }],
+    itinerary: [
+      {
+        day: 1,
+        title: "Madrid - Punta Cana",
+        description: "Vuelo directo Madrid - Punta Cana. Traslado al resort todo incluido."
+      },
+      {
+        day: 2,
+        title: "Playa y Actividades",
+        description: "Día libre para disfrutar de la playa y actividades del resort."
+      },
+      {
+        day: 3,
+        title: "Isla Saona",
+        description: "Excursión a Isla Saona, paraíso natural del Caribe."
+      },
+      {
+        day: 4,
+        title: "Deportes acuáticos",
+        description: "Día dedicado a deportes acuáticos y actividades en la playa."
+      },
+      {
+        day: 5,
+        title: "Santo Domingo",
+        description: "Tour opcional a Santo Domingo, la capital colonial."
+      },
+      {
+        day: 6,
+        title: "Relax en el Caribe",
+        description: "Último día completo para disfrutar del resort."
+      },
+      {
+        day: 7,
+        title: "Regreso a Madrid",
+        description: "Vuelo de regreso a Madrid."
+      }
+    ],
     included: [
       {
         icon: Bed,
-        text: "8 noches en lodges y hoteles"
+        text: "6 noches en resort todo incluido"
       },
       {
         icon: Plane,
-        text: "Vuelos internacionales y domésticos"
+        text: "Vuelos directos ida y vuelta"
       },
       {
         icon: Bus,
-        text: "Vehículo 4x4 con conductor-guía"
+        text: "Traslados aeropuerto - resort"
       },
       {
         icon: FileCheck,
@@ -305,193 +237,7 @@ const tripsData = {
       },
       {
         icon: Receipt,
-        text: "Entradas a parques nacionales"
-      }
-    ]
-  },
-  japon: {
-    title: "Viaja a Japón",
-    username: "@mariasanchez",
-    userImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
-    rating: 5.0,
-    duration: "12 días, 10 noches",
-    purchases: 892,
-    price: "6,200",
-    tags: ["Cultura", "Gastronomía", "Historia", "Tendencia"],
-    configTime: "10",
-    videos: [
-      "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e",
-      "https://images.unsplash.com/photo-1545569341-9eb8b30979d9",
-      "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36"
-    ],
-    itinerary: [{
-      day: 1,
-      title: "Madrid - Tokyo",
-      description: "Vuelo desde Madrid a Tokyo. Noche a bordo."
-    }, {
-      day: 2,
-      title: "Llegada a Tokyo",
-      description: "Llegada al aeropuerto de Narita. Traslado al hotel y primera toma de contacto con la ciudad."
-    }, {
-      day: 3,
-      title: "Tokyo Tradicional",
-      description: "Visita al Templo Senso-ji, jardines del Palacio Imperial y mercado de Tsukiji."
-    }, {
-      day: 4,
-      title: "Tokyo Moderno",
-      description: "Exploración de Shibuya, Harajuku y Akihabara. Cena en un Robot Restaurant."
-    }, {
-      day: 5,
-      title: "Hakone y Monte Fuji",
-      description: "Excursión a Hakone, crucero por el lago Ashi y vistas del Monte Fuji."
-    }, {
-      day: 6,
-      title: "Kyoto",
-      description: "Viaje en tren bala a Kyoto. Visita al Templo Dorado y al barrio de Gion."
-    }, {
-      day: 7,
-      title: "Arashiyama",
-      description: "Visita al bosque de bambú, templo Tenryu-ji y puente Togetsukyo."
-    }, {
-      day: 8,
-      title: "Nara y Osaka",
-      description: "Excursión a Nara. Por la tarde, exploración gastronómica en Osaka."
-    }, {
-      day: 9,
-      title: "Hiroshima y Miyajima",
-      description: "Visita a Hiroshima y la isla de Miyajima con su famoso torii flotante."
-    }, {
-      day: 10,
-      title: "Kyoto - Tokyo",
-      description: "Último día en Kyoto. Regreso a Tokyo en tren bala."
-    }, {
-      day: 11,
-      title: "Tokyo libre",
-      description: "Día libre para compras y últimas visitas."
-    }, {
-      day: 12,
-      title: "Tokyo - Madrid",
-      description: "Traslado al aeropuerto y vuelo de regreso a Madrid."
-    }],
-    included: [
-      {
-        icon: Bed,
-        text: "10 noches en hoteles categoría superior"
-      },
-      {
-        icon: Plane,
-        text: "Vuelos internacionales"
-      },
-      {
-        icon: Bus,
-        text: "Japan Rail Pass 7 días"
-      },
-      {
-        icon: FileCheck,
-        text: "Seguro de viaje internacional"
-      },
-      {
-        icon: Receipt,
-        text: "Tasas y cargos turísticos"
-      }
-    ]
-  },
-  "nueva-zelanda": {
-    title: "Viaja a Nueva Zelanda",
-    username: "@davidlopez",
-    userImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-    rating: 5.0,
-    duration: "15 días, 13 noches",
-    purchases: 317,
-    price: "7,100",
-    tags: ["Aventura", "Naturaleza", "Trekking", "Tendencia"],
-    configTime: "12",
-    videos: [
-      "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800",
-      "https://images.unsplash.com/photo-1506146332389-18140dc7b2fb",
-      "https://images.unsplash.com/photo-1530789253388-582c481c54b0"
-    ],
-    itinerary: [{
-      day: 1,
-      title: "Madrid - Auckland",
-      description: "Vuelo desde Madrid hacia Auckland. Noche a bordo."
-    }, {
-      day: 2,
-      title: "Llegada a Auckland",
-      description: "Llegada a Auckland. Traslado al hotel y descanso."
-    }, {
-      day: 3,
-      title: "Auckland",
-      description: "Tour por Auckland, incluyendo Sky Tower y puerto Viaduct."
-    }, {
-      day: 4,
-      title: "Rotorua",
-      description: "Viaje a Rotorua. Visita a un pueblo maorí y cena hangi tradicional."
-    }, {
-      day: 5,
-      title: "Hobbiton y Waitomo",
-      description: "Visita al set de Hobbiton y las cuevas brillantes de Waitomo."
-    }, {
-      day: 6,
-      title: "Wellington",
-      description: "Viaje a Wellington. Visita al museo Te Papa y teleférico."
-    }, {
-      day: 7,
-      title: "Kaikoura",
-      description: "Cruce en ferry a la Isla Sur. Viaje a Kaikoura para avistamiento de ballenas."
-    }, {
-      day: 8,
-      title: "Christchurch",
-      description: "Exploración de Christchurch y sus jardines botánicos."
-    }, {
-      day: 9,
-      title: "Monte Cook",
-      description: "Viaje al Parque Nacional del Monte Cook. Trekking por glaciares."
-    }, {
-      day: 10,
-      title: "Queenstown",
-      description: "Llegada a Queenstown. Tarde de actividades de aventura."
-    }, {
-      day: 11,
-      title: "Milford Sound",
-      description: "Excursión al fiordo Milford Sound. Crucero por el fiordo."
-    }, {
-      day: 12,
-      title: "Wanaka",
-      description: "Día en Wanaka. Trekking y actividades al aire libre."
-    }, {
-      day: 13,
-      title: "Franz Josef",
-      description: "Visita al Glaciar Franz Josef. Vuelo en helicóptero opcional."
-    }, {
-      day: 14,
-      title: "Auckland",
-      description: "Vuelo de regreso a Auckland. Últimas compras."
-    }, {
-      day: 15,
-      title: "Auckland - Madrid",
-      description: "Vuelo de regreso a Madrid. Fin del viaje."
-    }],
-    included: [
-      {
-        icon: Bed,
-        text: "13 noches en hoteles seleccionados"
-      },
-      {
-        icon: Plane,
-        text: "Vuelos internacionales"
-      },
-      {
-        icon: Bus,
-        text: "Coche de alquiler con seguro"
-      },
-      {
-        icon: FileCheck,
-        text: "Seguro de viaje completo"
-      },
-      {
-        icon: Receipt,
-        text: "Tasas y cargos locales"
+        text: "Tasas aéreas incluidas"
       }
     ]
   }
