@@ -298,7 +298,7 @@ const TripDetails = () => {
                     <SelectTrigger className="w-full bg-white">
                       <SelectValue placeholder="Selecciona origen" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-white z-50">
                       {airports.map((airport) => (
                         <SelectItem key={airport.code} value={airport.name}>
                           {airport.name}
@@ -319,13 +319,14 @@ const TripDetails = () => {
                         {date ? format(date, "d 'de' MMMM yyyy", { locale: es }) : "Selecciona fecha"}
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
+                    <PopoverContent className="bg-white z-50 shadow-lg border rounded-md" align="start">
                       <Calendar
                         mode="single"
                         selected={date}
                         onSelect={setDate}
                         initialFocus
                         locale={es}
+                        className="bg-white"
                       />
                     </PopoverContent>
                   </Popover>
