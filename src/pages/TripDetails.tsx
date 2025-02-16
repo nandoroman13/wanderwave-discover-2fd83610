@@ -51,7 +51,7 @@ const tripsData = {
       description: "Día para disfrutar del Navy Pier, perfecto para familias. Por la tarde, shopping en la Magnificent Mile."
     }, {
       day: 4,
-4 title: "Museos y Lagos",
+      title: "Museos y Lagos",
       description: "Visita al Field Museum o al Shedd Aquarium. Paseo en barco por el Lago Michigan si el tiempo lo permite."
     }, {
       day: 5,
