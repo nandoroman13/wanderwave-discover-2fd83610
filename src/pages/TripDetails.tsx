@@ -1,4 +1,3 @@
-<lov-code>
 import { useParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -673,4 +672,50 @@ const TripDetails = () => {
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button variant="outline" className={`w-full justify-start text-left font-normal bg-white ${!date && "text-muted-foreground"}`}>
-                        <
+                        <CalendarIcon className="w-5 h-5" />
+                        {date ? format(date, "dd/MM/yyyy", { locale: es }) : "Selecciona una fecha"}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                      <Calendar mode="single" selected={date} onSelect={setDate} />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="space-y-1">
+                  <span className="text-sm text-gray-500">Número de pasajeros</span>
+                  <div className="flex items-center gap-2">
+                    <button onClick={() => handleAdultsChange(false)} className="p-2 border rounded-full">
+                      <Minus className="w-4 h-4" />
+                    </button>
+                    <span className="font-medium">{adults}</span>
+                    <button onClick={() => handleAdultsChange(true)} className="p-2 border rounded-full">
+                      <Plus className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <span className="text-sm text-gray-500">Adultos</span>
+                </div>
+                <div className="space-y-1">
+                  <span className="text-sm text-gray-500">Niños</span>
+                  <div className="flex items-center gap-2">
+                    <button onClick={() => handleChildrenChange(false)} className="p-2 border rounded-full">
+                      <Minus className="w-4 h-4" />
+                    </button>
+                    <span className="font-medium">{children}</span>
+                    <button onClick={() => handleChildrenChange(true)} className="p-2 border rounded-full">
+                      <Plus className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>;
+};
+
+export default TripDetails;
