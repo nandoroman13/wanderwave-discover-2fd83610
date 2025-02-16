@@ -13,7 +13,7 @@ const prescriptores = [
   {
     id: 1,
     name: "Familia Carameluchi",
-    image: "https://images.unsplash.com/photo-1609220136736-443140cffec6",
+    image: "https://images.unsplash.com/photo-1631133961299-4bbfedcac74e",
     followers: "123",
     rating: "5,0",
     tags: ["Tendencia", "En familia", "Aventura en familia", "Deportes aventura"],
