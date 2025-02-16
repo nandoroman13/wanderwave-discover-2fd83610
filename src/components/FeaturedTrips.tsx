@@ -259,25 +259,25 @@ export const FeaturedTrips = () => {
                     {/* Capa oscura siempre visible */}
                     <div className="absolute inset-0 bg-black/20" />
                     
-                    {/* Botones siempre visibles */}
-                    <div className="absolute bottom-32 right-4 flex gap-2 z-10">
+                    {/* Botones reposicionados */}
+                    <div className="absolute top-4 inset-x-4 flex justify-between z-10">
                       <button 
                         onClick={(e) => {
                           e.stopPropagation();
                           toggleMute();
                         }}
-                        className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/60 transition-colors"
+                        className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/60 transition-colors"
                       >
-                        {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+                        {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
                       </button>
                       <button 
                         onClick={(e) => {
                           e.stopPropagation();
                           openFullscreenCarousel(trip);
                         }}
-                        className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/60 transition-colors"
+                        className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/60 transition-colors"
                       >
-                        <Play className="w-5 h-5" />
+                        <Play className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
