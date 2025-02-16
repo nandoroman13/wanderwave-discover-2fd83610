@@ -62,7 +62,7 @@ const trips = [
     price: "4,599",
     rating: 4.9,
     purchases: 892,
-    tags: ["Cultural", "Gastronomía", "Tendencia", "Templos", "Historia"],
+    tags: ["Cultural", "Gastronomía", "Templos", "Historia"],
   },
   {
     id: 6,
