@@ -24,32 +24,36 @@ export const Newsletter = () => {
   };
 
   return (
-    <section className="py-16 bg-[#f1f0fb]">
-      <div className="container max-w-4xl mx-auto text-center px-4">
-        <h2 className="text-3xl font-semibold mb-4">
-          Suscríbete a nuestra newsletter
-        </h2>
-        <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-          Mantente al día con nuestras últimas ofertas, destinos exclusivos y consejos de viaje personalizados.
-        </p>
-        
-        <form onSubmit={handleSubmit} className="flex gap-4 max-w-md mx-auto">
-          <Input
-            type="email"
-            placeholder="Tu correo electrónico"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="flex-1"
-          />
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="bg-primary text-white px-6 py-2 rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50"
-          >
-            {isLoading ? "Suscribiendo..." : "Suscribirse"}
-          </button>
-        </form>
+    <section className="py-16">
+      <div className="container">
+        <div className="bg-[#f1f0fb] rounded-2xl p-12">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl font-semibold mb-4">
+              Suscríbete a nuestra newsletter
+            </h2>
+            <p className="text-gray-600 mb-8">
+              Mantente al día con nuestras últimas ofertas, destinos exclusivos y consejos de viaje personalizados.
+            </p>
+            
+            <form onSubmit={handleSubmit} className="flex gap-4 max-w-md mx-auto">
+              <Input
+                type="email"
+                placeholder="Tu correo electrónico"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="flex-1"
+              />
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="bg-primary text-white px-6 py-2 rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50"
+              >
+                {isLoading ? "Suscribiendo..." : "Suscribirse"}
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   );
