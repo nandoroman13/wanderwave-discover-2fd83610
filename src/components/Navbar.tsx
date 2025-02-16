@@ -6,8 +6,8 @@ export const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center gap-8">
+        <div className="flex items-center h-16">
+          <div className="flex-1 flex items-center">
             <Link to="/" className="flex items-center gap-2">
               <div className="w-8 h-8 flex items-center justify-center">
                 {/* Espacio reservado para el futuro logo */}
@@ -18,7 +18,7 @@ export const Navbar = () => {
             </Link>
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex-1 flex items-center justify-center gap-12">
             <Link 
               to="/quienes-somos" 
               className="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
@@ -35,7 +35,7 @@ export const Navbar = () => {
             </Link>
           </div>
           
-          <div className="flex items-center gap-4">
+          <div className="flex-1 flex items-center justify-end gap-4">
             <button className="text-gray-600 hover:text-primary transition-colors">
               <Globe size={20} />
             </button>
