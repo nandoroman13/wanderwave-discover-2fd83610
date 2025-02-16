@@ -1,5 +1,5 @@
 
-import { Star } from "lucide-react";
+import { Share2, Star } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -11,39 +11,36 @@ import {
 const trips = [
   {
     id: 1,
-    title: "Viaje a Maldivas",
+    title: "Viaja a Maldivas",
+    username: "@pauladiez",
+    userImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
     image: "/lovable-uploads/642b528a-fea7-4ed7-93f5-5f796e87b02a.png",
     price: "3,999",
-    rating: 4.8,
-    reviews: 261,
-    tags: ["Turismo", "Surf", "Relax", "Gourmet"],
+    rating: 5.0,
+    purchases: 361,
+    tags: ["Tendencia", "Surf", "Buceo", "Con amigos"],
   },
   {
     id: 2,
-    title: "Nueva York",
-    image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9",
+    title: "Viaja a Chicago",
+    username: "@familiacarameluchi",
+    userImage: "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc",
+    image: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
     price: "5,500",
-    rating: 4.9,
-    reviews: 789,
-    tags: ["En familia", "Aventura en familia", "Teen"],
+    rating: 5.0,
+    purchases: 750,
+    tags: ["En familia", "Aventura en familia", "Tendencia"],
   },
   {
     id: 3,
-    title: "Machu Picchu",
-    image: "https://images.unsplash.com/photo-1587595431973-810eb053cde1",
-    price: "2,899",
-    rating: 4.7,
-    reviews: 453,
-    tags: ["Arqueología", "Senderismo", "Cultural", "Fotografía"],
-  },
-  {
-    id: 4,
-    title: "Safari en Tanzania",
-    image: "https://images.unsplash.com/photo-1516426122078-c23e76319801",
-    price: "4,299",
-    rating: 4.9,
-    reviews: 328,
-    tags: ["Naturaleza", "Fotografía", "Aventura"],
+    title: "Viaja a Noruega",
+    username: "@Mikelboisset",
+    userImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
+    image: "https://images.unsplash.com/photo-1520769669658-f07657f5a307",
+    price: "4,000",
+    rating: 5.0,
+    purchases: 602,
+    tags: ["Tendencia", "Surf", "Buceo", "Con amigos"],
   },
 ];
 
@@ -60,8 +57,22 @@ export const FeaturedTrips = () => {
           <CarouselContent className="-ml-4">
             {trips.map((trip) => (
               <CarouselItem key={trip.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up">
-                  <div className="relative h-48">
+                <div className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up">
+                  {/* Header con avatar y username */}
+                  <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full pl-1 pr-4 py-1">
+                    <img
+                      src={trip.userImage}
+                      alt={trip.username}
+                      className="w-8 h-8 rounded-full object-cover"
+                    />
+                    <div className="text-sm">
+                      <span className="text-gray-900">{trip.title}</span>
+                      <span className="text-gray-600"> como {trip.username}</span>
+                    </div>
+                  </div>
+                  
+                  {/* Imagen principal */}
+                  <div className="relative aspect-[4/3]">
                     <img
                       src={trip.image}
                       alt={trip.title}
@@ -69,21 +80,26 @@ export const FeaturedTrips = () => {
                     />
                   </div>
                   
-                  <div className="p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Star className="text-yellow-400" size={16} />
-                      <span className="text-sm text-gray-600">
-                        {trip.rating} · {trip.reviews} opiniones
-                      </span>
+                  {/* Contenido superpuesto */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-4 rounded-t-3xl">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <div className="bg-black text-white text-sm px-2 py-1 rounded-full flex items-center gap-1">
+                          <span>{trip.rating}</span>
+                          <Star className="fill-current" size={14} />
+                        </div>
+                        <span className="text-sm text-gray-600">+{trip.purchases} comprados</span>
+                      </div>
+                      <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                        <Share2 size={20} className="text-gray-600" />
+                      </button>
                     </div>
-                    
-                    <h3 className="font-semibold mb-2">{trip.title}</h3>
                     
                     <div className="flex flex-wrap gap-2 mb-4">
                       {trip.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-xs px-2 py-1 bg-gray-100 rounded-full"
+                          className="text-sm px-3 py-1 bg-gray-100 rounded-full"
                         >
                           {tag}
                         </span>
@@ -93,10 +109,10 @@ export const FeaturedTrips = () => {
                     <div className="flex items-center justify-between">
                       <div>
                         <span className="text-sm text-gray-600">Desde</span>
-                        <p className="text-lg font-semibold">{trip.price} €</p>
+                        <p className="text-xl font-semibold">{trip.price} €</p>
                       </div>
-                      <button className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
-                        Configurar paquete
+                      <button className="bg-[#FFD233] hover:bg-[#FFD233]/90 text-black px-4 py-2 rounded-full transition-colors">
+                        Configura paquete
                       </button>
                     </div>
                   </div>
