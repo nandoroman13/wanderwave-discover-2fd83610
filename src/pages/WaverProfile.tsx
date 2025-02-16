@@ -20,6 +20,7 @@ const waverTrips = [
     rating: "5,0",
     purchases: 361,
     tags: ["Tendencia", "Surf", "Buceo", "Con amigos"],
+    slug: "maldivas"
   },
   {
     id: 2,
@@ -29,6 +30,7 @@ const waverTrips = [
     rating: "4,9",
     purchases: 245,
     tags: ["Playa", "Mediterráneo", "Gastronomía", "Relax"],
+    slug: "mallorca"
   },
   {
     id: 3,
@@ -38,6 +40,7 @@ const waverTrips = [
     rating: "4,8",
     purchases: 183,
     tags: ["Caribe", "Todo incluido", "Playas paradisíacas", "Con amigos"],
+    slug: "punta-cana"
   },
 ];
 
@@ -157,7 +160,7 @@ export const WaverProfile = () => {
                             <p className="text-xl font-semibold">{trip.price} €</p>
                           </div>
                           <Link 
-                            to={`/viajes/${trip.title.toLowerCase().replace(/ /g, '-').replace(/á/g, 'a')}`}
+                            to={`/viajes/${trip.slug}`}
                             className="bg-[#FFD233] hover:bg-[#FFD233]/90 text-black px-4 py-2 rounded-full transition-colors"
                           >
                             Configura paquete
