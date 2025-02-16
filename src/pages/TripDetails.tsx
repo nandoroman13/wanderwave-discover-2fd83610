@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Star, ChevronDown, ChevronUp, Share2, Volume2, VolumeX, Play, Pause } from "lucide-react";
+import { Star, ChevronDown, ChevronUp, Share2, Volume2, VolumeX, Play, Pause, CalendarIcon } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,12 +15,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
+import { Button } from "@/components/ui/button";
 
 const TripDetails = () => {
   const { destination } = useParams();
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [selectedOrigin, setSelectedOrigin] = useState("Madrid (MAD)");
+  const [date, setDate] = useState<Date>();
 
   const airports = [
     { code: "MAD", city: "Madrid", name: "Madrid (MAD)" },
@@ -303,7 +309,26 @@ const TripDetails = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="date">Fecha</Label>
-                  <Input id="date" placeholder="Selecciona fecha" className="bg-white" />
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={`w-full justify-start text-left font-normal bg-white ${!date && "text-muted-foreground"}`}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {date ? format(date, "d 'de' MMMM yyyy", { locale: es }) : "Selecciona fecha"}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={date}
+                        onSelect={setDate}
+                        initialFocus
+                        locale={es}
+                      />
+                    </PopoverContent>
+                  </Popover>
                 </div>
               </div>
 
