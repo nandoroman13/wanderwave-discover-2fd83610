@@ -72,6 +72,28 @@ const TripDetails = () => {
                           className="w-full h-full object-cover"
                         />
                         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent">
+                          <div className="flex justify-between items-center mb-3">
+                            <button
+                              onClick={toggleMute}
+                              className="w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/30 transition-colors"
+                            >
+                              {isMuted ? (
+                                <VolumeX className="w-5 h-5" />
+                              ) : (
+                                <Volume2 className="w-5 h-5" />
+                              )}
+                            </button>
+                            <button
+                              onClick={togglePlay}
+                              className="w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/30 transition-colors"
+                            >
+                              {isPlaying ? (
+                                <Pause className="w-5 h-5" />
+                              ) : (
+                                <Play className="w-5 h-5" />
+                              )}
+                            </button>
+                          </div>
                           <div className="flex items-center gap-2 mb-2">
                             {tripData.videos.map((_, i) => (
                               <div
@@ -97,29 +119,6 @@ const TripDetails = () => {
                   ))}
                 </CarouselContent>
               </Carousel>
-              
-              <div className="flex justify-between items-center mt-4 px-2">
-                <button
-                  onClick={toggleMute}
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                >
-                  {isMuted ? (
-                    <VolumeX className="w-6 h-6 text-gray-600" />
-                  ) : (
-                    <Volume2 className="w-6 h-6 text-gray-600" />
-                  )}
-                </button>
-                <button
-                  onClick={togglePlay}
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                >
-                  {isPlaying ? (
-                    <Pause className="w-6 h-6 text-gray-600" />
-                  ) : (
-                    <Play className="w-6 h-6 text-gray-600" />
-                  )}
-                </button>
-              </div>
             </div>
 
             <div className="mt-8">
