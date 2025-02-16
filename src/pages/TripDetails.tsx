@@ -1,20 +1,14 @@
-
 import { useParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Star, ChevronDown, ChevronUp, Share2 } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
 const TripDetails = () => {
-  const { destination } = useParams();
+  const {
+    destination
+  } = useParams();
 
   // Datos de ejemplo - en una implementación real vendrían de una API
   const tripData = {
@@ -27,46 +21,32 @@ const TripDetails = () => {
     price: "3,999",
     tags: ["Tendencia", "Surf", "Buceo", "Con amigos", "Experiencia local"],
     configTime: "7",
-    videos: [
-      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
-      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd",
-      "https://images.unsplash.com/photo-1551918120-9739cb430c6d"
-    ],
-    itinerary: [
-      {
-        day: 1,
-        title: "Madrid - Maldivas",
-        description: "Vuelo desde Madrid hacia Maldivas con escalas."
-      },
-      {
-        day: 2,
-        title: "Llegada a Maldivas",
-        description: "Llegada al aeropuerto y traslado al hotel."
-      }
-    ]
+    videos: ["https://images.unsplash.com/photo-1514282401047-d79a71a590e8", "https://images.unsplash.com/photo-1573843981267-be1999ff37cd", "https://images.unsplash.com/photo-1551918120-9739cb430c6d"],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Maldivas",
+      description: "Vuelo desde Madrid hacia Maldivas con escalas."
+    }, {
+      day: 2,
+      title: "Llegada a Maldivas",
+      description: "Llegada al aeropuerto y traslado al hotel."
+    }]
   };
-
-  return (
-    <div className="min-h-screen bg-white">
+  return <div className="min-h-screen bg-white">
       <Navbar />
       <main className="container py-8">
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-8 my-[50px]">
           {/* Columna izquierda - Stories y detalles */}
           <div className="space-y-6">
             {/* Carrusel estilo Stories */}
             <Carousel className="w-full max-w-[400px] mx-auto">
               <CarouselContent>
-                {tripData.videos.map((video, index) => (
-                  <CarouselItem key={index}>
+                {tripData.videos.map((video, index) => <CarouselItem key={index}>
                     <div className="relative aspect-[9/16] rounded-3xl overflow-hidden bg-gray-900">
                       {/* Header con avatar y título */}
                       <div className="absolute top-0 left-0 right-0 z-20 p-4 bg-gradient-to-b from-black/50 to-transparent">
                         <div className="flex items-center gap-3">
-                          <img
-                            src={tripData.userImage}
-                            alt={tripData.username}
-                            className="w-8 h-8 rounded-full border-2 border-white object-cover"
-                          />
+                          <img src={tripData.userImage} alt={tripData.username} className="w-8 h-8 rounded-full border-2 border-white object-cover" />
                           <span className="text-white font-medium text-sm">
                             {tripData.title} como {tripData.username}
                           </span>
@@ -74,23 +54,12 @@ const TripDetails = () => {
                       </div>
 
                       {/* Imagen/Video principal */}
-                      <img
-                        src={video}
-                        alt={`Story ${index + 1} de ${tripData.title}`}
-                        className="w-full h-full object-cover"
-                      />
+                      <img src={video} alt={`Story ${index + 1} de ${tripData.title}`} className="w-full h-full object-cover" />
 
                       {/* Progress bar y día */}
                       <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent">
                         <div className="flex items-center gap-2 mb-2">
-                          {tripData.videos.map((_, i) => (
-                            <div
-                              key={i}
-                              className={`h-1 flex-1 rounded-full ${
-                                i === index ? "bg-white" : "bg-white/40"
-                              }`}
-                            />
-                          ))}
+                          {tripData.videos.map((_, i) => <div key={i} className={`h-1 flex-1 rounded-full ${i === index ? "bg-white" : "bg-white/40"}`} />)}
                         </div>
                         <div className="text-white text-sm font-medium">
                           Día {index + 1}
@@ -105,8 +74,7 @@ const TripDetails = () => {
                         →
                       </button>
                     </div>
-                  </CarouselItem>
-                ))}
+                  </CarouselItem>)}
               </CarouselContent>
             </Carousel>
 
@@ -115,14 +83,12 @@ const TripDetails = () => {
               <h3 className="text-xl font-semibold mb-4">Descripción del paquete</h3>
               <div className="space-y-4">
                 <h4 className="font-medium">Itinerario</h4>
-                {tripData.itinerary.map((day) => (
-                  <div key={day.day} className="border rounded-lg p-4">
+                {tripData.itinerary.map(day => <div key={day.day} className="border rounded-lg p-4">
                     <button className="w-full flex items-center justify-between">
                       <span className="font-medium">Día {day.day}: {day.title}</span>
                       <ChevronDown className="h-5 w-5" />
                     </button>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
           </div>
@@ -154,14 +120,9 @@ const TripDetails = () => {
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2">
-              {tripData.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 bg-gray-100 rounded-full text-sm"
-                >
+              {tripData.tags.map(tag => <span key={tag} className="px-3 py-1 bg-gray-100 rounded-full text-sm">
                   {tag}
-                </span>
-              ))}
+                </span>)}
             </div>
 
             {/* Formulario de configuración */}
@@ -207,8 +168,6 @@ const TripDetails = () => {
         </div>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default TripDetails;
