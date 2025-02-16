@@ -40,6 +40,9 @@ export const Newsletter = () => {
       <div className="container">
         <div className="bg-[#f1f0fb] rounded-2xl p-12">
           <div className="max-w-2xl mx-auto text-center">
+            <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-white/50 rounded-xl">
+              {/* Espacio reservado para el futuro logo */}
+            </div>
             <h2 className="text-3xl font-semibold mb-4">
               Regístrate para encontrar tu próximo destino
             </h2>
