@@ -316,8 +316,8 @@ export const FeaturedTrips = () => {
               <Carousel className="h-full">
                 <CarouselContent className="h-full">
                   {selectedTrip.videos.map((video, index) => (
-                    <CarouselItem key={index} className="h-full">
-                      <div className="absolute inset-0">
+                    <CarouselItem key={index}>
+                      <div className="w-full h-[520px]">
                         <img 
                           src={video} 
                           alt={`${selectedTrip.title} - Imagen ${index + 1}`}
