@@ -316,7 +316,7 @@ const TripDetails = () => {
                     <SelectTrigger className="w-full bg-white">
                       <SelectValue placeholder="Selecciona origen" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white z-50">
+                    <SelectContent className="bg-white z-50" side="bottom" position="popper" align="start">
                       {airports.map((airport) => (
                         <SelectItem key={airport.code} value={airport.name}>
                           {airport.name}
