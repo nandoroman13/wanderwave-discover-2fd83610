@@ -53,7 +53,7 @@ const wavers = {
     tags: ["Tendencia", "En familia", "Aventura en familia", "Deportes aventura"],
     bio: "Familia viajera compartiendo aventuras por el mundo. Especialistas en viajes familiares y experiencias únicas para todas las edades."
   },
-  "paula-diez": {  // Aseguramos que el slug sea exactamente igual al de la URL
+  "paula-diez": {
     name: "Paula Díez",
     image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
     followers: "678",
@@ -65,11 +65,19 @@ const wavers = {
 
 export const WaverProfile = () => {
   const { slug } = useParams<{ slug: string }>();
-  console.log("Current slug:", slug); // Añadimos este log para debug
-  console.log("Available wavers:", Object.keys(wavers)); // Añadimos este log para debug
+  console.log("Current slug:", slug);
+  console.log("Available wavers:", Object.keys(wavers));
   
-  const waver = slug ? wavers[slug as keyof typeof wavers] : null;
-  console.log("Found waver:", waver); // Añadimos este log para debug
+  // Normalizar el slug: decodificar URL y convertir a minúsculas sin tildes
+  const normalizedSlug = slug ? decodeURIComponent(slug)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") : null;
+  
+  console.log("Normalized slug:", normalizedSlug);
+  
+  const waver = normalizedSlug ? wavers[normalizedSlug as keyof typeof wavers] : null;
+  console.log("Found waver:", waver);
 
   if (!waver) {
     return (
