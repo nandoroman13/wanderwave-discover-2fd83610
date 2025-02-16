@@ -61,53 +61,69 @@ const TripDetails = () => {
   ];
 
   const tripData = {
-    title: "Viaja a Maldivas",
-    username: "@pauladiez",
-    userImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
+    title: "Viaja a Chicago",
+    username: "@familiacarameluchi",
+    userImage: "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc",
     rating: 5.0,
-    duration: "9 días, 7 noches",
-    purchases: 361,
-    price: "3,999",
-    tags: ["Tendencia", "Surf", "Buceo", "Con amigos", "Experiencia local"],
-    configTime: "7",
-    videos: ["https://images.unsplash.com/photo-1514282401047-d79a71a590e8", "https://images.unsplash.com/photo-1573843981267-be1999ff37cd", "https://images.unsplash.com/photo-1551918120-9739cb430c6d"],
+    duration: "7 días, 5 noches",
+    purchases: 750,
+    price: "5,500",
+    tags: ["En familia", "Aventura en familia", "Tendencia"],
+    configTime: "5",
+    videos: [
+      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
+      "https://images.unsplash.com/photo-1494522358652-f30e61a60313",
+      "https://images.unsplash.com/photo-1507992781348-310259076fe0"
+    ],
     itinerary: [{
       day: 1,
-      title: "Madrid - Maldivas",
-      description: "¡Hoy es el día que tanto has esperado! Finalmente, te embarcarás en un emocionante viaje hacia las asombrosas Islas Maldivas. Prepárate para empacar con entusiasmo y dirígete al aeropuerto con tiempo de sobra para completar cualquier trámite necesario. Después, simplemente acomódate y relájate en el avión, deleitándote con un vuelo directo hacia el paraíso absoluto!"
+      title: "Madrid - Chicago",
+      description: "¡Empieza tu aventura! Vuelo directo desde Madrid hacia la Ciudad de los Vientos. A tu llegada, traslado al hotel y tiempo libre para empezar a explorar los alrededores."
     }, {
-      day: "2-7",
-      title: "Maldivas",
-      description: "Días libres en Maldivas"
+      day: 2,
+      title: "Millennium Park y The Loop",
+      description: "Descubre el corazón de Chicago. Visita el famoso 'Bean' en Millennium Park, disfruta de un paseo por The Loop y admira la impresionante arquitectura de la ciudad."
     }, {
-      day: 8,
-      title: "Maldivas - Madrid",
-      description: "Vuelo de regreso a Madrid"
+      day: 3,
+      title: "Navy Pier y Magnificent Mile",
+      description: "Día para disfrutar del Navy Pier, perfecto para familias. Por la tarde, shopping en la Magnificent Mile."
     }, {
-      day: 9,
-      title: "Origen",
-      description: "Llegada a origen"
+      day: 4,
+      title: "Museos y Lagos",
+      description: "Visita al Field Museum o al Shedd Aquarium. Paseo en barco por el Lago Michigan si el tiempo lo permite."
+    }, {
+      day: 5,
+      title: "Willis Tower y Arte Urbano",
+      description: "Sube al mirador Skydeck de la Willis Tower. Explora los barrios artísticos de Wicker Park y Bucktown."
+    }, {
+      day: 6,
+      title: "Día libre en Chicago",
+      description: "Día libre para actividades opcionales: partidos deportivos, compras adicionales o visitas a lugares de interés pendientes."
+    }, {
+      day: 7,
+      title: "Chicago - Madrid",
+      description: "Última mañana libre en la ciudad. Traslado al aeropuerto para tomar el vuelo de regreso a Madrid."
     }],
     included: [
       {
         icon: Bed,
-        text: "7 noches en el régimen elegido"
+        text: "5 noches en hotel seleccionado"
       },
       {
         icon: Plane,
-        text: "Avión ida y vuelta"
+        text: "Vuelos directos ida y vuelta"
       },
       {
         icon: Bus,
-        text: "Traslado aeropuerto - hotel y viceversa a la llegada y salida"
+        text: "Traslados aeropuerto - hotel"
       },
       {
         icon: FileCheck,
-        text: "Seguro de viajes obligatorio"
+        text: "Seguro de viaje básico"
       },
       {
         icon: Receipt,
-        text: "Tasas aéreas"
+        text: "Tasas aéreas incluidas"
       }
     ]
   };
@@ -118,24 +134,24 @@ const TripDetails = () => {
     items: [
       {
         id: 1,
-        author: "Hector",
-        date: "08/11/2023",
+        author: "María",
+        date: "15/02/2024",
         rating: 5.0,
-        comment: "Faucibus facilisis consequat nunc feugiat lacinia. Proin vulputate euismod a quis semper ultricies vulputate. Ipsum ut quis tincidunt nibh eu scelerisque lacus tincidunt. Massa vel varius",
+        comment: "¡Increíble viaje familiar! Chicago tiene todo lo que buscábamos: museos interactivos para los niños, parques preciosos y una arquitectura impresionante. El Navy Pier fue lo más destacado para los pequeños.",
         images: [
-          "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
-          "https://images.unsplash.com/photo-1573843981267-be1999ff37cd",
+          "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
+          "https://images.unsplash.com/photo-1494522358652-f30e61a60313",
         ]
       },
       {
         id: 2,
-        author: "Hector",
-        date: "08/11/2023",
+        author: "Carlos",
+        date: "10/02/2024",
         rating: 5.0,
-        comment: "Faucibus facilisis consequat nunc feugiat lacinia. Proin vulputate euismod a quis semper ultricies vulputate. Ipsum ut quis tincidunt nibh eu scelerisque lacus tincidunt. Massa vel varius",
+        comment: "Viaje perfecto para toda la familia. La ciudad es muy segura y hay actividades para todos los gustos. Los museos son espectaculares y las vistas desde la Willis Tower inolvidables.",
         images: [
-          "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
-          "https://images.unsplash.com/photo-1573843981267-be1999ff37cd",
+          "https://images.unsplash.com/photo-1507992781348-310259076fe0",
+          "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
         ]
       }
     ]
