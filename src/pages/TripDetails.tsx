@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Star, ChevronDown, ChevronUp, Share2, Volume2, VolumeX, Play, Pause, CalendarIcon } from "lucide-react";
+import { Star, ChevronDown, ChevronUp, Share2, Volume2, VolumeX, Play, Pause, CalendarIcon, Plus, Minus } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -27,6 +27,24 @@ const TripDetails = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [selectedOrigin, setSelectedOrigin] = useState("Madrid (MAD)");
   const [date, setDate] = useState<Date>();
+  const [adults, setAdults] = useState(2);
+  const [children, setChildren] = useState(0);
+
+  const handleAdultsChange = (increment: boolean) => {
+    if (increment && adults < 8) {
+      setAdults(adults + 1);
+    } else if (!increment && adults > 1) {
+      setAdults(adults - 1);
+    }
+  };
+
+  const handleChildrenChange = (increment: boolean) => {
+    if (increment && children < 6) {
+      setChildren(children + 1);
+    } else if (!increment && children > 0) {
+      setChildren(children - 1);
+    }
+  };
 
   const airports = [
     { code: "MAD", city: "Madrid", name: "Madrid (MAD)" },
@@ -340,11 +358,66 @@ const TripDetails = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="people">Personas</Label>
-                  <Input 
-                    id="people" 
-                    defaultValue="2 adultos | 0 niños | 1 habitación" 
-                    className="bg-white"
-                  />
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className="w-full justify-start font-normal bg-white"
+                      >
+                        {adults} adultos | {children} niños
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-80 bg-white z-50 p-4 shadow-lg border rounded-md">
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="font-medium">Adultos</p>
+                            <p className="text-sm text-gray-500">Mayores de 12 años</p>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <button
+                              onClick={() => handleAdultsChange(false)}
+                              className={`p-1.5 rounded-full ${adults > 1 ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 text-gray-300'}`}
+                              disabled={adults <= 1}
+                            >
+                              <Minus className="w-4 h-4" />
+                            </button>
+                            <span className="w-6 text-center font-medium">{adults}</span>
+                            <button
+                              onClick={() => handleAdultsChange(true)}
+                              className={`p-1.5 rounded-full ${adults < 8 ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 text-gray-300'}`}
+                              disabled={adults >= 8}
+                            >
+                              <Plus className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="font-medium">Niños</p>
+                            <p className="text-sm text-gray-500">De 2 a 12 años</p>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <button
+                              onClick={() => handleChildrenChange(false)}
+                              className={`p-1.5 rounded-full ${children > 0 ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 text-gray-300'}`}
+                              disabled={children <= 0}
+                            >
+                              <Minus className="w-4 h-4" />
+                            </button>
+                            <span className="w-6 text-center font-medium">{children}</span>
+                            <button
+                              onClick={() => handleChildrenChange(true)}
+                              className={`p-1.5 rounded-full ${children < 6 ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 text-gray-300'}`}
+                              disabled={children >= 6}
+                            >
+                              <Plus className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </PopoverContent>
+                  </Popover>
                 </div>
               </div>
 
