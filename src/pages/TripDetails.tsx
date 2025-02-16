@@ -8,11 +8,32 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Bed, Plane, Bus, FileCheck, Receipt } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const TripDetails = () => {
   const { destination } = useParams();
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [selectedOrigin, setSelectedOrigin] = useState("Madrid (MAD)");
+
+  const airports = [
+    { code: "MAD", city: "Madrid", name: "Madrid (MAD)" },
+    { code: "BCN", city: "Barcelona", name: "Barcelona (BCN)" },
+    { code: "PMI", city: "Palma de Mallorca", name: "Palma de Mallorca (PMI)" },
+    { code: "AGP", city: "Málaga", name: "Málaga (AGP)" },
+    { code: "ALC", city: "Alicante", name: "Alicante (ALC)" },
+    { code: "VLC", city: "Valencia", name: "Valencia (VLC)" },
+    { code: "SVQ", city: "Sevilla", name: "Sevilla (SVQ)" },
+    { code: "BIO", city: "Bilbao", name: "Bilbao (BIO)" },
+    { code: "TFN", city: "Tenerife Norte", name: "Tenerife Norte (TFN)" },
+    { code: "TFS", city: "Tenerife Sur", name: "Tenerife Sur (TFS)" }
+  ];
 
   const tripData = {
     title: "Viaja a Maldivas",
@@ -218,7 +239,6 @@ const TripDetails = () => {
             </div>
           </div>
 
-          {/* Columna derecha */}
           <div className="lg:sticky lg:top-8 space-y-6">
             <div className="flex items-center justify-between">
               <h1 className="text-3xl font-bold">
@@ -268,7 +288,18 @@ const TripDetails = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="origin">Origen</Label>
-                  <Input id="origin" defaultValue="Madrid" className="bg-white" />
+                  <Select value={selectedOrigin} onValueChange={setSelectedOrigin}>
+                    <SelectTrigger className="w-full bg-white">
+                      <SelectValue placeholder="Selecciona origen" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {airports.map((airport) => (
+                        <SelectItem key={airport.code} value={airport.name}>
+                          {airport.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="date">Fecha</Label>
