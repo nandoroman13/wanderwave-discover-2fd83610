@@ -66,6 +66,35 @@ const TripDetails = () => {
     ]
   };
 
+  const reviews = {
+    average: 5.0,
+    total: 1234,
+    items: [
+      {
+        id: 1,
+        author: "Hector",
+        date: "08/11/2023",
+        rating: 5.0,
+        comment: "Faucibus facilisis consequat nunc feugiat lacinia. Proin vulputate euismod a quis semper ultricies vulputate. Ipsum ut quis tincidunt nibh eu scelerisque lacus tincidunt. Massa vel varius",
+        images: [
+          "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
+          "https://images.unsplash.com/photo-1573843981267-be1999ff37cd",
+        ]
+      },
+      {
+        id: 2,
+        author: "Hector",
+        date: "08/11/2023",
+        rating: 5.0,
+        comment: "Faucibus facilisis consequat nunc feugiat lacinia. Proin vulputate euismod a quis semper ultricies vulputate. Ipsum ut quis tincidunt nibh eu scelerisque lacus tincidunt. Massa vel varius",
+        images: [
+          "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
+          "https://images.unsplash.com/photo-1573843981267-be1999ff37cd",
+        ]
+      }
+    ]
+  };
+
   const toggleMute = () => {
     setIsMuted(!isMuted);
   };
