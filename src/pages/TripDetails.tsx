@@ -51,37 +51,63 @@ const TripDetails = () => {
       <Navbar />
       <main className="container py-8">
         <div className="grid lg:grid-cols-2 gap-8">
-          {/* Columna izquierda - Carrusel y detalles */}
+          {/* Columna izquierda - Stories y detalles */}
           <div className="space-y-6">
-            {/* Avatar y nombre */}
-            <div className="flex items-center gap-3 bg-gray-100 w-fit px-4 py-2 rounded-full">
-              <img
-                src={tripData.userImage}
-                alt={tripData.username}
-                className="w-8 h-8 rounded-full object-cover"
-              />
-              <span className="text-sm">
-                {tripData.title} como {tripData.username}
-              </span>
-            </div>
-
-            {/* Carrusel de videos/imágenes */}
+            {/* Carrusel estilo Stories */}
             <Carousel className="w-full">
               <CarouselContent>
                 {tripData.videos.map((video, index) => (
                   <CarouselItem key={index}>
-                    <div className="aspect-video rounded-xl overflow-hidden">
+                    <div className="relative aspect-[9/16] rounded-3xl overflow-hidden bg-gray-900">
+                      {/* Header con avatar y título */}
+                      <div className="absolute top-0 left-0 right-0 z-20 p-4 bg-gradient-to-b from-black/50 to-transparent">
+                        <div className="flex items-center gap-3">
+                          <img
+                            src={tripData.userImage}
+                            alt={tripData.username}
+                            className="w-10 h-10 rounded-full border-2 border-white object-cover"
+                          />
+                          <span className="text-white font-medium">
+                            {tripData.title} como {tripData.username}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Imagen/Video principal */}
                       <img
                         src={video}
-                        alt={`Vista ${index + 1} de ${tripData.title}`}
+                        alt={`Story ${index + 1} de ${tripData.title}`}
                         className="w-full h-full object-cover"
                       />
+
+                      {/* Progress bar y día */}
+                      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent">
+                        <div className="flex items-center gap-2 mb-2">
+                          {tripData.videos.map((_, i) => (
+                            <div
+                              key={i}
+                              className={`h-1 flex-1 rounded-full ${
+                                i === index ? "bg-white" : "bg-white/40"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                        <div className="text-white text-lg font-medium">
+                          Día {index + 1}
+                        </div>
+                      </div>
+
+                      {/* Controles de navegación */}
+                      <button className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white">
+                        ←
+                      </button>
+                      <button className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white">
+                        →
+                      </button>
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
             </Carousel>
 
             {/* Itinerario */}
