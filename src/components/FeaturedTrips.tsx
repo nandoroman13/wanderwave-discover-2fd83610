@@ -293,7 +293,7 @@ export const FeaturedTrips = () => {
           <>
             <div className="fixed inset-0 bg-black/60 z-40" onClick={closeFullscreenCarousel} />
             
-            <div className="fixed inset-x-4 inset-y-16 z-50 rounded-3xl overflow-hidden bg-black aspect-[3/5]">
+            <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[520px] z-50 rounded-3xl overflow-hidden bg-black aspect-[3/5]">
               <div className="absolute top-4 left-4 z-50 flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full pl-1 pr-4 py-1">
                 <img 
                   src={selectedTrip.userImage} 
