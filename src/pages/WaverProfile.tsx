@@ -15,6 +15,7 @@ const waverTrips = [
   {
     id: 1,
     title: "Viaja a Maldivas",
+    waverId: "paula-diez",
     image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
     price: "3,999",
     rating: "5,0",
@@ -25,6 +26,7 @@ const waverTrips = [
   {
     id: 2,
     title: "Viaja a Mallorca",
+    waverId: "mikel-boisset",
     image: "https://images.unsplash.com/photo-1437719417032-8595fd9e9dc6",
     price: "899",
     rating: "4,9",
@@ -35,12 +37,24 @@ const waverTrips = [
   {
     id: 3,
     title: "Viaja a Punta Cana",
+    waverId: "mikel-boisset",
     image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
     price: "2,499",
     rating: "4,8",
     purchases: 183,
     tags: ["Caribe", "Todo incluido", "Playas paradisíacas", "Con amigos"],
     slug: "punta-cana"
+  },
+  {
+    id: 4,
+    title: "Viaja a Noruega",
+    waverId: "mikel-boisset",
+    image: "https://images.unsplash.com/photo-1520769669658-f07657f5a307",
+    price: "4,000",
+    rating: "5,0",
+    purchases: 602,
+    tags: ["Tendencia", "Naturaleza", "Aurora Boreal", "Fiordos"],
+    slug: "noruega"
   },
 ];
 
@@ -86,6 +100,10 @@ export const WaverProfile = () => {
   
   const waver = normalizedSlug ? wavers[normalizedSlug as keyof typeof wavers] : null;
   console.log("Found waver:", waver);
+
+  // Filtrar los viajes por waver
+  const waverTripsFiltered = normalizedSlug ? waverTrips.filter(trip => trip.waverId === normalizedSlug) : [];
+  console.log("Waver trips:", waverTripsFiltered);
 
   if (!waver) {
     return (
@@ -163,7 +181,7 @@ export const WaverProfile = () => {
             
             <Carousel className="w-full">
               <CarouselContent className="-ml-4">
-                {waverTrips.map((trip) => (
+                {waverTripsFiltered.map((trip) => (
                   <CarouselItem key={trip.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
                     <div className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[3/5]">
                       <div className="relative h-full rounded-2xl overflow-hidden">
