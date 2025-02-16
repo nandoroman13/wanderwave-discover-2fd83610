@@ -253,7 +253,11 @@ const TripDetails = () => {
   const [children, setChildren] = useState(0);
   const [duration, setDuration] = useState("7 noches");
 
-  const tripData = destination ? tripsData[destination as keyof typeof tripsData] : null;
+  console.log('Current destination:', destination);
+  console.log('Available destinations:', Object.keys(tripsData));
+  console.log('Found trip data:', tripsData[destination as keyof typeof tripsData]);
+
+  const tripData = destination ? tripsData[destination as keyof typeof tripsData] : tripsData.maldivas;
 
   if (!tripData) {
     return <div>Destino no encontrado</div>;
