@@ -70,7 +70,12 @@ export const Prescriptores = () => {
                     
                     <div className="flex-1 flex flex-col min-w-0">
                       <div className="flex items-center justify-between mb-4 gap-4">
-                        <h3 className="text-xl font-semibold truncate">{waver.name}</h3>
+                        <Link 
+                          to={`/wavers/${waver.name.toLowerCase().replace(/ /g, '-')}`}
+                          className="text-xl font-semibold truncate hover:text-primary transition-colors"
+                        >
+                          {waver.name}
+                        </Link>
                         <button className="border border-black text-black hover:bg-black hover:text-white px-4 py-1.5 rounded-full transition-colors flex items-center gap-1 flex-shrink-0">
                           Seguir <span className="text-lg">+</span>
                         </button>
