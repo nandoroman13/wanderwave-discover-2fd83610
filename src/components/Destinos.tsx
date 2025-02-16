@@ -9,6 +9,7 @@ const destinos = [
     image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9",
     trips: 714,
     highlight: "Italia",
+    slug: "italia"
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ const destinos = [
     image: "https://images.unsplash.com/photo-1516426122078-c23e76319801",
     trips: 101,
     highlight: "África",
+    slug: "africa"
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ const destinos = [
     image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e",
     trips: 174,
     highlight: "Asia",
+    slug: "maldivas"
   },
   {
     id: 4,
@@ -33,6 +36,7 @@ const destinos = [
     image: "https://images.unsplash.com/photo-1474044159687-1ee9f3a51722",
     trips: 264,
     highlight: "América",
+    slug: "punta-cana"
   },
 ];
 
@@ -82,7 +86,7 @@ export const Destinos = () => {
                 
                 <div className="flex items-center justify-between">
                   <Link
-                    to={`/destinos/${destinos[0].id}`}
+                    to={`/viajes/${destinos[0].slug}`}
                     className="text-white hover:underline flex items-center gap-2"
                   >
                     Ver todos los viajes
@@ -125,7 +129,7 @@ export const Destinos = () => {
                 
                 <div className="flex items-center justify-between">
                   <Link
-                    to={`/destinos/${destinos[1].id}`}
+                    to={`/viajes/${destinos[1].slug}`}
                     className="text-white hover:underline flex items-center gap-2"
                   >
                     Ver todos los viajes
@@ -170,7 +174,7 @@ export const Destinos = () => {
                   
                   <div className="flex items-center justify-between">
                     <Link
-                      to={`/destinos/${destinos[2].id}`}
+                      to={`/viajes/${destinos[2].slug}`}
                       className="text-white hover:underline flex items-center gap-2"
                     >
                       Ver todos los viajes
@@ -213,7 +217,7 @@ export const Destinos = () => {
                   
                   <div className="flex items-center justify-between">
                     <Link
-                      to={`/destinos/${destinos[3].id}`}
+                      to={`/viajes/${destinos[3].slug}`}
                       className="text-white hover:underline flex items-center gap-2"
                     >
                       Ver todos los viajes
