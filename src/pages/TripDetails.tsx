@@ -596,7 +596,7 @@ const TripDetails = () => {
                           <div className="flex items-center gap-3">
                             <img src={tripData.userImage} alt={tripData.username} className="w-8 h-8 rounded-full border-2 border-white object-cover" />
                             <span className="text-white font-medium text-sm">
-                              Viaja a Maldivas como Paula Diez
+                              {tripData.title} como {tripData.username}
                             </span>
                           </div>
                         </div>
@@ -664,7 +664,7 @@ const TripDetails = () => {
           <div className="lg:sticky lg:top-8 space-y-6">
             <div className="flex items-center justify-between">
               <h1 className="text-3xl font-bold">
-                Viaja a Maldivas como <span className="text-primary">Paula Diez</span>
+                {tripData.title} como <span className="text-primary">{tripData.username}</span>
                 <span className="inline-flex items-center gap-1 ml-2 text-sm font-medium text-primary bg-blue-50 px-2 py-1 rounded-full">
                   Traveltrend
                 </span>
