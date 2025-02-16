@@ -1,5 +1,6 @@
 
-import { Share2, Star } from "lucide-react";
+import { Share2, Star, Volume2, VolumeX, Play, X } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Carousel,
@@ -206,6 +207,23 @@ const trips = [
 
 export const FeaturedTrips = () => {
   const navigate = useNavigate();
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [selectedTrip, setSelectedTrip] = useState<typeof trips[0] | null>(null);
+
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+  };
+
+  const openFullscreenCarousel = (trip: typeof trips[0]) => {
+    setSelectedTrip(trip);
+    setIsPlaying(true);
+  };
+
+  const closeFullscreenCarousel = () => {
+    setSelectedTrip(null);
+    setIsPlaying(false);
+  };
 
   return (
     <section className="py-16 bg-muted">
@@ -232,12 +250,28 @@ export const FeaturedTrips = () => {
                     </div>
                   </div>
                   
-                  <div className="relative h-full rounded-2xl overflow-hidden">
+                  <div className="relative h-full rounded-2xl overflow-hidden group">
                     <img
                       src={trip.image}
                       alt={trip.title}
                       className="w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-100 opacity-0" />
+                    
+                    <div className="absolute bottom-4 right-4 flex gap-2">
+                      <button 
+                        onClick={toggleMute}
+                        className="w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/30 transition-colors"
+                      >
+                        {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+                      </button>
+                      <button 
+                        onClick={() => openFullscreenCarousel(trip)}
+                        className="w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/30 transition-colors"
+                      >
+                        <Play className="w-5 h-5" />
+                      </button>
+                    </div>
                   </div>
                   
                   <div className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-sm p-4 rounded-2xl">
@@ -285,6 +319,36 @@ export const FeaturedTrips = () => {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
+
+        {/* Fullscreen Carousel Modal */}
+        {selectedTrip && (
+          <div className="fixed inset-0 bg-black z-50">
+            <button 
+              onClick={closeFullscreenCarousel}
+              className="absolute top-4 right-4 z-50 text-white hover:text-gray-200"
+            >
+              <X size={32} />
+            </button>
+            
+            <Carousel className="h-full">
+              <CarouselContent>
+                {selectedTrip.videos.map((video, index) => (
+                  <CarouselItem key={index}>
+                    <div className="h-screen w-full flex items-center justify-center">
+                      <img 
+                        src={video} 
+                        alt={`${selectedTrip.title} - Imagen ${index + 1}`}
+                        className="max-h-full max-w-full object-contain"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-4" />
+              <CarouselNext className="right-4" />
+            </Carousel>
+          </div>
+        )}
       </div>
     </section>
   );
