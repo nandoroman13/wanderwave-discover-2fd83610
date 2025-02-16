@@ -14,73 +14,9 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
-const TripDetails = () => {
-  const {
-    destination
-  } = useParams();
-  const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [selectedOrigin, setSelectedOrigin] = useState("Madrid (MAD)");
-  const [date, setDate] = useState<Date>();
-  const [adults, setAdults] = useState(2);
-  const [children, setChildren] = useState(0);
-  const [duration, setDuration] = useState("7 noches");
-  const handleAdultsChange = (increment: boolean) => {
-    if (increment && adults < 8) {
-      setAdults(adults + 1);
-    } else if (!increment && adults > 1) {
-      setAdults(adults - 1);
-    }
-  };
-  const handleChildrenChange = (increment: boolean) => {
-    if (increment && children < 6) {
-      setChildren(children + 1);
-    } else if (!increment && children > 0) {
-      setChildren(children - 1);
-    }
-  };
-  const airports = [{
-    code: "MAD",
-    city: "Madrid",
-    name: "Madrid (MAD)"
-  }, {
-    code: "BCN",
-    city: "Barcelona",
-    name: "Barcelona (BCN)"
-  }, {
-    code: "PMI",
-    city: "Palma de Mallorca",
-    name: "Palma de Mallorca (PMI)"
-  }, {
-    code: "AGP",
-    city: "Málaga",
-    name: "Málaga (AGP)"
-  }, {
-    code: "ALC",
-    city: "Alicante",
-    name: "Alicante (ALC)"
-  }, {
-    code: "VLC",
-    city: "Valencia",
-    name: "Valencia (VLC)"
-  }, {
-    code: "SVQ",
-    city: "Sevilla",
-    name: "Sevilla (SVQ)"
-  }, {
-    code: "BIO",
-    city: "Bilbao",
-    name: "Bilbao (BIO)"
-  }, {
-    code: "TFN",
-    city: "Tenerife Norte",
-    name: "Tenerife Norte (TFN)"
-  }, {
-    code: "TFS",
-    city: "Tenerife Sur",
-    name: "Tenerife Sur (TFS)"
-  }];
-  const tripData = {
+
+const tripsData = {
+  chicago: {
     title: "Viaja a Chicago",
     username: "@familiacarameluchi",
     userImage: "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc",
@@ -90,7 +26,11 @@ const TripDetails = () => {
     price: "5,500",
     tags: ["En familia", "Aventura en familia", "Tendencia"],
     configTime: "5",
-    videos: ["https://images.unsplash.com/photo-1477959858617-67f85cf4f1df", "https://images.unsplash.com/photo-1494522358652-f30e61a60313", "https://images.unsplash.com/photo-1507992781348-310259076fe0"],
+    videos: [
+      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
+      "https://images.unsplash.com/photo-1494522358652-f30e61a60313",
+      "https://images.unsplash.com/photo-1507992781348-310259076fe0"
+    ],
     itinerary: [{
       day: 1,
       title: "Madrid - Chicago",
@@ -120,54 +60,260 @@ const TripDetails = () => {
       title: "Chicago - Madrid",
       description: "Última mañana libre en la ciudad. Traslado al aeropuerto para tomar el vuelo de regreso a Madrid."
     }],
-    included: [{
-      icon: Bed,
-      text: "5 noches en hotel seleccionado"
+    included: [
+      {
+        icon: Bed,
+        text: "5 noches en hotel seleccionado"
+      },
+      {
+        icon: Plane,
+        text: "Vuelos directos ida y vuelta"
+      },
+      {
+        icon: Bus,
+        text: "Traslados aeropuerto - hotel"
+      },
+      {
+        icon: FileCheck,
+        text: "Seguro de viaje básico"
+      },
+      {
+        icon: Receipt,
+        text: "Tasas aéreas incluidas"
+      }
+    ]
+  },
+  maldivas: {
+    title: "Viaja a Maldivas",
+    username: "@pauladiez",
+    userImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
+    rating: 5.0,
+    duration: "9 días, 7 noches",
+    purchases: 361,
+    price: "3,999",
+    tags: ["Tendencia", "Surf", "Buceo", "Con amigos", "Experiencia local"],
+    configTime: "7",
+    videos: [
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
+      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd",
+      "https://images.unsplash.com/photo-1551918120-9739cb430c6d"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Maldivas",
+      description: "¡Hoy es el día que tanto has esperado! Finalmente, te embarcarás en un emocionante viaje hacia las asombrosas Islas Maldivas. Prepárate para empacar con entusiasmo y dirígete al aeropuerto con tiempo de sobra para completar cualquier trámite necesario."
     }, {
-      icon: Plane,
-      text: "Vuelos directos ida y vuelta"
+      day: 2,
+      title: "Llegada a Maldivas",
+      description: "Llegada al aeropuerto de Male. Traslado en lancha rápida o hidroavión a tu resort. Resto del día libre para disfrutar del paraíso."
     }, {
-      icon: Bus,
-      text: "Traslados aeropuerto - hotel"
+      day: 3,
+      title: "Actividades acuáticas",
+      description: "Día dedicado a actividades acuáticas: snorkel, buceo o simplemente relax en la playa paradisíaca."
     }, {
-      icon: FileCheck,
-      text: "Seguro de viaje básico"
+      day: 4,
+      title: "Crucero al atardecer",
+      description: "Mañana libre y por la tarde, crucero para ver delfines y el espectacular atardecer maldivo."
     }, {
-      icon: Receipt,
-      text: "Tasas aéreas incluidas"
-    }]
+      day: 5,
+      title: "Isla local",
+      description: "Excursión opcional a una isla local para conocer la cultura maldiva y su gente."
+    }, {
+      day: 6,
+      title: "Spa y relax",
+      description: "Día dedicado al relax con tratamientos de spa y actividades tranquilas."
+    }, {
+      day: 7,
+      title: "Día libre",
+      description: "Último día completo para disfrutar de las instalaciones del resort y el entorno paradisíaco."
+    }, {
+      day: 8,
+      title: "Regreso",
+      description: "Traslado al aeropuerto de Male para tomar el vuelo de regreso."
+    }, {
+      day: 9,
+      title: "Llegada",
+      description: "Llegada a Madrid. Fin del viaje y de nuestros servicios."
+    }],
+    included: [
+      {
+        icon: Bed,
+        text: "7 noches en el régimen elegido"
+      },
+      {
+        icon: Plane,
+        text: "Avión ida y vuelta"
+      },
+      {
+        icon: Bus,
+        text: "Traslados aeropuerto - hotel - aeropuerto"
+      },
+      {
+        icon: FileCheck,
+        text: "Seguro de viajes básico"
+      },
+      {
+        icon: Receipt,
+        text: "Tasas aéreas incluidas"
+      }
+    ]
+  },
+  noruega: {
+    title: "Viaja a Noruega",
+    username: "@mikelboisset",
+    userImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
+    rating: 5.0,
+    duration: "8 días, 6 noches",
+    purchases: 602,
+    price: "4,000",
+    tags: ["Tendencia", "Fiordos", "Naturaleza", "Aventura"],
+    configTime: "6",
+    videos: [
+      "https://images.unsplash.com/photo-1520769669658-f07657f5a307",
+      "https://images.unsplash.com/photo-1506967554329-2626e0f7d9e4",
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Oslo",
+      description: "Vuelo a Oslo. Llegada y traslado al hotel. Primera toma de contacto con la capital noruega."
+    }, {
+      day: 2,
+      title: "Oslo",
+      description: "Visita del Parque Vigeland, Museo de los Barcos Vikingos y el Ayuntamiento de Oslo."
+    }, {
+      day: 3,
+      title: "Oslo - Bergen",
+      description: "Viaje escénico en tren de Oslo a Bergen, considerado uno de los más bonitos de Europa."
+    }, {
+      day: 4,
+      title: "Bergen y Fiordos",
+      description: "Exploración de Bergen y crucero por el Fiordo de los Sueños."
+    }, {
+      day: 5,
+      title: "Fiordos Noruegos",
+      description: "Día completo explorando los majestuosos fiordos noruegos."
+    }, {
+      day: 6,
+      title: "Ålesund",
+      description: "Visita a la bella ciudad de Ålesund, famosa por su arquitectura Art Nouveau."
+    }, {
+      day: 7,
+      title: "Tromsø - Aurora Boreal",
+      description: "Vuelo a Tromsø. Por la noche, excursión para intentar ver la aurora boreal (según temporada)."
+    }, {
+      day: 8,
+      title: "Tromsø - Madrid",
+      description: "Mañana libre y vuelo de regreso a Madrid."
+    }],
+    included: [
+      {
+        icon: Bed,
+        text: "6 noches en hoteles seleccionados"
+      },
+      {
+        icon: Plane,
+        text: "Vuelos internacionales"
+      },
+      {
+        icon: Bus,
+        text: "Todos los traslados terrestres"
+      },
+      {
+        icon: FileCheck,
+        text: "Seguro de viaje con cobertura de actividades"
+      },
+      {
+        icon: Receipt,
+        text: "Tasas e impuestos locales"
+      }
+    ]
+  }
+};
+
+const TripDetails = () => {
+  const { destination } = useParams();
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [selectedOrigin, setSelectedOrigin] = useState("Madrid (MAD)");
+  const [date, setDate] = useState<Date>();
+  const [adults, setAdults] = useState(2);
+  const [children, setChildren] = useState(0);
+  const [duration, setDuration] = useState("7 noches");
+
+  const handleAdultsChange = (increment: boolean) => {
+    if (increment && adults < 8) {
+      setAdults(adults + 1);
+    } else if (!increment && adults > 1) {
+      setAdults(adults - 1);
+    }
   };
+
+  const handleChildrenChange = (increment: boolean) => {
+    if (increment && children < 6) {
+      setChildren(children + 1);
+    } else if (!increment && children > 0) {
+      setChildren(children - 1);
+    }
+  };
+
+  const airports = [
+    { code: "MAD", city: "Madrid", name: "Madrid (MAD)" },
+    { code: "BCN", city: "Barcelona", name: "Barcelona (BCN)" },
+    { code: "PMI", city: "Palma de Mallorca", name: "Palma de Mallorca (PMI)" },
+    { code: "AGP", city: "Málaga", name: "Málaga (AGP)" },
+    { code: "ALC", city: "Alicante", name: "Alicante (ALC)" },
+    { code: "VLC", city: "Valencia", name: "Valencia (VLC)" },
+    { code: "SVQ", city: "Sevilla", name: "Sevilla (SVQ)" },
+    { code: "BIO", city: "Bilbao", name: "Bilbao (BIO)" },
+    { code: "TFN", city: "Tenerife Norte", name: "Tenerife Norte (TFN)" },
+    { code: "TFS", city: "Tenerife Sur", name: "Tenerife Sur (TFS)" }
+  ];
+
+  const tripData = destination ? tripsData[destination as keyof typeof tripsData] : tripsData.maldivas;
+
   const reviews = {
     average: 5.0,
     total: 1234,
-    items: [{
-      id: 1,
-      author: "María",
-      date: "15/02/2024",
-      rating: 5.0,
-      comment: "¡Increíble viaje familiar! Chicago tiene todo lo que buscábamos: museos interactivos para los niños, parques preciosos y una arquitectura impresionante. El Navy Pier fue lo más destacado para los pequeños.",
-      images: ["https://images.unsplash.com/photo-1477959858617-67f85cf4f1df", "https://images.unsplash.com/photo-1494522358652-f30e61a60313"]
-    }, {
-      id: 2,
-      author: "Carlos",
-      date: "10/02/2024",
-      rating: 5.0,
-      comment: "Viaje perfecto para toda la familia. La ciudad es muy segura y hay actividades para todos los gustos. Los museos son espectaculares y las vistas desde la Willis Tower inolvidables.",
-      images: ["https://images.unsplash.com/photo-1507992781348-310259076fe0", "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df"]
-    }]
+    items: [
+      {
+        id: 1,
+        author: "María",
+        date: "15/02/2024",
+        rating: 5.0,
+        comment: "¡Increíble viaje! Todo perfectamente organizado y las experiencias fueron inolvidables.",
+        images: [
+          tripData.videos[0],
+          tripData.videos[1]
+        ]
+      },
+      {
+        id: 2,
+        author: "Carlos",
+        date: "10/02/2024",
+        rating: 5.0,
+        comment: "Una experiencia única. El itinerario estaba muy bien planificado y pudimos disfrutar de todo sin prisas.",
+        images: [
+          tripData.videos[1],
+          tripData.videos[2]
+        ]
+      }
+    ]
   };
+
   const toggleMute = () => {
     setIsMuted(!isMuted);
   };
+
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
   };
+
   const scrollToReviews = () => {
     const reviewsSection = document.getElementById('reviews');
-    reviewsSection?.scrollIntoView({
-      behavior: 'smooth'
-    });
+    reviewsSection?.scrollIntoView({ behavior: 'smooth' });
   };
+
   return <div className="min-h-screen bg-white">
       <Navbar />
       <main className="container py-8">
@@ -439,4 +585,5 @@ const TripDetails = () => {
       <Footer />
     </div>;
 };
+
 export default TripDetails;
