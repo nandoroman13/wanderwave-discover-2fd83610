@@ -2,6 +2,7 @@ import { Share2, Star, Volume2, VolumeX, Play, X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+
 const trips = [{
   id: 1,
   title: "Viaja a Maldivas",
@@ -165,23 +166,29 @@ const trips = [{
     description: "Vuelo de regreso"
   }]
 }];
+
 export const FeaturedTrips = () => {
   const navigate = useNavigate();
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedTrip, setSelectedTrip] = useState<typeof trips[0] | null>(null);
+
   const toggleMute = () => {
     setIsMuted(!isMuted);
   };
+
   const openFullscreenCarousel = (trip: typeof trips[0]) => {
     setSelectedTrip(trip);
     setIsPlaying(true);
   };
+
   const closeFullscreenCarousel = () => {
     setSelectedTrip(null);
     setIsPlaying(false);
   };
-  return <section className="py-16 bg-muted">
+
+  return (
+    <section className="py-16 bg-muted">
       <div className="container">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl font-semibold">Top viajes</h2>
@@ -190,10 +197,15 @@ export const FeaturedTrips = () => {
         
         <Carousel className="w-full">
           <CarouselContent className="-ml-4">
-            {trips.map(trip => <CarouselItem key={trip.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+            {trips.map((trip) => (
+              <CarouselItem key={trip.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
                 <div className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[3/5] p-4">
                   <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm rounded-full pl-1 pr-3 py-0.5 whitespace-nowrap max-w-[90%] overflow-hidden">
-                    <img src={trip.userImage} alt={trip.username} className="w-6 h-6 rounded-full object-cover" />
+                    <img
+                      src={trip.userImage}
+                      alt={trip.username}
+                      className="w-6 h-6 rounded-full object-cover"
+                    />
                     <div className="text-xs overflow-hidden">
                       <span className="text-gray-900">{trip.title}</span>
                       <span className="text-gray-600"> como {trip.username}</span>
@@ -201,22 +213,32 @@ export const FeaturedTrips = () => {
                   </div>
                   
                   <div className="relative h-full rounded-2xl overflow-hidden">
-                    <img src={trip.image} alt={trip.title} className="w-full h-full object-cover" />
+                    <img
+                      src={trip.image}
+                      alt={trip.title}
+                      className="w-full h-full object-cover"
+                    />
                     {/* Capa oscura siempre visible */}
                     <div className="absolute inset-0 bg-black/20" />
                     
                     {/* Botones reposicionados */}
                     <div className="absolute bottom-28 inset-x-4 flex justify-between z-10 my-[130px]">
-                      <button onClick={e => {
-                    e.stopPropagation();
-                    toggleMute();
-                  }} className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/60 transition-colors">
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleMute();
+                        }}
+                        className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/60 transition-colors"
+                      >
                         {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
                       </button>
-                      <button onClick={e => {
-                    e.stopPropagation();
-                    openFullscreenCarousel(trip);
-                  }} className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/60 transition-colors">
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openFullscreenCarousel(trip);
+                        }}
+                        className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/60 transition-colors"
+                      >
                         <Play className="w-4 h-4" />
                       </button>
                     </div>
@@ -237,9 +259,14 @@ export const FeaturedTrips = () => {
                     </div>
                     
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {trip.tags.map(tag => <span key={tag} className="text-sm px-3 py-1 bg-gray-100 rounded-full">
+                      {trip.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-sm px-3 py-1 bg-gray-100 rounded-full"
+                        >
                           {tag}
-                        </span>)}
+                        </span>
+                      ))}
                     </div>
                     
                     <div className="flex items-center justify-between">
@@ -247,36 +274,64 @@ export const FeaturedTrips = () => {
                         <span className="text-sm text-gray-600">Desde</span>
                         <p className="text-xl font-semibold">{trip.price} €</p>
                       </div>
-                      <button onClick={() => navigate(`/viajes/${trip.slug}`)} className="bg-[#FFD233] hover:bg-[#FFD233]/90 text-black px-4 py-2 rounded-full transition-colors">
+                      <button 
+                        onClick={() => navigate(`/viajes/${trip.slug}`)}
+                        className="bg-[#FFD233] hover:bg-[#FFD233]/90 text-black px-4 py-2 rounded-full transition-colors"
+                      >
                         Configura paquete
                       </button>
                     </div>
                   </div>
                 </div>
-              </CarouselItem>)}
+              </CarouselItem>
+            ))}
           </CarouselContent>
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
 
         {/* Fullscreen Carousel Modal */}
-        {selectedTrip && <div className="fixed inset-0 bg-black z-50">
-            <button onClick={closeFullscreenCarousel} className="absolute top-4 right-4 z-50 text-white hover:text-gray-200">
-              <X size={32} />
+        {selectedTrip && (
+          <div className="fixed inset-0 bg-black z-50">
+            <div className="absolute top-4 left-4 z-50 flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full pl-1 pr-4 py-1">
+              <img 
+                src={selectedTrip.userImage} 
+                alt={selectedTrip.username} 
+                className="w-8 h-8 rounded-full object-cover"
+              />
+              <div className="text-white text-sm">
+                <span className="font-medium">{selectedTrip.title}</span>
+                <span className="opacity-80"> con {selectedTrip.username}</span>
+              </div>
+            </div>
+
+            <button 
+              onClick={closeFullscreenCarousel}
+              className="absolute top-4 right-4 z-50 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            >
+              <X size={20} />
             </button>
             
             <Carousel className="h-full">
               <CarouselContent>
-                {selectedTrip.videos.map((video, index) => <CarouselItem key={index}>
+                {selectedTrip.videos.map((video, index) => (
+                  <CarouselItem key={index}>
                     <div className="h-screen w-full flex items-center justify-center">
-                      <img src={video} alt={`${selectedTrip.title} - Imagen ${index + 1}`} className="max-h-full max-w-full object-contain" />
+                      <img 
+                        src={video} 
+                        alt={`${selectedTrip.title} - Imagen ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                  </CarouselItem>)}
+                  </CarouselItem>
+                ))}
               </CarouselContent>
               <CarouselPrevious className="left-4" />
               <CarouselNext className="right-4" />
             </Carousel>
-          </div>}
+          </div>
+        )}
       </div>
-    </section>;
+    </section>
+  );
 };
