@@ -1,5 +1,6 @@
 
 import { Share2, Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import {
   Carousel,
   CarouselContent,
@@ -19,6 +20,7 @@ const trips = [
     rating: 5.0,
     purchases: 361,
     tags: ["Tendencia", "Surf", "Buceo", "Con amigos"],
+    slug: "maldivas"
   },
   {
     id: 2,
@@ -30,6 +32,7 @@ const trips = [
     rating: 5.0,
     purchases: 750,
     tags: ["En familia", "Aventura en familia", "Tendencia"],
+    slug: "chicago"
   },
   {
     id: 3,
@@ -41,6 +44,7 @@ const trips = [
     rating: 5.0,
     purchases: 602,
     tags: ["Tendencia", "Surf", "Buceo", "Con amigos"],
+    slug: "noruega"
   },
   {
     id: 4,
@@ -52,6 +56,7 @@ const trips = [
     rating: 5.0,
     purchases: 283,
     tags: ["Safari", "Naturaleza", "Aventura", "Fotografía"],
+    slug: "tanzania"
   },
   {
     id: 5,
@@ -63,6 +68,7 @@ const trips = [
     rating: 4.9,
     purchases: 892,
     tags: ["Cultural", "Gastronomía", "Templos", "Historia"],
+    slug: "japon"
   },
   {
     id: 6,
@@ -74,10 +80,13 @@ const trips = [
     rating: 4.9,
     purchases: 447,
     tags: ["Aventura", "Naturaleza", "Senderismo", "Fotografía"],
+    slug: "nueva-zelanda"
   },
 ];
 
 export const FeaturedTrips = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-16 bg-muted">
       <div className="container">
@@ -144,7 +153,10 @@ export const FeaturedTrips = () => {
                         <span className="text-sm text-gray-600">Desde</span>
                         <p className="text-xl font-semibold">{trip.price} €</p>
                       </div>
-                      <button className="bg-[#FFD233] hover:bg-[#FFD233]/90 text-black px-4 py-2 rounded-full transition-colors">
+                      <button 
+                        onClick={() => navigate(`/viajes/${trip.slug}`)}
+                        className="bg-[#FFD233] hover:bg-[#FFD233]/90 text-black px-4 py-2 rounded-full transition-colors"
+                      >
                         Configura paquete
                       </button>
                     </div>
