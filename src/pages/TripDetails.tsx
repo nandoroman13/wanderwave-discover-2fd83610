@@ -29,6 +29,7 @@ const TripDetails = () => {
   const [date, setDate] = useState<Date>();
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
+  const [duration, setDuration] = useState("7 noches");
 
   const handleAdultsChange = (increment: boolean) => {
     if (increment && adults < 8) {
@@ -354,7 +355,14 @@ const TripDetails = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="duration">Duración</Label>
-                  <Input id="duration" defaultValue="7 noches" className="bg-white" />
+                  <Select value={duration} onValueChange={setDuration}>
+                    <SelectTrigger className="w-full bg-white">
+                      <SelectValue placeholder="Selecciona duración" />
+                    </SelectTrigger>
+                    <SelectContent sideOffset={4} className="bg-white z-50" side="bottom" position="popper" align="start">
+                      <SelectItem value="7 noches">7 noches</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="people">Personas</Label>
