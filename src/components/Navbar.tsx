@@ -1,5 +1,5 @@
 
-import { Menu, Globe, UserCircle, Navigation, Users } from "lucide-react";
+import { Menu, Globe, UserCircle, Navigation, Users, PlusCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
@@ -36,6 +36,14 @@ export const Navbar = () => {
           </div>
           
           <div className="flex-1 flex items-center justify-end gap-4">
+            <Link 
+              to="/crear-viaje"
+              className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full hover:bg-primary/90 transition-colors"
+            >
+              <PlusCircle size={20} />
+              <span>Crea tu viaje</span>
+            </Link>
+
             <button className="text-gray-600 hover:text-primary transition-colors">
               <Globe size={20} />
             </button>
