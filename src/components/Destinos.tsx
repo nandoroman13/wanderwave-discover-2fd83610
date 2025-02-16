@@ -30,7 +30,7 @@ const destinos = [
     id: 4,
     continent: "AMÉRICA",
     title: "Déjate sorprender por América",
-    image: "https://images.unsplash.com/photo-1433086966358-54859d0ed716",
+    image: "https://images.unsplash.com/photo-1474044159687-1ee9f3a51722",
     trips: 264,
     highlight: "América",
   },
