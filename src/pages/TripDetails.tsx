@@ -54,7 +54,7 @@ const TripDetails = () => {
           {/* Columna izquierda - Stories y detalles */}
           <div className="space-y-6">
             {/* Carrusel estilo Stories */}
-            <Carousel className="w-full">
+            <Carousel className="w-full max-w-[400px] mx-auto">
               <CarouselContent>
                 {tripData.videos.map((video, index) => (
                   <CarouselItem key={index}>
@@ -65,9 +65,9 @@ const TripDetails = () => {
                           <img
                             src={tripData.userImage}
                             alt={tripData.username}
-                            className="w-10 h-10 rounded-full border-2 border-white object-cover"
+                            className="w-8 h-8 rounded-full border-2 border-white object-cover"
                           />
-                          <span className="text-white font-medium">
+                          <span className="text-white font-medium text-sm">
                             {tripData.title} como {tripData.username}
                           </span>
                         </div>
@@ -92,16 +92,16 @@ const TripDetails = () => {
                             />
                           ))}
                         </div>
-                        <div className="text-white text-lg font-medium">
+                        <div className="text-white text-sm font-medium">
                           Día {index + 1}
                         </div>
                       </div>
 
                       {/* Controles de navegación */}
-                      <button className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white">
+                      <button className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white">
                         ←
                       </button>
-                      <button className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white">
+                      <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white">
                         →
                       </button>
                     </div>
