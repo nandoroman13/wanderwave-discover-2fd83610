@@ -16,23 +16,23 @@ export const Navbar = () => {
                 WanderWave
               </span>
             </Link>
+          </div>
 
-            <div className="flex items-center gap-6">
-              <Link 
-                to="/quienes-somos" 
-                className="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
-              >
-                <Users size={20} />
-                <span>Quiénes somos</span>
-              </Link>
-              <Link 
-                to="/explora" 
-                className="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
-              >
-                <Navigation size={20} />
-                <span>Explora</span>
-              </Link>
-            </div>
+          <div className="flex items-center gap-6">
+            <Link 
+              to="/quienes-somos" 
+              className="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
+            >
+              <Users size={20} />
+              <span>Quiénes somos</span>
+            </Link>
+            <Link 
+              to="/explora" 
+              className="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
+            >
+              <Navigation size={20} />
+              <span>Explora</span>
+            </Link>
           </div>
           
           <div className="flex items-center gap-4">
