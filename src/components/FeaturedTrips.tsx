@@ -1,4 +1,3 @@
-
 import { Share2, Star } from "lucide-react";
 import {
   Carousel,
@@ -41,6 +40,39 @@ const trips = [
     rating: 5.0,
     purchases: 602,
     tags: ["Tendencia", "Surf", "Buceo", "Con amigos"],
+  },
+  {
+    id: 4,
+    title: "Viaja a Tanzania",
+    username: "@olympussafaris",
+    userImage: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d",
+    image: "https://images.unsplash.com/photo-1516426122078-c23e76319801",
+    price: "6,999",
+    rating: 5.0,
+    purchases: 283,
+    tags: ["Safari", "Naturaleza", "Aventura", "Fotografía"],
+  },
+  {
+    id: 5,
+    title: "Viaja a Japón",
+    username: "@asiatraveller",
+    userImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e",
+    price: "4,599",
+    rating: 4.9,
+    purchases: 892,
+    tags: ["Cultural", "Gastronomía", "Tendencia"],
+  },
+  {
+    id: 6,
+    title: "Viaja a Nueva Zelanda",
+    username: "@adventurenomad",
+    userImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
+    image: "https://images.unsplash.com/photo-1469521669194-babb45599def",
+    price: "5,299",
+    rating: 4.9,
+    purchases: 447,
+    tags: ["Aventura", "Naturaleza", "Senderismo"],
   },
 ];
 
