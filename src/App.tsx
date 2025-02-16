@@ -1,8 +1,8 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Index } from "@/pages/Index";
-import { NotFound } from "@/pages/NotFound";
-import { TripDetails } from "@/pages/TripDetails";
+import Index from "@/pages/Index";
+import NotFound from "@/pages/NotFound";
+import TripDetails from "@/pages/TripDetails";
 import { WaverProfile } from "@/pages/WaverProfile";
 
 function App() {
