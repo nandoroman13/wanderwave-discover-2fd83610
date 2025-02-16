@@ -1,6 +1,6 @@
 
 import { Share2, Star } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import {
@@ -44,7 +44,42 @@ const waverTrips = [
   },
 ];
 
+const wavers = {
+  "familia-carameluchi": {
+    name: "Familia Carameluchi",
+    image: "https://images.unsplash.com/photo-1655185497004-f3018eab9cb8",
+    followers: "123",
+    rating: "5,0",
+    tags: ["Tendencia", "En familia", "Aventura en familia", "Deportes aventura"],
+    bio: "Familia viajera compartiendo aventuras por el mundo. Especialistas en viajes familiares y experiencias únicas para todas las edades."
+  },
+  "paula-diez": {
+    name: "Paula Díez",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
+    followers: "678",
+    rating: "5,0",
+    tags: ["Tendencia", "Con amigos", "Europa", "Playas paradisiacas", "Deportes aventura"],
+    bio: "Viajera apasionada y creadora de contenido. Me encanta descubrir nuevos destinos y compartir experiencias únicas. Especializada en viajes de aventura y experiencias con amigos."
+  }
+};
+
 export const WaverProfile = () => {
+  const { slug } = useParams<{ slug: string }>();
+  const waver = slug ? wavers[slug as keyof typeof wavers] : null;
+
+  if (!waver) {
+    return (
+      <>
+        <Navbar />
+        <div className="container py-16">
+          <h1 className="text-2xl font-bold text-red-600">Waver no encontrado</h1>
+          <p className="mt-2 text-gray-600">Lo sentimos, no pudimos encontrar información sobre este waver.</p>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <>
       <Navbar />
@@ -55,15 +90,15 @@ export const WaverProfile = () => {
             <div className="flex items-start gap-8">
               <div className="w-48 h-48 flex-shrink-0">
                 <img
-                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2"
-                  alt="Paula Díez"
+                  src={waver.image}
+                  alt={waver.name}
                   className="w-full h-full rounded-2xl object-cover"
                 />
               </div>
               
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-4">
-                  <h1 className="text-4xl font-semibold">Paula Díez</h1>
+                  <h1 className="text-4xl font-semibold">{waver.name}</h1>
                   <div className="flex items-center gap-4">
                     <button className="border border-black text-black hover:bg-black hover:text-white px-6 py-2 rounded-full transition-colors flex items-center gap-2">
                       Seguir <span className="text-lg">+</span>
@@ -75,15 +110,15 @@ export const WaverProfile = () => {
                 </div>
                 
                 <div className="flex items-center gap-6 mb-6 text-gray-600">
-                  <span className="text-lg">678 seguidores</span>
+                  <span className="text-lg">{waver.followers} seguidores</span>
                   <div className="flex items-center gap-1 bg-black text-white px-3 py-1 rounded-md">
-                    <span className="text-lg">5,0</span>
+                    <span className="text-lg">{waver.rating}</span>
                     <Star className="fill-current" size={18} />
                   </div>
                 </div>
                 
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {["Tendencia", "Con amigos", "Europa", "Playas paradisiacas", "Deportes aventura"].map((tag) => (
+                  {waver.tags.map((tag) => (
                     <span
                       key={tag}
                       className="px-4 py-1.5 bg-gray-100 rounded-full text-sm"
@@ -94,7 +129,7 @@ export const WaverProfile = () => {
                 </div>
                 
                 <p className="text-gray-600 max-w-2xl">
-                  Viajera apasionada y creadora de contenido. Me encanta descubrir nuevos destinos y compartir experiencias únicas. Especializada en viajes de aventura y experiencias con amigos.
+                  {waver.bio}
                 </p>
               </div>
             </div>
@@ -104,7 +139,7 @@ export const WaverProfile = () => {
         {/* Viajes Section */}
         <section className="py-16">
           <div className="container">
-            <h2 className="text-3xl font-semibold mb-8">Viajes de Paula</h2>
+            <h2 className="text-3xl font-semibold mb-8">Viajes de {waver.name}</h2>
             
             <Carousel className="w-full">
               <CarouselContent className="-ml-4">
@@ -121,7 +156,7 @@ export const WaverProfile = () => {
                         
                         <div className="absolute inset-x-0 top-0 p-8 text-white">
                           <span className="text-sm font-medium tracking-wider">
-                            PAULA DÍEZ
+                            {waver.name.toUpperCase()}
                           </span>
                           <h3 className="text-2xl font-semibold mt-2">
                             {trip.title}
