@@ -614,7 +614,7 @@ const TripDetails = () => {
           <div className="lg:sticky lg:top-8 space-y-6">
             <div className="flex items-center justify-between">
               <h1 className="text-3xl font-bold">
-                {tripData.title} como <span className="text-primary">{tripData.username}</span>
+                {tripData.title} como <span className="text-primary">Paula Diez</span>
                 <span className="inline-flex items-center gap-1 ml-2 text-sm font-medium text-primary bg-blue-50 px-2 py-1 rounded-full">
                   Traveltrend
                 </span>
@@ -672,43 +672,129 @@ const TripDetails = () => {
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button variant="outline" className={`w-full justify-start text-left font-normal bg-white ${!date && "text-muted-foreground"}`}>
-                        <CalendarIcon className="w-5 h-5" />
-                        {date ? format(date, "dd/MM/yyyy", { locale: es }) : "Selecciona una fecha"}
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {date ? format(date, "d 'de' MMMM yyyy", {
+                        locale: es
+                      }) : "Selecciona fecha"}
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent>
-                      <Calendar mode="single" selected={date} onSelect={setDate} />
+                    <PopoverContent sideOffset={4} className="bg-white z-50 shadow-lg border rounded-md" align="start" side="bottom">
+                      <Calendar mode="single" selected={date} onSelect={setDate} initialFocus locale={es} className="bg-white" />
                     </PopoverContent>
                   </Popover>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
-                <div className="space-y-1">
-                  <span className="text-sm text-gray-500">Número de pasajeros</span>
-                  <div className="flex items-center gap-2">
-                    <button onClick={() => handleAdultsChange(false)} className="p-2 border rounded-full">
-                      <Minus className="w-4 h-4" />
-                    </button>
-                    <span className="font-medium">{adults}</span>
-                    <button onClick={() => handleAdultsChange(true)} className="p-2 border rounded-full">
-                      <Plus className="w-4 h-4" />
-                    </button>
-                  </div>
-                  <span className="text-sm text-gray-500">Adultos</span>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="duration">Duración</Label>
+                  <Select value={duration} onValueChange={setDuration}>
+                    <SelectTrigger className="w-full bg-white">
+                      <SelectValue placeholder="Selecciona duración" />
+                    </SelectTrigger>
+                    <SelectContent sideOffset={4} className="bg-white z-50" side="bottom" position="popper" align="start">
+                      <SelectItem value="7 noches">7 noches</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
-                <div className="space-y-1">
-                  <span className="text-sm text-gray-500">Niños</span>
-                  <div className="flex items-center gap-2">
-                    <button onClick={() => handleChildrenChange(false)} className="p-2 border rounded-full">
-                      <Minus className="w-4 h-4" />
-                    </button>
-                    <span className="font-medium">{children}</span>
-                    <button onClick={() => handleChildrenChange(true)} className="p-2 border rounded-full">
-                      <Plus className="w-4 h-4" />
-                    </button>
+                <div className="space-y-2">
+                  <Label htmlFor="people">Personas</Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button variant="outline" className="w-full justify-start font-normal bg-white">
+                        {adults} adultos | {children} niños
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent sideOffset={4} className="w-80 bg-white z-50 p-4 shadow-lg border rounded-md" align="start" side="bottom">
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="font-medium">Adultos</p>
+                            <p className="text-sm text-gray-500">Mayores de 12 años</p>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <button onClick={() => handleAdultsChange(false)} className={`p-1.5 rounded-full ${adults > 1 ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 text-gray-300'}`} disabled={adults <= 1}>
+                              <Minus className="w-4 h-4" />
+                            </button>
+                            <span className="w-6 text-center font-medium">{adults}</span>
+                            <button onClick={() => handleAdultsChange(true)} className={`p-1.5 rounded-full ${adults < 8 ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 text-gray-300'}`} disabled={adults >= 8}>
+                              <Plus className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="font-medium">Niños</p>
+                            <p className="text-sm text-gray-500">De 2 a 12 años</p>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <button onClick={() => handleChildrenChange(false)} className={`p-1.5 rounded-full ${children > 0 ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 text-gray-300'}`} disabled={children <= 0}>
+                              <Minus className="w-4 h-4" />
+                            </button>
+                            <span className="w-6 text-center font-medium">{children}</span>
+                            <button onClick={() => handleChildrenChange(true)} className={`p-1.5 rounded-full ${children < 6 ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 text-gray-300'}`} disabled={children >= 6}>
+                              <Plus className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                </div>
+              </div>
+
+              <div className="flex items-end justify-between pt-4">
+                <div>
+                  <p className="text-sm text-gray-500">Desde</p>
+                  <p className="text-3xl font-semibold">{tripData.price} €</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm text-primary">
+                    Configuración rápida en {tripData.configTime} min
+                  </p>
+                  <button className="mt-2 bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90 transition-colors">
+                    Configurar ahora
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl border space-y-6">
+              <h3 className="text-2xl font-bold">Reseñas</h3>
+              
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="bg-black text-white text-xl font-semibold px-3 py-1 rounded-lg">
+                    {reviews.average}
+                  </span>
+                  <div className="flex gap-0.5">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-6 h-6 text-primary fill-primary" />)}
                   </div>
                 </div>
+                <span className="text-gray-600">{reviews.total} comentarios</span>
+              </div>
+
+              <div className="space-y-6">
+                {reviews.items.map(review => <div key={review.id} className="bg-white rounded-2xl p-6 border space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <h4 className="font-bold text-xl">{review.author}</h4>
+                        <span className="text-gray-500">{review.date}</span>
+                      </div>
+                      <div className="flex items-center gap-1 bg-black text-white px-3 py-1 rounded-lg">
+                        <span className="font-semibold">{review.rating}</span>
+                        <Star className="w-4 h-4 fill-white" />
+                      </div>
+                    </div>
+
+                    <p className="text-gray-600">{review.comment}</p>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      {review.images.map((image, index) => <div key={index} className="aspect-video rounded-xl overflow-hidden">
+                          <img src={image} alt={`Review image ${index + 1}`} className="w-full h-full object-cover" />
+                        </div>)}
+                    </div>
+                  </div>)}
               </div>
             </div>
           </div>
@@ -717,5 +803,4 @@ const TripDetails = () => {
       <Footer />
     </div>;
 };
-
 export default TripDetails;
