@@ -20,7 +20,27 @@ const trips = [
     rating: 5.0,
     purchases: 361,
     tags: ["Tendencia", "Surf", "Buceo", "Con amigos"],
-    slug: "maldivas"
+    slug: "maldivas",
+    duration: "9 días, 7 noches",
+    configTime: "7",
+    videos: [
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
+      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd",
+      "https://images.unsplash.com/photo-1551918120-9739cb430c6d"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Maldivas",
+      description: "¡Hoy es el día que tanto has esperado! Finalmente, te embarcarás en un emocionante viaje hacia las asombrosas Islas Maldivas."
+    }, {
+      day: "2-7",
+      title: "Maldivas",
+      description: "Días libres en Maldivas"
+    }, {
+      day: 8,
+      title: "Maldivas - Madrid",
+      description: "Vuelo de regreso a Madrid"
+    }]
   },
   {
     id: 2,
@@ -32,7 +52,27 @@ const trips = [
     rating: 5.0,
     purchases: 750,
     tags: ["En familia", "Aventura en familia", "Tendencia"],
-    slug: "chicago"
+    slug: "chicago",
+    duration: "7 días, 5 noches",
+    configTime: "5",
+    videos: [
+      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
+      "https://images.unsplash.com/photo-1494522358652-f30e61a60313",
+      "https://images.unsplash.com/photo-1507992781348-310259076fe0"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Chicago",
+      description: "Vuelo directo a la Ciudad del Viento"
+    }, {
+      day: "2-6",
+      title: "Chicago",
+      description: "Días para explorar la ciudad"
+    }, {
+      day: 7,
+      title: "Chicago - Madrid",
+      description: "Vuelo de regreso"
+    }]
   },
   {
     id: 3,
@@ -44,7 +84,27 @@ const trips = [
     rating: 5.0,
     purchases: 602,
     tags: ["Tendencia", "Surf", "Buceo", "Con amigos"],
-    slug: "noruega"
+    slug: "noruega",
+    duration: "8 días, 6 noches",
+    configTime: "6",
+    videos: [
+      "https://images.unsplash.com/photo-1520769669658-f07657f5a307",
+      "https://images.unsplash.com/photo-1506967554329-2626e0f7d9e4",
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Oslo",
+      description: "Vuelo hacia la capital noruega"
+    }, {
+      day: "2-7",
+      title: "Noruega",
+      description: "Días de exploración por los fiordos"
+    }, {
+      day: 8,
+      title: "Oslo - Madrid",
+      description: "Regreso a Madrid"
+    }]
   },
   {
     id: 4,
@@ -56,7 +116,27 @@ const trips = [
     rating: 5.0,
     purchases: 283,
     tags: ["Safari", "Naturaleza", "Aventura", "Fotografía"],
-    slug: "tanzania"
+    slug: "tanzania",
+    duration: "10 días, 8 noches",
+    configTime: "8",
+    videos: [
+      "https://images.unsplash.com/photo-1516426122078-c23e76319801",
+      "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e",
+      "https://images.unsplash.com/photo-1528485238486-507cca6f992c"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Tanzania",
+      description: "Inicio de la aventura africana"
+    }, {
+      day: "2-9",
+      title: "Safari en Tanzania",
+      description: "Experiencia única en la sabana africana"
+    }, {
+      day: 10,
+      title: "Tanzania - Madrid",
+      description: "Vuelo de regreso"
+    }]
   },
   {
     id: 5,
@@ -68,7 +148,27 @@ const trips = [
     rating: 4.9,
     purchases: 892,
     tags: ["Cultural", "Gastronomía", "Templos", "Historia"],
-    slug: "japon"
+    slug: "japon",
+    duration: "12 días, 10 noches",
+    configTime: "9",
+    videos: [
+      "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e",
+      "https://images.unsplash.com/photo-1545569341-9eb8b30979d9",
+      "https://images.unsplash.com/photo-1528360983277-13d401cdc186"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Tokio",
+      description: "Vuelo al país del sol naciente"
+    }, {
+      day: "2-11",
+      title: "Japón",
+      description: "Recorrido por las principales ciudades"
+    }, {
+      day: 12,
+      title: "Tokio - Madrid",
+      description: "Regreso a España"
+    }]
   },
   {
     id: 6,
@@ -80,8 +180,28 @@ const trips = [
     rating: 4.9,
     purchases: 447,
     tags: ["Aventura", "Naturaleza", "Senderismo", "Fotografía"],
-    slug: "nueva-zelanda"
-  },
+    slug: "nueva-zelanda",
+    duration: "15 días, 13 noches",
+    configTime: "10",
+    videos: [
+      "https://images.unsplash.com/photo-1469521669194-babb45599def",
+      "https://images.unsplash.com/photo-1507699622108-4be3abd695ad",
+      "https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5"
+    ],
+    itinerary: [{
+      day: 1,
+      title: "Madrid - Auckland",
+      description: "Inicio del viaje a las antípodas"
+    }, {
+      day: "2-14",
+      title: "Nueva Zelanda",
+      description: "Aventura por las dos islas"
+    }, {
+      day: 15,
+      title: "Auckland - Madrid",
+      description: "Vuelo de regreso"
+    }]
+  }
 ];
 
 export const FeaturedTrips = () => {
@@ -100,7 +220,6 @@ export const FeaturedTrips = () => {
             {trips.map((trip) => (
               <CarouselItem key={trip.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
                 <div className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[3/5] p-4">
-                  {/* Header con avatar y username */}
                   <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm rounded-full pl-1 pr-3 py-0.5 whitespace-nowrap max-w-[90%] overflow-hidden">
                     <img
                       src={trip.userImage}
@@ -113,7 +232,6 @@ export const FeaturedTrips = () => {
                     </div>
                   </div>
                   
-                  {/* Imagen principal */}
                   <div className="relative h-full rounded-2xl overflow-hidden">
                     <img
                       src={trip.image}
@@ -122,7 +240,6 @@ export const FeaturedTrips = () => {
                     />
                   </div>
                   
-                  {/* Contenido superpuesto */}
                   <div className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-sm p-4 rounded-2xl">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-2">
