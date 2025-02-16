@@ -1,6 +1,13 @@
 
-import { Star, UserRound, Users } from "lucide-react";
+import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const prescriptores = [
   {
@@ -39,60 +46,60 @@ export const Prescriptores = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {prescriptores.map((prescriptor) => (
-            <div
-              key={prescriptor.id}
-              className="bg-white rounded-xl border border-gray-100 p-6 hover:shadow-md transition-shadow"
-            >
-              <div className="flex gap-6">
-                <img
-                  src={prescriptor.image}
-                  alt={prescriptor.name}
-                  className="w-24 h-24 rounded-full object-cover"
-                />
-                
-                <div className="flex-1">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-xl font-semibold">{prescriptor.name}</h3>
-                    <button className="border border-primary text-primary hover:bg-primary hover:text-white px-4 py-1.5 rounded-full transition-colors flex items-center gap-2">
-                      Seguir <span className="text-lg">+</span>
-                    </button>
+        <Carousel className="w-full">
+          <CarouselContent className="-ml-4">
+            {prescriptores.map((prescriptor) => (
+              <CarouselItem key={prescriptor.id} className="pl-4 md:basis-1/2">
+                <div className="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-md transition-shadow">
+                  <div className="flex gap-6">
+                    <img
+                      src={prescriptor.image}
+                      alt={prescriptor.name}
+                      className="w-32 h-32 rounded-2xl object-cover"
+                    />
+                    
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-2xl font-semibold">{prescriptor.name}</h3>
+                        <button className="border border-black text-black hover:bg-black hover:text-white px-4 py-1.5 rounded-full transition-colors flex items-center gap-1">
+                          Seguir <span className="text-lg">+</span>
+                        </button>
+                      </div>
+                      
+                      <div className="flex items-center gap-4 mb-4 text-gray-600">
+                        <span>{prescriptor.followers} seguidores</span>
+                        <div className="flex items-center gap-1 bg-black text-white px-2 py-0.5 rounded-md">
+                          <span>{prescriptor.rating}</span>
+                          <Star className="fill-current" size={14} />
+                        </div>
+                      </div>
+                      
+                      <div className="flex flex-wrap gap-2">
+                        {prescriptor.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-sm px-3 py-1 bg-gray-100 rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                   
-                  <div className="flex items-center gap-4 mb-3 text-gray-600">
-                    <div className="flex items-center gap-1">
-                      <Users size={16} />
-                      <span>{prescriptor.followers} seguidores</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Star className="text-yellow-400" size={16} />
-                      <span>{prescriptor.rating}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-2">
-                    {prescriptor.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-sm px-3 py-1 bg-gray-100 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <Link
+                    to={`/prescriptor/${prescriptor.id}/viajes`}
+                    className="block text-primary hover:underline mt-6 text-right"
+                  >
+                    Ver viajes →
+                  </Link>
                 </div>
-              </div>
-              
-              <Link
-                to={`/prescriptor/${prescriptor.id}/viajes`}
-                className="block text-primary hover:underline mt-4 text-right"
-              >
-                Ver viajes →
-              </Link>
-            </div>
-          ))}
-        </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
     </section>
   );
