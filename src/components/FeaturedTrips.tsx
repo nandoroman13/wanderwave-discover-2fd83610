@@ -314,10 +314,10 @@ export const FeaturedTrips = () => {
               </button>
               
               <Carousel className="h-full">
-                <CarouselContent>
+                <CarouselContent className="h-full">
                   {selectedTrip.videos.map((video, index) => (
                     <CarouselItem key={index} className="h-full">
-                      <div className="relative h-full">
+                      <div className="absolute inset-0">
                         <img 
                           src={video} 
                           alt={`${selectedTrip.title} - Imagen ${index + 1}`}
