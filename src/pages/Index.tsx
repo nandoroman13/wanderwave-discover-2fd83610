@@ -5,6 +5,7 @@ import { Prescriptores } from "@/components/Prescriptores";
 import { FeaturedTrips } from "@/components/FeaturedTrips";
 import { Destinos } from "@/components/Destinos";
 import { Newsletter } from "@/components/Newsletter";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -15,6 +16,7 @@ const Index = () => {
       <Prescriptores />
       <Destinos />
       <Newsletter />
+      <Footer />
     </div>
   );
 };
