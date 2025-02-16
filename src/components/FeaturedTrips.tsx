@@ -1,3 +1,4 @@
+
 import { Share2, Star } from "lucide-react";
 import {
   Carousel,
@@ -89,7 +90,7 @@ export const FeaturedTrips = () => {
           <CarouselContent className="-ml-4">
             {trips.map((trip) => (
               <CarouselItem key={trip.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                <div className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[3/5] p-4">
+                <div className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[3/4] p-4">
                   {/* Header con avatar y username */}
                   <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm rounded-full pl-1 pr-3 py-0.5 whitespace-nowrap max-w-[90%] overflow-hidden">
                     <img
@@ -112,30 +113,32 @@ export const FeaturedTrips = () => {
                     />
                   </div>
                   
-                  {/* Contenido superpuesto */}
-                  <div className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-sm p-4 rounded-2xl">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-2">
-                        <div className="bg-black text-white text-sm px-2 py-1 rounded-full flex items-center gap-1">
-                          <span>{trip.rating}</span>
-                          <Star className="fill-current" size={14} />
+                  {/* Contenido superpuesto - ahora con altura fija */}
+                  <div className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-sm p-4 rounded-2xl h-[180px] flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-2">
+                          <div className="bg-black text-white text-sm px-2 py-1 rounded-full flex items-center gap-1">
+                            <span>{trip.rating}</span>
+                            <Star className="fill-current" size={14} />
+                          </div>
+                          <span className="text-sm text-gray-600">+{trip.purchases} comprados</span>
                         </div>
-                        <span className="text-sm text-gray-600">+{trip.purchases} comprados</span>
+                        <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                          <Share2 size={20} className="text-gray-600" />
+                        </button>
                       </div>
-                      <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                        <Share2 size={20} className="text-gray-600" />
-                      </button>
-                    </div>
-                    
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {trip.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-sm px-3 py-1 bg-gray-100 rounded-full"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                      
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {trip.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-sm px-3 py-1 bg-gray-100 rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                     
                     <div className="flex items-center justify-between">
