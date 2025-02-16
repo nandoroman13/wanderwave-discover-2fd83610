@@ -253,10 +253,18 @@ const TripDetails = () => {
   const [children, setChildren] = useState(0);
   const [duration, setDuration] = useState("7 noches");
 
+  console.log("URL destination parameter:", destination); // Para debug
+  console.log("Available destinations:", Object.keys(tripsData)); // Para debug
+
   const tripData = destination ? tripsData[destination as keyof typeof tripsData] : null;
 
+  console.log("Found trip data:", tripData); // Para debug
+
   if (!tripData) {
-    return <div>Destino no encontrado</div>;
+    return <div className="container py-8">
+      <h1 className="text-2xl font-bold text-red-600">Destino no encontrado</h1>
+      <p className="mt-2 text-gray-600">Lo sentimos, no pudimos encontrar información sobre este destino.</p>
+    </div>;
   }
 
   const handleAdultsChange = (increment: boolean) => {
