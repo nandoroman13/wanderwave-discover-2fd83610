@@ -31,7 +31,7 @@ const waverTrips = [
   {
     id: 3,
     title: "Viaja a Punta Cana",
-    image: "https://images.unsplash.com/photo-1545579133-99bb5ab189b0",
+    image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
     price: "2,499",
     rating: "4,8",
     purchases: 183,
@@ -110,6 +110,16 @@ export const WaverProfile = () => {
                         alt={trip.title}
                         className="w-full h-full object-cover"
                       />
+                      <div className="absolute inset-0 bg-black/30 transition-colors hover:bg-black/40" />
+                      
+                      <div className="absolute inset-x-0 top-0 p-8 text-white">
+                        <span className="text-sm font-medium tracking-wider">
+                          PAULA DÍEZ
+                        </span>
+                        <h3 className="text-2xl font-semibold mt-2">
+                          {trip.title}
+                        </h3>
+                      </div>
                     </div>
                     
                     <div className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-sm p-4 rounded-2xl">
