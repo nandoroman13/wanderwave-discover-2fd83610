@@ -26,6 +26,14 @@ const wavers = [
     rating: "5,0",
     tags: ["Tendencia", "Con amigos", "Europa", "Playas paradisiacas", "Deportes aventura"],
   },
+  {
+    id: 3,
+    name: "Mikel Boisset",
+    image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952",
+    followers: "456",
+    rating: "4,9",
+    tags: ["Tendencia", "Aventura", "Destinos exóticos", "Fotografía", "Gastronomía"],
+  },
 ];
 
 export const Prescriptores = () => {
