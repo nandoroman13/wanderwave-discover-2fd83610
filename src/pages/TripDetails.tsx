@@ -7,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { BellRing, X, MapPin, Calendar, CalendarDays } from "lucide-react";
+import { BellRing, MapPin, Calendar, CalendarDays } from "lucide-react";
 
 const tripData = {
   "maldivas": {
