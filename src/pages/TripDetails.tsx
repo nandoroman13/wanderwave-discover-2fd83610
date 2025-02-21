@@ -129,7 +129,7 @@ const tripsData = {
       },
       {
         day: 3,
-6 title: "Sierra de Tramuntana",
+        title: "Sierra de Tramuntana",
         description: "Excursión a la Sierra de Tramuntana, Patrimonio de la Humanidad. Visita a Valldemossa y Deià."
       },
       {
