@@ -129,7 +129,7 @@ const tripsData = {
       },
       {
         day: 3,
-        title: "Sierra de Tramuntana",
+6 title: "Sierra de Tramuntana",
         description: "Excursión a la Sierra de Tramuntana, Patrimonio de la Humanidad. Visita a Valldemossa y Deià."
       },
       {
@@ -253,7 +253,20 @@ const TripDetails = () => {
   const [children, setChildren] = useState(0);
   const [duration, setDuration] = useState("7 noches");
 
-  const tripData = destination ? tripsData[destination as keyof typeof tripsData] : tripsData.maldivas;
+  const tripData = destination ? tripsData[destination as keyof typeof tripsData] : null;
+
+  if (!tripData) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Navbar />
+        <main className="container py-8">
+          <h1 className="text-2xl font-bold">Destino no encontrado</h1>
+          <p className="mt-4">Lo sentimos, el destino que buscas no está disponible.</p>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   const handleAdultsChange = (increment: boolean) => {
     if (increment && adults < 8) {
