@@ -1,3 +1,4 @@
+
 import { useParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -7,13 +8,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Bed, Plane, Bus, FileCheck, Receipt } from "lucide-react";
+import { Bed, Plane, Bus, FileCheck, Receipt, Utensils, Wifi, Map, Camera, MessageCircle } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const tripsData = {
   maldivas: {
@@ -26,10 +28,82 @@ const tripsData = {
     price: "3,999",
     tags: ["Tendencia", "Surf", "Buceo", "Con amigos"],
     configTime: "7",
+    description: "Disfruta de unas vacaciones inolvidables en las paradisíacas Islas Maldivas, conocidas por sus aguas cristalinas de color turquesa, playas de arena blanca y una biodiversidad marina espectacular. Este archipiélago ubicado en el Océano Índico es el destino perfecto para los amantes del sol, el mar y las actividades acuáticas.",
+    highlights: [
+      "Alojamiento en resort 5 estrellas con bungalows sobre el agua",
+      "Experiencia de snorkel y buceo entre arrecifes de coral vibrantes",
+      "Excursiones a islas deshabitadas y poblados locales",
+      "Gastronomía internacional y local de primera categoría",
+      "Tratamientos de spa con vistas al océano"
+    ],
     videos: [
       "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
       "https://images.unsplash.com/photo-1573843981267-be1999ff37cd",
       "https://images.unsplash.com/photo-1551918120-9739cb430c6d"
+    ],
+    activities: [
+      {
+        title: "Buceo entre corales",
+        description: "Explora los coloridos arrecifes de coral que rodean las islas, hogar de miles de especies marinas.",
+        icon: Camera,
+        duration: "3-4 horas"
+      },
+      {
+        title: "Excursión a isla local",
+        description: "Conoce la cultura maldiva visitando un poblado local donde podrás interactuar con sus habitantes.",
+        icon: Map,
+        duration: "Medio día"
+      },
+      {
+        title: "Cena romántica en la playa",
+        description: "Disfruta de una cena especial bajo las estrellas con el sonido de las olas como música de fondo.",
+        icon: Utensils,
+        duration: "2 horas"
+      },
+      {
+        title: "Clases de cocina maldiva",
+        description: "Aprende a preparar platos típicos de la gastronomía local con chefs profesionales.",
+        icon: Utensils,
+        duration: "2 horas"
+      }
+    ],
+    accommodations: [
+      {
+        name: "Water Villa",
+        description: "Bungalow sobre el agua con acceso directo al océano, terraza privada y vistas panorámicas.",
+        price: "Incluido en el paquete base",
+        amenities: ["Cama king size", "Aire acondicionado", "Conexión WiFi", "Minibar", "Bañera de hidromasaje"]
+      },
+      {
+        name: "Beach Villa",
+        description: "Villa a pie de playa con acceso directo a la arena blanca, jardín privado y piscina.",
+        price: "+500€ sobre el precio base",
+        amenities: ["Cama king size", "Aire acondicionado", "Conexión WiFi", "Minibar", "Piscina privada"]
+      },
+      {
+        name: "Garden Villa",
+        description: "Villa rodeada de exuberante vegetación tropical, con terraza y ducha exterior.",
+        price: "-300€ sobre el precio base",
+        amenities: ["Camas twin o king size", "Aire acondicionado", "Conexión WiFi", "Minibar"]
+      }
+    ],
+    faqs: [
+      {
+        question: "¿Cuál es la mejor época para viajar a Maldivas?",
+        answer: "La mejor temporada es de noviembre a abril, cuando hay menos lluvias y el clima es más estable. La temporada de lluvias es de mayo a octubre, aunque suelen ser chaparrones cortos."
+      },
+      {
+        question: "¿Necesito visa para viajar a Maldivas?",
+        answer: "Los ciudadanos españoles reciben un visado gratuito de 30 días a la llegada. Solo necesitas tener el pasaporte con validez mínima de 6 meses y el billete de regreso."
+      },
+      {
+        question: "¿Qué moneda se usa en Maldivas?",
+        answer: "La moneda oficial es la Rufiyaa maldiva, pero en los resorts se acepta ampliamente el dólar estadounidense y las tarjetas de crédito."
+      },
+      {
+        question: "¿Es seguro beber agua del grifo?",
+        answer: "No es recomendable. En los resorts se proporciona agua embotellada que está incluida en la mayoría de los paquetes."
+      }
     ],
     itinerary: [
       {
@@ -98,6 +172,14 @@ const tripsData = {
       {
         icon: Receipt,
         text: "Tasas aéreas incluidas"
+      },
+      {
+        icon: Utensils,
+        text: "Media pensión (desayuno y cena)"
+      },
+      {
+        icon: Wifi,
+        text: "WiFi gratuito en todo el resort"
       }
     ]
   },
@@ -252,6 +334,7 @@ const TripDetails = () => {
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [duration, setDuration] = useState("7 noches");
+  const [activeTab, setActiveTab] = useState("descripcion");
 
   const tripData = destination ? tripsData[destination as keyof typeof tripsData] : null;
 
@@ -389,34 +472,175 @@ const TripDetails = () => {
             </div>
 
             <div className="mt-8">
-              <h3 className="text-xl font-semibold mb-4">Descripción del paquete</h3>
-              <div className="space-y-4">
-                <h4 className="text-xl font-bold mb-4">Itinerario</h4>
-                {tripData.itinerary.map((day, index) => <Collapsible key={index} className="border rounded-lg">
-                    <CollapsibleTrigger className="w-full p-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <span className="text-primary font-medium">Día {day.day}</span>
-                          <span className="text-gray-900 font-medium">{day.title}</span>
-                        </div>
-                        <ChevronDown className="h-5 w-5 text-gray-500" />
+              <Tabs defaultValue="descripcion" value={activeTab} onValueChange={setActiveTab}>
+                <TabsList className="grid grid-cols-4 mb-6">
+                  <TabsTrigger value="descripcion">Descripción</TabsTrigger>
+                  <TabsTrigger value="itinerario">Itinerario</TabsTrigger>
+                  <TabsTrigger value="alojamiento">Alojamiento</TabsTrigger>
+                  <TabsTrigger value="faqs">FAQs</TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="descripcion" className="space-y-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Descripción del paquete</h3>
+                    <p className="text-gray-600 mb-6">
+                      {tripData.description || "Disfruta de un viaje perfecto a este increíble destino con todo incluido y actividades personalizadas."}
+                    </p>
+                    
+                    {tripData.highlights && (
+                      <div className="mt-6">
+                        <h4 className="text-lg font-medium mb-3">Highlights del viaje</h4>
+                        <ul className="space-y-2">
+                          {tripData.highlights.map((highlight, index) => (
+                            <li key={index} className="flex items-center gap-2">
+                              <div className="w-2 h-2 bg-primary rounded-full"></div>
+                              <span className="text-gray-700">{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="px-4 pb-4 text-gray-600">
-                      {day.description}
-                    </CollapsibleContent>
-                  </Collapsible>)}
-
-                <div className="mt-8">
-                  <h4 className="text-xl font-bold mb-4">Incluidos en tu viaje</h4>
-                  <div className="space-y-4">
-                    {tripData.included.map((item, index) => <div key={index} className="flex items-start gap-3">
-                        <item.icon className="w-6 h-6 text-gray-500 flex-shrink-0" />
-                        <span className="text-gray-600">{item.text}</span>
-                      </div>)}
+                    )}
                   </div>
-                </div>
-              </div>
+                  
+                  {tripData.activities && (
+                    <div className="mt-8">
+                      <h4 className="text-lg font-medium mb-4">Actividades destacadas</h4>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        {tripData.activities.map((activity, index) => (
+                          <div key={index} className="border rounded-lg p-4 hover:border-primary transition-colors">
+                            <div className="flex items-start gap-3">
+                              {activity.icon && <activity.icon className="w-5 h-5 text-primary mt-1" />}
+                              <div>
+                                <h5 className="font-medium">{activity.title}</h5>
+                                <p className="text-sm text-gray-600 mt-1">{activity.description}</p>
+                                {activity.duration && (
+                                  <p className="text-xs text-gray-500 mt-2">Duración: {activity.duration}</p>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  
+                  <div className="mt-8">
+                    <h4 className="text-lg font-medium mb-4">Incluidos en tu viaje</h4>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {tripData.included.map((item, index) => (
+                        <div key={index} className="flex items-start gap-3">
+                          <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
+                          <span className="text-gray-600">{item.text}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </TabsContent>
+                
+                <TabsContent value="itinerario" className="space-y-4">
+                  <h4 className="text-xl font-bold mb-4">Itinerario día a día</h4>
+                  {tripData.itinerary.map((day, index) => (
+                    <Collapsible key={index} className="border rounded-lg">
+                      <CollapsibleTrigger className="w-full p-4">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <span className="text-primary font-medium">Día {day.day}</span>
+                            <span className="text-gray-900 font-medium">{day.title}</span>
+                          </div>
+                          <ChevronDown className="h-5 w-5 text-gray-500" />
+                        </div>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="px-4 pb-4 text-gray-600">
+                        {day.description}
+                      </CollapsibleContent>
+                    </Collapsible>
+                  ))}
+                </TabsContent>
+                
+                <TabsContent value="alojamiento" className="space-y-6">
+                  <h4 className="text-xl font-bold mb-4">Opciones de alojamiento</h4>
+                  {tripData.accommodations ? (
+                    <div className="grid gap-6">
+                      {tripData.accommodations.map((accommodation, index) => (
+                        <div key={index} className="border rounded-lg p-6 hover:border-primary transition-colors">
+                          <h5 className="text-lg font-semibold mb-2">{accommodation.name}</h5>
+                          <p className="text-gray-600 mb-3">{accommodation.description}</p>
+                          <p className="text-primary font-medium mb-4">{accommodation.price}</p>
+                          
+                          <h6 className="text-sm font-medium mb-2">Amenidades:</h6>
+                          <div className="flex flex-wrap gap-2">
+                            {accommodation.amenities.map((amenity, i) => (
+                              <span key={i} className="text-xs bg-gray-100 px-3 py-1 rounded-full">
+                                {amenity}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-gray-600">
+                      <p>Alojamiento en hoteles de 4-5 estrellas según el paquete seleccionado.</p>
+                      <p className="mt-2">Consulta con nosotros para más detalles sobre opciones de alojamiento específicas.</p>
+                    </div>
+                  )}
+                </TabsContent>
+                
+                <TabsContent value="faqs" className="space-y-6">
+                  <h4 className="text-xl font-bold mb-4">Preguntas frecuentes</h4>
+                  {tripData.faqs ? (
+                    <div className="space-y-4">
+                      {tripData.faqs.map((faq, index) => (
+                        <Collapsible key={index} className="border rounded-lg">
+                          <CollapsibleTrigger className="w-full p-4">
+                            <div className="flex items-center justify-between">
+                              <span className="text-gray-900 font-medium text-left">{faq.question}</span>
+                              <ChevronDown className="h-5 w-5 text-gray-500 flex-shrink-0" />
+                            </div>
+                          </CollapsibleTrigger>
+                          <CollapsibleContent className="px-4 pb-4 text-gray-600">
+                            {faq.answer}
+                          </CollapsibleContent>
+                        </Collapsible>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      <Collapsible className="border rounded-lg">
+                        <CollapsibleTrigger className="w-full p-4">
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-900 font-medium">¿Qué está incluido en el precio?</span>
+                            <ChevronDown className="h-5 w-5 text-gray-500" />
+                          </div>
+                        </CollapsibleTrigger>
+                        <CollapsibleContent className="px-4 pb-4 text-gray-600">
+                          El precio incluye vuelos, alojamiento, traslados y las actividades indicadas en el itinerario. Consulta la sección "Incluidos en tu viaje" para más detalles.
+                        </CollapsibleContent>
+                      </Collapsible>
+                      
+                      <Collapsible className="border rounded-lg">
+                        <CollapsibleTrigger className="w-full p-4">
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-900 font-medium">¿Puedo modificar el itinerario?</span>
+                            <ChevronDown className="h-5 w-5 text-gray-500" />
+                          </div>
+                        </CollapsibleTrigger>
+                        <CollapsibleContent className="px-4 pb-4 text-gray-600">
+                          Sí, nuestros paquetes son flexibles. Puedes personalizar el itinerario según tus preferencias.
+                        </CollapsibleContent>
+                      </Collapsible>
+                    </div>
+                  )}
+                  
+                  <div className="mt-6">
+                    <h5 className="font-medium mb-4">¿Tienes más preguntas?</h5>
+                    <div className="flex items-center gap-3">
+                      <MessageCircle className="text-primary w-5 h-5" />
+                      <span className="text-primary hover:underline cursor-pointer">Chatea con nuestro equipo</span>
+                    </div>
+                  </div>
+                </TabsContent>
+              </Tabs>
             </div>
           </div>
 
@@ -568,7 +792,7 @@ const TripDetails = () => {
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-xl border space-y-6">
+            <div id="reviews" className="bg-white p-6 rounded-xl border space-y-6">
               <h3 className="text-2xl font-bold">Reseñas</h3>
               
               <div className="flex items-center gap-4">
