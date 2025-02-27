@@ -225,25 +225,37 @@ const tripsData = {
 };
 
 const TripDetails = () => {
-  // Actualizamos para extraer los tres parámetros desde la URL
-  const params = useParams();
-  const destino = params.destino;
-  const waver = params.waver;
-  const id = params.id;
+  // Extraemos los parámetros de la URL de una manera diferente
+  const { destino, waverAndId } = useParams();
   
-  console.log("Parámetros de URL:", { destino, waver, id }); // Añadimos log para depuración
+  console.log("Parámetros de URL brutos:", { destino, waverAndId });
   
-  // Modificamos la búsqueda de datos para usar los tres parámetros
+  // Ahora separamos el parámetro waverAndId en waver e id
+  // Asumimos que el formato es "waver-id"
+  let waver = "";
+  let id = "";
+  
+  if (waverAndId) {
+    const parts = waverAndId.split('-');
+    if (parts.length === 2) {
+      waver = parts[0];
+      id = parts[1];
+    }
+  }
+  
+  console.log("Parámetros extraídos:", { destino, waver, id });
+  
+  // Buscamos el destino en el objeto tripsData
   const tripData = destino ? tripsData[destino as keyof typeof tripsData] : null;
   
-  console.log("Datos del viaje encontrados:", tripData); // Log para verificar los datos encontrados
+  console.log("Datos del viaje encontrados:", tripData);
   
   // Verificamos que los parámetros waver e id coincidan con los datos del viaje
   const isValidTrip = tripData && 
-                      tripData.waver.slug === waver && 
-                      tripData.id === id;
-                      
-  console.log("¿Es un viaje válido?", isValidTrip); // Log para verificar la validación
+                     tripData.waver.slug === waver && 
+                     tripData.id === id;
+                     
+  console.log("¿Es un viaje válido?", isValidTrip);
 
   if (!tripData || !isValidTrip) {
     return (
