@@ -13,6 +13,7 @@ const destinos = [
     image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9",
     trips: 714,
     highlight: "Italia",
+    slug: "italia",
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ const destinos = [
     image: "https://images.unsplash.com/photo-1516426122078-c23e76319801",
     trips: 101,
     highlight: "África",
+    slug: "africa",
   },
   {
     id: 3,
@@ -29,6 +31,7 @@ const destinos = [
     image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e",
     trips: 174,
     highlight: "Asia",
+    slug: "asia",
   },
   {
     id: 4,
@@ -37,12 +40,74 @@ const destinos = [
     image: "https://images.unsplash.com/photo-1474044159687-1ee9f3a51722",
     trips: 264,
     highlight: "América",
+    slug: "america",
   },
 ];
 
+// Añadimos destinos específicos
+const destinosEspecificos = [
+  {
+    id: 101,
+    continent: "ASIA",
+    title: "Paraíso en Maldivas",
+    image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
+    trips: 361,
+    highlight: "Maldivas",
+    slug: "maldivas",
+  },
+  {
+    id: 102,
+    continent: "AMÉRICA",
+    title: "Descubre la ciudad del viento",
+    image: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
+    trips: 750,
+    highlight: "Chicago",
+    slug: "chicago",
+  },
+  {
+    id: 103,
+    continent: "EUROPA",
+    title: "Fiordos y auroras boreales",
+    image: "https://images.unsplash.com/photo-1520769669658-f07657f5a307",
+    trips: 602,
+    highlight: "Noruega",
+    slug: "noruega",
+  },
+  {
+    id: 104,
+    continent: "ÁFRICA",
+    title: "Safari en Tanzania",
+    image: "https://images.unsplash.com/photo-1516426122078-c23e76319801",
+    trips: 283,
+    highlight: "Tanzania",
+    slug: "tanzania",
+  },
+  {
+    id: 105,
+    continent: "ASIA",
+    title: "Tierra del sol naciente",
+    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e",
+    trips: 892,
+    highlight: "Japón",
+    slug: "japon",
+  },
+  {
+    id: 106,
+    continent: "OCEANÍA",
+    title: "Naturaleza y aventura",
+    image: "https://images.unsplash.com/photo-1469521669194-babb45599def",
+    trips: 447,
+    highlight: "Nueva Zelanda",
+    slug: "nueva-zelanda",
+  },
+];
+
+// Combinamos todos los destinos
+const todosLosDestinos = [...destinos, ...destinosEspecificos];
+
 export const SearchSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredDestinos, setFilteredDestinos] = useState<typeof destinos>([]);
+  const [filteredDestinos, setFilteredDestinos] = useState<typeof todosLosDestinos>([]);
   const [isSearching, setIsSearching] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -54,7 +119,7 @@ export const SearchSection = () => {
       return;
     }
 
-    const filtered = destinos.filter(
+    const filtered = todosLosDestinos.filter(
       destino =>
         destino.highlight.toLowerCase().includes(searchTerm.toLowerCase()) ||
         destino.continent.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -83,7 +148,13 @@ export const SearchSection = () => {
     
     // Si hay resultados filtrados, navegar al primero
     if (filteredDestinos.length > 0) {
-      navigate(`/destinos/${filteredDestinos[0].id}`);
+      const destino = filteredDestinos[0];
+      // Determinar si es un destino continental o específico
+      if (destino.id <= 100) {
+        navigate(`/destinos/${destino.id}`);
+      } else {
+        navigate(`/viajes/${destino.slug}`);
+      }
     }
   };
 
@@ -146,7 +217,12 @@ export const SearchSection = () => {
                     <button
                       className="w-full px-4 py-3 text-left hover:bg-gray-100 flex items-center gap-3 text-gray-800"
                       onClick={() => {
-                        navigate(`/destinos/${destino.id}`);
+                        // Determinar la ruta según el tipo de destino
+                        if (destino.id <= 100) {
+                          navigate(`/destinos/${destino.id}`);
+                        } else {
+                          navigate(`/viajes/${destino.slug}`);
+                        }
                         setIsSearching(false);
                       }}
                     >
