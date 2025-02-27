@@ -13,34 +13,37 @@ import {
 
 const waverTrips = [
   {
-    id: 1,
+    id: "12321",
     title: "Viaja a Maldivas",
     image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
     price: "3,999",
     rating: "5,0",
     purchases: 361,
     tags: ["Tendencia", "Surf", "Buceo", "Con amigos"],
-    slug: "maldivas"
+    destino: "maldivas",
+    waver: "pauladiez"
   },
   {
-    id: 2,
+    id: "23432",
     title: "Viaja a Mallorca",
     image: "https://images.unsplash.com/photo-1437719417032-8595fd9e9dc6",
     price: "899",
     rating: "4,9",
     purchases: 245,
     tags: ["Playa", "Mediterráneo", "Gastronomía", "Relax"],
-    slug: "mallorca"
+    destino: "mallorca",
+    waver: "pauladiez"
   },
   {
-    id: 3,
+    id: "34543",
     title: "Viaja a Punta Cana",
     image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
     price: "2,499",
     rating: "4,8",
     purchases: 183,
     tags: ["Caribe", "Todo incluido", "Playas paradisíacas", "Con amigos"],
-    slug: "punta-cana"
+    destino: "puntacana",
+    waver: "pauladiez"
   },
 ];
 
@@ -160,7 +163,7 @@ export const WaverProfile = () => {
                             <p className="text-xl font-semibold">{trip.price} €</p>
                           </div>
                           <Link 
-                            to={`/viajes/${trip.slug}`}
+                            to={`/viajes/${trip.destino}/${trip.waver}-${trip.id}`}
                             className="bg-[#FFD233] hover:bg-[#FFD233]/90 text-black px-4 py-2 rounded-full transition-colors"
                           >
                             Configura paquete

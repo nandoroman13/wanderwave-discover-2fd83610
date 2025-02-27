@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="/viajes/:slug" element={<TripDetails />} />
+        <Route path="/viajes/:destino/:waver-:id" element={<TripDetails />} />
         <Route path="/wavers/:slug" element={<WaverProfile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
