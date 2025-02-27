@@ -1,3 +1,4 @@
+
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Users, Heart, Flag, Award } from "lucide-react";
@@ -79,7 +80,7 @@ const QuienesSomos = () => {
         <h2 className="text-3xl font-bold mb-12 text-center">Nuestros Fundadores</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="rounded-lg overflow-hidden">
-            <img src="/lovable-uploads/bc56bfef-0711-41bf-a428-0e62ae6e1e36.png" alt="Carlos Martínez" className="w-full aspect-square object-cover" />
+            <img src="/lovable-uploads/bc56bfef-0711-41bf-a428-0e62ae6e1e36.png" alt="Nando Román" className="w-full aspect-square object-cover" />
             <div className="p-6 bg-white">
               <h3 className="text-xl font-semibold mb-2">Nando Román</h3>
               <p className="text-gray-600 mb-2">Co-fundador y CEO</p>
