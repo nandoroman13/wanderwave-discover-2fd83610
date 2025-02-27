@@ -5,6 +5,7 @@ import NotFound from "@/pages/NotFound";
 import TripDetails from "@/pages/TripDetails";
 import { WaverProfile } from "@/pages/WaverProfile";
 import QuienesSomos from "@/pages/QuienesSomos";
+import DestinoPage from "@/pages/DestinoPage";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <Route path="/viajes/:slug" element={<TripDetails />} />
         <Route path="/wavers/:slug" element={<WaverProfile />} />
         <Route path="/quienes-somos" element={<QuienesSomos />} />
+        {/* Ruta para páginas de destino */}
+        <Route path="/:slug" element={<DestinoPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

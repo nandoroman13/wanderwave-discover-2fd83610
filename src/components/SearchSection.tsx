@@ -100,6 +100,24 @@ const destinosEspecificos = [
     highlight: "Nueva Zelanda",
     slug: "nueva-zelanda",
   },
+  {
+    id: 107,
+    continent: "EUROPA",
+    title: "Playas de ensueño en Baleares",
+    image: "https://images.unsplash.com/photo-1445962125599-30f582ac21f4",
+    trips: 523,
+    highlight: "Baleares",
+    slug: "baleares",
+  },
+  {
+    id: 108,
+    continent: "AMÉRICA",
+    title: "Descubre el paraíso caribeño",
+    image: "https://images.unsplash.com/photo-1500759285222-0c798c7b8af5",
+    trips: 389,
+    highlight: "Caribe",
+    slug: "caribe",
+  },
 ];
 
 // Combinamos todos los destinos
@@ -149,12 +167,8 @@ export const SearchSection = () => {
     // Si hay resultados filtrados, navegar al primero
     if (filteredDestinos.length > 0) {
       const destino = filteredDestinos[0];
-      // Determinar si es un destino continental o específico
-      if (destino.id <= 100) {
-        navigate(`/destinos/${destino.id}`);
-      } else {
-        navigate(`/viajes/${destino.slug}`);
-      }
+      // Navegar directamente a la ruta /{slug} para cualquier tipo de destino
+      navigate(`/${destino.slug}`);
     }
   };
 
@@ -217,12 +231,8 @@ export const SearchSection = () => {
                     <button
                       className="w-full px-4 py-3 text-left hover:bg-gray-100 flex items-center gap-3 text-gray-800"
                       onClick={() => {
-                        // Determinar la ruta según el tipo de destino
-                        if (destino.id <= 100) {
-                          navigate(`/destinos/${destino.id}`);
-                        } else {
-                          navigate(`/viajes/${destino.slug}`);
-                        }
+                        // Navegar a la ruta del destino para todos los tipos
+                        navigate(`/${destino.slug}`);
                         setIsSearching(false);
                       }}
                     >
