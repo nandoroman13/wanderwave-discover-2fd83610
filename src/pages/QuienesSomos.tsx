@@ -1,19 +1,13 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Users, Heart, Flag, Award } from "lucide-react";
-
 const QuienesSomos = () => {
-  return (
-    <div className="min-h-screen bg-white">
+  return <div className="min-h-screen bg-white">
       <Navbar />
       
       {/* Hero Section */}
       <div className="relative h-[500px] bg-gray-100">
-        <img
-          src="/lovable-uploads/642b528a-fea7-4ed7-93f5-5f796e87b02a.png"
-          alt="Amigos disfrutando en una playa paradisíaca"
-          className="w-full h-full object-cover"
-        />
+        <img src="/lovable-uploads/642b528a-fea7-4ed7-93f5-5f796e87b02a.png" alt="Amigos disfrutando en una playa paradisíaca" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-4">
@@ -85,13 +79,9 @@ const QuienesSomos = () => {
         <h2 className="text-3xl font-bold mb-12 text-center">Nuestros Fundadores</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="rounded-lg overflow-hidden">
-            <img
-              src="/lovable-uploads/bc56bfef-0711-41bf-a428-0e62ae6e1e36.png"
-              alt="Carlos Martínez"
-              className="w-full aspect-square object-cover"
-            />
+            <img src="/lovable-uploads/bc56bfef-0711-41bf-a428-0e62ae6e1e36.png" alt="Carlos Martínez" className="w-full aspect-square object-cover" />
             <div className="p-6 bg-white">
-              <h3 className="text-xl font-semibold mb-2">Carlos Martínez</h3>
+              <h3 className="text-xl font-semibold mb-2">Nando Román</h3>
               <p className="text-gray-600 mb-2">Co-fundador y CEO</p>
               <p className="text-gray-500 text-sm">
                 Apasionado viajero con más de 10 años de experiencia en el sector turístico. Lidera la visión estratégica de WanderWave.
@@ -100,11 +90,7 @@ const QuienesSomos = () => {
           </div>
 
           <div className="rounded-lg overflow-hidden">
-            <img
-              src="/lovable-uploads/0088c1eb-fcbf-4e6b-8c81-543e932a2398.png"
-              alt="Ana García"
-              className="w-full aspect-square object-cover"
-            />
+            <img src="/lovable-uploads/0088c1eb-fcbf-4e6b-8c81-543e932a2398.png" alt="Ana García" className="w-full aspect-square object-cover" />
             <div className="p-6 bg-white">
               <h3 className="text-xl font-semibold mb-2">Ana García</h3>
               <p className="text-gray-600 mb-2">Co-fundadora y COO</p>
@@ -115,11 +101,7 @@ const QuienesSomos = () => {
           </div>
 
           <div className="rounded-lg overflow-hidden">
-            <img
-              src="/lovable-uploads/bc56bfef-0711-41bf-a428-0e62ae6e1e36.png"
-              alt="Miguel Torres"
-              className="w-full aspect-square object-cover"
-            />
+            <img src="/lovable-uploads/bc56bfef-0711-41bf-a428-0e62ae6e1e36.png" alt="Miguel Torres" className="w-full aspect-square object-cover" />
             <div className="p-6 bg-white">
               <h3 className="text-xl font-semibold mb-2">Miguel Torres</h3>
               <p className="text-gray-600 mb-2">Co-fundador y CTO</p>
@@ -156,8 +138,6 @@ const QuienesSomos = () => {
       </div>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default QuienesSomos;
