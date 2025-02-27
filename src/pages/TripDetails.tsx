@@ -479,7 +479,8 @@ const tripsData: TripsDataType = {
 };
 
 const TripDetails = () => {
-  const { destination } = useParams();
+  // Cambiamos de 'destination' a 'slug' para que coincida con la definición de la ruta
+  const { slug } = useParams();
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [selectedOrigin, setSelectedOrigin] = useState("Madrid (MAD)");
@@ -489,7 +490,10 @@ const TripDetails = () => {
   const [duration, setDuration] = useState("7 noches");
   const [activeTab, setActiveTab] = useState("descripcion");
 
-  const tripData = destination ? tripsData[destination as keyof typeof tripsData] : null;
+  console.log("Slug de destino:", slug); // Añadimos log para depuración
+
+  // Usamos 'slug' en lugar de 'destination'
+  const tripData = slug ? tripsData[slug as keyof typeof tripsData] : null;
 
   if (!tripData) {
     return (
