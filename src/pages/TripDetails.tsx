@@ -17,7 +17,68 @@ import { es } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const tripsData = {
+// Definimos un tipo para las actividades
+type Activity = {
+  title: string;
+  description: string;
+  icon: React.ComponentType<any>;
+  duration: string;
+};
+
+// Definimos un tipo para las opciones de alojamiento
+type Accommodation = {
+  name: string;
+  description: string;
+  price: string;
+  amenities: string[];
+};
+
+// Definimos un tipo para las FAQs
+type FAQ = {
+  question: string;
+  answer: string;
+};
+
+// Definimos un tipo para los días del itinerario
+type ItineraryDay = {
+  day: number | string;
+  title: string;
+  description: string;
+};
+
+// Definimos un tipo para los elementos incluidos
+type IncludedItem = {
+  icon: React.ComponentType<any>;
+  text: string;
+};
+
+// Definimos el tipo principal para los datos de un viaje
+type TripData = {
+  title: string;
+  username: string;
+  userImage: string;
+  rating: number;
+  duration: string;
+  purchases: number;
+  price: string;
+  tags: string[];
+  configTime: string;
+  description?: string;
+  highlights?: string[];
+  videos: string[];
+  activities?: Activity[];
+  accommodations?: Accommodation[];
+  faqs?: FAQ[];
+  itinerary: ItineraryDay[];
+  included: IncludedItem[];
+};
+
+// Definimos el tipo para el objeto que contiene todos los viajes
+type TripsDataType = {
+  [key: string]: TripData;
+};
+
+const tripsData: TripsDataType = {
   maldivas: {
     title: "Viaja a Maldivas",
     username: "@pauladiez",
@@ -193,10 +254,56 @@ const tripsData = {
     price: "899",
     tags: ["Playa", "Mediterráneo", "Gastronomía", "Relax"],
     configTime: "5",
+    description: "Descubre la isla más grande de las Baleares, un paraíso mediterráneo con playas de ensueño, calas escondidas y una rica cultura gastronómica. Mallorca combina naturaleza, historia y modernidad en un entorno idílico.",
+    highlights: [
+      "Alojamiento en hotel boutique cerca de las mejores playas",
+      "Ruta en coche de alquiler para descubrir las calas secretas",
+      "Tour gastronómico por Palma con degustación de tapas",
+      "Excursión a la Sierra de Tramuntana, Patrimonio de la Humanidad",
+      "Actividades acuáticas como paddleboarding y kayak"
+    ],
     videos: [
       "https://images.unsplash.com/photo-1437719417032-8595fd9e9dc6",
       "https://images.unsplash.com/photo-1582071007433-3a24cbde3c54",
       "https://images.unsplash.com/photo-1586967440513-612f348591c9"
+    ],
+    activities: [
+      {
+        title: "Ruta de calas",
+        description: "Recorre las mejores calas de la isla, desde Cala Varques hasta Cala Mesquida, descubriendo arenas blancas y aguas cristalinas.",
+        icon: Map,
+        duration: "Todo el día"
+      },
+      {
+        title: "Tour por Palma",
+        description: "Visita guiada por la capital para descubrir la Catedral, el Castillo de Bellver y los mercados tradicionales.",
+        icon: Camera,
+        duration: "4 horas"
+      }
+    ],
+    accommodations: [
+      {
+        name: "Hotel Mediterráneo",
+        description: "Hotel de 4 estrellas con vistas al mar y ubicación céntrica en Palma.",
+        price: "Incluido en el paquete base",
+        amenities: ["Piscina", "Desayuno buffet", "WiFi gratis", "Terraza panorámica"]
+      },
+      {
+        name: "Villa con piscina",
+        description: "Villa privada con piscina en la zona de Pollença, ideal para familias.",
+        price: "+400€ sobre el precio base",
+        amenities: ["Piscina privada", "Jardín", "Cocina equipada", "3 habitaciones"]
+      }
+    ],
+    faqs: [
+      {
+        question: "¿Cuál es la mejor época para visitar Mallorca?",
+        answer: "La mejor época es de mayo a octubre, con los meses de julio y agosto como temporada alta. Para evitar multitudes, se recomienda mayo, junio o septiembre."
+      },
+      {
+        question: "¿Necesito alquilar coche en Mallorca?",
+        answer: "Si quieres descubrir las calas y pueblos de interior, es muy recomendable alquilar un coche. Las ciudades principales están bien conectadas por transporte público."
+      }
     ],
     itinerary: [
       {
@@ -258,10 +365,56 @@ const tripsData = {
     price: "2,499",
     tags: ["Caribe", "Todo incluido", "Playas paradisíacas", "Con amigos"],
     configTime: "6",
+    description: "Disfruta del auténtico paraíso caribeño en Punta Cana, República Dominicana. Con sus playas de arena blanca, aguas turquesas y un clima perfecto durante todo el año, este destino ofrece la combinación ideal de relax y diversión.",
+    highlights: [
+      "Alojamiento en resort todo incluido 5 estrellas frente al mar",
+      "Excursión a Isla Saona con almuerzo típico dominicano",
+      "Actividades acuáticas ilimitadas: snorkel, kayak, windsurf",
+      "Shows nocturnos con música y bailes tradicionales",
+      "Spa con tratamientos inspirados en ingredientes locales"
+    ],
     videos: [
       "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
       "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57",
       "https://images.unsplash.com/photo-1517300906457-a05522e7c2cb"
+    ],
+    activities: [
+      {
+        title: "Excursión a Isla Saona",
+        description: "Visita esta isla paradisíaca dentro del Parque Nacional del Este, con su playa de postal y aguas cristalinas.",
+        icon: Map,
+        duration: "Todo el día"
+      },
+      {
+        title: "Tour a Santo Domingo",
+        description: "Conoce la capital y su zona colonial, la ciudad más antigua del Nuevo Mundo y Patrimonio de la Humanidad.",
+        icon: Camera,
+        duration: "8 horas"
+      }
+    ],
+    accommodations: [
+      {
+        name: "Habitación Deluxe",
+        description: "Habitación con vistas al jardín tropical y terraza privada.",
+        price: "Incluido en el paquete base",
+        amenities: ["Cama king size", "Aire acondicionado", "Minibar todo incluido", "TV pantalla plana"]
+      },
+      {
+        name: "Suite Ocean Front",
+        description: "Suite de lujo con vistas directas al mar Caribe y acceso privilegiado a la playa.",
+        price: "+700€ sobre el precio base",
+        amenities: ["Terraza con jacuzzi", "Servicio de mayordomo", "Prioridad en restaurantes", "Área exclusiva en la playa"]
+      }
+    ],
+    faqs: [
+      {
+        question: "¿Qué incluye el régimen todo incluido?",
+        answer: "Incluye todas las comidas, bebidas nacionales e internacionales ilimitadas, actividades deportivas no motorizadas, entretenimiento diurno y nocturno, y acceso a todas las instalaciones del resort."
+      },
+      {
+        question: "¿Es necesario llevar dólares a República Dominicana?",
+        answer: "Aunque la moneda local es el peso dominicano, en las zonas turísticas se acepta ampliamente el dólar estadounidense. Las tarjetas de crédito son aceptadas en la mayoría de los establecimientos."
+      }
     ],
     itinerary: [
       {
