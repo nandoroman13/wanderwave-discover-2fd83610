@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Bed, Plane, Bus, FileCheck, Receipt, Utensils, Wifi, Map, Camera, MessageCircle, Coffee, Landmark, Film, Music } from "lucide-react";
+import { Bed, Plane, Bus, FileCheck, Receipt, Utensils, Wifi, Map, Camera, MessageCircle, Coffee, Landmark, Film, Music, Snowflake, Mountains, Compass, Car } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
@@ -400,6 +400,170 @@ const tripsData: TripsDataType = {
       {
         icon: Film,
         text: "Tour guiado por localizaciones de películas"
+      }
+    ]
+  },
+  noruega: {
+    title: "Viaja a Noruega",
+    username: "@viajandoconnenos",
+    userImage: "https://images.unsplash.com/photo-1590086782957-93c06ef21604",
+    rating: 4.9,
+    duration: "8 días, 7 noches",
+    purchases: 428,
+    price: "2,899",
+    tags: ["Aventura", "Naturaleza", "Fiordos", "Aurora Boreal"],
+    configTime: "6",
+    description: "Descubre la magia del país de los fiordos y las auroras boreales. Noruega te ofrece un viaje fascinante a través de paisajes impresionantes, ciudades encantadoras y una rica herencia cultural vikinga. Desde los espectaculares fiordos y montañas hasta sus modernas ciudades como Oslo y Bergen, este destino nórdico es perfecto para los amantes de la naturaleza y la aventura.",
+    highlights: [
+      "Crucero por el espectacular Fiordo de Geiranger, Patrimonio de la UNESCO",
+      "Experiencia de avistamiento de auroras boreales (entre septiembre y marzo)",
+      "Trekking y actividades al aire libre en paisajes naturales impresionantes",
+      "Recorrido por la pintoresca ciudad de Bergen y su histórico barrio Bryggen",
+      "Excursión en tren panorámico por la ruta Flåm, considerada una de las más bellas del mundo"
+    ],
+    videos: [
+      "https://images.unsplash.com/photo-1506193503569-d57d2a789331",
+      "https://images.unsplash.com/photo-1531366936337-7c912a4589a7",
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38"
+    ],
+    activities: [
+      {
+        title: "Crucero por el fiordo",
+        description: "Navega entre las imponentes paredes del Fiordo de Geiranger, admirando cascadas como 'Las Siete Hermanas' y disfrutando de vistas espectaculares.",
+        icon: Compass,
+        duration: "3-4 horas"
+      },
+      {
+        title: "Caza de auroras boreales",
+        description: "Excursión nocturna con guías expertos en busca del espectáculo natural más impresionante: las luces del norte danzando en el cielo ártico.",
+        icon: Snowflake,
+        duration: "4-5 horas"
+      },
+      {
+        title: "Trekking en Preikestolen",
+        description: "Ruta de senderismo hasta el famoso Púlpito o Preikestolen, una impresionante formación rocosa con vistas panorámicas al fiordo Lysefjord.",
+        icon: Mountains,
+        duration: "Todo el día"
+      },
+      {
+        title: "Tour cultural en Oslo",
+        description: "Visita los principales museos y atracciones de la capital noruega, incluyendo el Museo de los Barcos Vikingos y el Parque de Esculturas Vigeland.",
+        icon: Landmark,
+        duration: "6 horas"
+      }
+    ],
+    accommodations: [
+      {
+        name: "Hotel Fiordos View",
+        description: "Acogedor hotel con vistas panorámicas a los fiordos y decoración típica noruega, ubicado cerca de Geiranger.",
+        price: "Incluido en el paquete base",
+        amenities: ["Desayuno buffet nórdico", "Sauna", "WiFi gratuito", "Restaurante con comida local", "Habitaciones con vistas"]
+      },
+      {
+        name: "Cabañas Árticas",
+        description: "Encantadoras cabañas de madera en la región de Tromsø, ideales para la observación de auroras boreales, con techos transparentes.",
+        price: "+450€ sobre el precio base",
+        amenities: ["Chimenea", "Cocina equipada", "Techo panorámico", "Equipo para auroras", "Excursiones incluidas"]
+      },
+      {
+        name: "Hotel Céntrico Bergen",
+        description: "Hotel urbano situado en el corazón de Bergen, a pocos minutos a pie del barrio histórico de Bryggen.",
+        price: "-150€ sobre el precio base",
+        amenities: ["Desayuno incluido", "WiFi de alta velocidad", "Bar en la azotea", "Habitaciones modernas"]
+      }
+    ],
+    faqs: [
+      {
+        question: "¿Cuál es la mejor época para ver auroras boreales en Noruega?",
+        answer: "El período óptimo es de septiembre a marzo, siendo los meses de invierno (noviembre a febrero) los que ofrecen más horas de oscuridad y por tanto mayores posibilidades. Las mejores zonas son el norte del país, especialmente alrededor de Tromsø."
+      },
+      {
+        question: "¿Qué ropa debo llevar para un viaje a Noruega?",
+        answer: "Independientemente de la temporada, es recomendable vestirse en capas. Para invierno: ropa térmica, jerseys de lana, chaqueta impermeable y cortavientos, botas impermeables, guantes, bufanda y gorro. En verano: ropa ligera pero también alguna capa abrigada y chubasquero, ya que el clima puede cambiar rápidamente."
+      },
+      {
+        question: "¿Es caro viajar por Noruega?",
+        answer: "Sí, Noruega es uno de los países más caros de Europa. La comida, el transporte y el alojamiento tienen precios elevados. Sin embargo, con un paquete organizado como este, muchos gastos están incluidos y controlados de antemano."
+      },
+      {
+        question: "¿Necesito visa para viajar a Noruega?",
+        answer: "Los ciudadanos de la Unión Europea no necesitan visa para entrar en Noruega, ya que pertenece al Espacio Schengen. Solo se requiere un documento de identidad o pasaporte válido."
+      }
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Madrid - Oslo",
+        description: "Vuelo desde Madrid a Oslo. Traslado al hotel y tiempo libre para un primer contacto con la capital noruega. Reunión de bienvenida con el guía."
+      },
+      {
+        day: 2,
+        title: "Oslo - Explorando la capital",
+        description: "Tour completo por Oslo visitando el Parque Vigeland, el Museo de los Barcos Vikingos, el Museo Fram y la Ópera. Tarde libre para explorar el moderno barrio de Aker Brygge."
+      },
+      {
+        day: 3,
+        title: "Oslo - Bergen en tren panorámico",
+        description: "Viaje en el tren panorámico de Oslo a Bergen, considerado uno de los recorridos ferroviarios más bellos del mundo, atravesando montañas y valles espectaculares."
+      },
+      {
+        day: 4,
+        title: "Bergen - Ciudad de la UNESCO",
+        description: "Visita guiada por Bergen, incluyendo el mercado de pescado, el barrio hanseático de Bryggen (Patrimonio Mundial), y subida en funicular al monte Fløyen para disfrutar de vistas panorámicas."
+      },
+      {
+        day: 5,
+        title: "Crucero por los fiordos",
+        description: "Travesía en barco por el Sognefjord y el espectacular Nærøyfjord, Patrimonio Mundial de la UNESCO. Continuación hacia la región de Flåm para disfrutar del famoso tren panorámico de Flåm."
+      },
+      {
+        day: 6,
+        title: "Región de Geiranger",
+        description: "Viaje a la región de Geiranger para explorar el majestuoso fiordo, con paradas en miradores estratégicos. Por la tarde, crucero por el Geirangerfjord para admirar sus cascadas y formaciones rocosas."
+      },
+      {
+        day: 7,
+        title: "Ålesund",
+        description: "Traslado a la hermosa ciudad de Ålesund, famosa por su arquitectura Art Nouveau. Tour por la ciudad y tiempo libre. Por la noche, cena de despedida con platos tradicionales noruegos."
+      },
+      {
+        day: 8,
+        title: "Regreso a Madrid",
+        description: "Traslado al aeropuerto de Ålesund para tomar el vuelo de regreso a Madrid, con conexión en Oslo."
+      }
+    ],
+    included: [
+      {
+        icon: Bed,
+        text: "7 noches en hoteles seleccionados"
+      },
+      {
+        icon: Plane,
+        text: "Vuelos ida y vuelta con tasas incluidas"
+      },
+      {
+        icon: Bus,
+        text: "Todos los traslados en moderno autocar"
+      },
+      {
+        icon: FileCheck,
+        text: "Seguro de viaje con cobertura especial"
+      },
+      {
+        icon: Utensils,
+        text: "Desayunos y 3 cenas incluidas"
+      },
+      {
+        icon: Compass,
+        text: "Cruceros por los fiordos"
+      },
+      {
+        icon: Car,
+        text: "Tren panorámico Oslo-Bergen y Flåm"
+      },
+      {
+        icon: Map,
+        text: "Guía acompañante de habla hispana"
       }
     ]
   },
