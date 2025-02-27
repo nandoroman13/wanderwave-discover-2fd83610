@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Bed, Plane, Bus, FileCheck, Receipt, Utensils, Wifi, Map, Camera, MessageCircle, Coffee, Landmark, Film, Music, Snowflake, Mountains, Compass, Car } from "lucide-react";
+import { Bed, Plane, Bus, FileCheck, Receipt, Utensils, Wifi, Map, Camera, MessageCircle, Coffee, Landmark, Film, Music, Snowflake, Mountain, Compass, Car } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
@@ -442,7 +442,7 @@ const tripsData: TripsDataType = {
       {
         title: "Trekking en Preikestolen",
         description: "Ruta de senderismo hasta el famoso Púlpito o Preikestolen, una impresionante formación rocosa con vistas panorámicas al fiordo Lysefjord.",
-        icon: Mountains,
+        icon: Mountain,
         duration: "Todo el día"
       },
       {
