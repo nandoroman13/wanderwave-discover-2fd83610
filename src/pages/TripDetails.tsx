@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Bed, Plane, Bus, FileCheck, Receipt, Utensils, Wifi, Map, Camera, MessageCircle } from "lucide-react";
+import { Bed, Plane, Bus, FileCheck, Receipt, Utensils, Wifi, Map, Camera, MessageCircle, Coffee, Landmark, Film, Music } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
@@ -241,6 +241,165 @@ const tripsData: TripsDataType = {
       {
         icon: Wifi,
         text: "WiFi gratuito en todo el resort"
+      }
+    ]
+  },
+  chicago: {
+    title: "Viaja a Chicago",
+    username: "@familiacarameluchi",
+    userImage: "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc",
+    rating: 5.0,
+    duration: "7 días, 5 noches",
+    purchases: 750,
+    price: "2,499",
+    tags: ["En familia", "Urbano", "Cultura", "Gastronomía"],
+    configTime: "5",
+    description: "Descubre la majestuosa Ciudad de los Vientos, cuna de los rascacielos y capital cultural del Medio Oeste americano. Chicago ofrece una experiencia urbana completa con impresionante arquitectura, museos de clase mundial, una escena gastronómica diversa y las hermosas orillas del Lago Michigan.",
+    highlights: [
+      "Visitas guiadas a los rascacielos y joyas arquitectónicas de la ciudad",
+      "Crucero arquitectónico por el río Chicago",
+      "Experiencia gastronómica con la auténtica deep dish pizza",
+      "Exploración de los museos de fama mundial",
+      "Paseos por el Navy Pier y las orillas del Lago Michigan"
+    ],
+    videos: [
+      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
+      "https://images.unsplash.com/photo-1494522358652-f30e61a60313",
+      "https://images.unsplash.com/photo-1507992781348-310259076fe0"
+    ],
+    activities: [
+      {
+        title: "Crucero arquitectónico",
+        description: "Explora la ciudad desde el río Chicago mientras un guía experto te cuenta la fascinante historia arquitectónica de la ciudad.",
+        icon: Landmark,
+        duration: "90 minutos"
+      },
+      {
+        title: "Tour gastronómico",
+        description: "Degusta la famosa deep dish pizza, los hot dogs estilo Chicago y otros platos emblematicos de la ciudad en un recorrido guiado.",
+        icon: Utensils,
+        duration: "3 horas"
+      },
+      {
+        title: "Art Institute de Chicago",
+        description: "Visita uno de los museos de arte más importantes del mundo, hogar de miles de obras maestras, incluyendo piezas de Monet, Van Gogh y Picasso.",
+        icon: Camera,
+        duration: "Medio día"
+      },
+      {
+        title: "Experiencia musical de jazz",
+        description: "Disfruta de una noche de auténtico jazz de Chicago en un club histórico donde tocaron grandes leyendas del género.",
+        icon: Music,
+        duration: "2-3 horas"
+      }
+    ],
+    accommodations: [
+      {
+        name: "Hotel Michigan Avenue",
+        description: "Hotel boutique de 4 estrellas ubicado en la famosa Magnificent Mile, a pasos de las principales atracciones.",
+        price: "Incluido en el paquete base",
+        amenities: ["Desayuno buffet", "WiFi de alta velocidad", "Gimnasio 24h", "Servicio de concierge", "Bar en la azotea"]
+      },
+      {
+        name: "Apartamento en River North",
+        description: "Moderno apartamento completo en el trendy barrio de River North, ideal para familias que buscan más espacio y comodidades.",
+        price: "+350€ sobre el precio base",
+        amenities: ["Cocina completamente equipada", "2 habitaciones", "Lavadora/secadora", "Smart TV", "Vista al río"]
+      },
+      {
+        name: "Hotel Loop District",
+        description: "Hotel céntrico en el corazón del Loop, el distrito financiero y cultural de Chicago.",
+        price: "-200€ sobre el precio base",
+        amenities: ["Desayuno continental", "WiFi gratis", "Business center", "Acceso cercano al metro"]
+      }
+    ],
+    faqs: [
+      {
+        question: "¿Cuál es la mejor época para visitar Chicago?",
+        answer: "La mejor época es entre mayo y septiembre, cuando el clima es más cálido y hay numerosos festivales y eventos al aire libre. Los meses de julio y agosto son los más concurridos. El otoño ofrece colores espectaculares, pero el invierno puede ser extremadamente frío."
+      },
+      {
+        question: "¿Necesito alquilar coche en Chicago?",
+        answer: "No es necesario. Chicago tiene un excelente sistema de transporte público (CTA) con trenes elevados ('L') y autobuses que conectan todas las zonas turísticas. Además, la mayoría de las atracciones del centro son accesibles a pie."
+      },
+      {
+        question: "¿Es seguro Chicago para turistas?",
+        answer: "Las zonas turísticas como el Loop, Magnificent Mile, Navy Pier y los barrios del norte son generalmente seguras. Como en cualquier gran ciudad, se recomienda estar atento a tus pertenencias y evitar ciertas áreas del sur y oeste, especialmente por la noche."
+      },
+      {
+        question: "¿Qué platos típicos debo probar en Chicago?",
+        answer: "No puedes irte sin probar la deep dish pizza, el hot dog estilo Chicago (sin ketchup), el sándwich de carne italiana con jugo (Italian beef), las palomitas Chicago mix (mezcla de caramelo y queso) y los pasteles de Eli's Cheesecake."
+      }
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Madrid - Chicago",
+        description: "Vuelo directo desde Madrid a Chicago O'Hare. Traslado al hotel y breve paseo de orientación por los alrededores. Cena de bienvenida con degustación de la famosa deep dish pizza."
+      },
+      {
+        day: 2,
+        title: "Magnificent Mile y Loop",
+        description: "Recorrido por la icónica avenida Michigan (Magnificent Mile) y sus tiendas de lujo. Por la tarde, visita al Loop con sus edificios históricos, el Art Institute y Millennium Park para ver la famosa escultura 'Cloud Gate' (The Bean)."
+      },
+      {
+        day: 3,
+        title: "Arquitectura y río",
+        description: "Crucero arquitectónico por el río Chicago, seguido de la subida al mirador de la Willis Tower (antiguo Sears Tower). Tarde libre para explorar el Navy Pier y posible paseo en la noria con vistas al lago Michigan."
+      },
+      {
+        day: 4,
+        title: "Museos y cultura",
+        description: "Visita al Field Museum de Historia Natural o al Museo de Ciencia e Industria. Por la tarde, paseo por el campus de la Universidad de Chicago y tiempo para explorar Hyde Park."
+      },
+      {
+        day: 5,
+        title: "Barrios de Chicago",
+        description: "Tour por los diversos barrios de la ciudad: Chinatown, Little Italy, Pilsen (con su arte callejero mexicano) y Wicker Park. Por la noche, experiencia de jazz en un club tradicional."
+      },
+      {
+        day: 6,
+        title: "Compras y tiempo libre",
+        description: "Mañana dedicada a compras o a revisitar lugares favoritos. Por la tarde, posible excursión al histórico barrio de Oak Park para ver las casas diseñadas por Frank Lloyd Wright. Cena de despedida con especialidades locales."
+      },
+      {
+        day: 7,
+        title: "Chicago - Madrid",
+        description: "Tiempo libre para últimas compras. Traslado al aeropuerto para tomar el vuelo de regreso a Madrid."
+      }
+    ],
+    included: [
+      {
+        icon: Bed,
+        text: "5 noches en hotel seleccionado"
+      },
+      {
+        icon: Plane,
+        text: "Vuelos directos ida y vuelta"
+      },
+      {
+        icon: Bus,
+        text: "Traslados aeropuerto - hotel - aeropuerto"
+      },
+      {
+        icon: FileCheck,
+        text: "Seguro de viaje completo"
+      },
+      {
+        icon: Coffee,
+        text: "Desayunos incluidos"
+      },
+      {
+        icon: Map,
+        text: "CityPASS para principales atracciones"
+      },
+      {
+        icon: Landmark,
+        text: "Crucero arquitectónico por el río"
+      },
+      {
+        icon: Film,
+        text: "Tour guiado por localizaciones de películas"
       }
     ]
   },
