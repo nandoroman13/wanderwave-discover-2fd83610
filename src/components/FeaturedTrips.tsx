@@ -40,7 +40,11 @@ const trips = [
       day: 8,
       title: "Maldivas - Madrid",
       description: "Vuelo de regreso a Madrid"
-    }]
+    }],
+    // Añadimos los nuevos campos para la estructura de URL
+    destino: "maldivas",
+    waver: "pauladiez",
+    idViaje: "12321"
   },
   {
     id: 2,
@@ -72,7 +76,11 @@ const trips = [
       day: 7,
       title: "Chicago - Madrid",
       description: "Vuelo de regreso"
-    }]
+    }],
+    // Añadimos los nuevos campos para la estructura de URL
+    destino: "chicago",
+    waver: "familiacarameluchi",
+    idViaje: "23432"
   },
   {
     id: 3,
@@ -104,7 +112,11 @@ const trips = [
       day: 8,
       title: "Oslo - Madrid",
       description: "Regreso a Madrid"
-    }]
+    }],
+    // Añadimos los nuevos campos para la estructura de URL
+    destino: "noruega",
+    waver: "mikelboisset",
+    idViaje: "34543"
   },
   {
     id: 4,
@@ -136,7 +148,11 @@ const trips = [
       day: 10,
       title: "Tanzania - Madrid",
       description: "Vuelo de regreso"
-    }]
+    }],
+    // Añadimos los nuevos campos para la estructura de URL
+    destino: "tanzania",
+    waver: "olympussafaris",
+    idViaje: "45654"
   },
   {
     id: 5,
@@ -168,7 +184,11 @@ const trips = [
       day: 12,
       title: "Tokio - Madrid",
       description: "Regreso a España"
-    }]
+    }],
+    // Añadimos los nuevos campos para la estructura de URL
+    destino: "japon",
+    waver: "asiatraveller",
+    idViaje: "56765"
   },
   {
     id: 6,
@@ -200,12 +220,21 @@ const trips = [
       day: 15,
       title: "Auckland - Madrid",
       description: "Vuelo de regreso"
-    }]
+    }],
+    // Añadimos los nuevos campos para la estructura de URL
+    destino: "nueva-zelanda",
+    waver: "adventurenomad",
+    idViaje: "67876"
   }
 ];
 
 export const FeaturedTrips = () => {
   const navigate = useNavigate();
+
+  // Esta función manejará la navegación con la nueva estructura de URL
+  const handleTripClick = (trip) => {
+    navigate(`/viajes/${trip.destino}/${trip.waver}-${trip.idViaje}`);
+  };
 
   return (
     <section className="py-16 bg-muted">
@@ -271,7 +300,7 @@ export const FeaturedTrips = () => {
                         <p className="text-xl font-semibold">{trip.price} €</p>
                       </div>
                       <button 
-                        onClick={() => navigate(`/viajes/${trip.slug}`)}
+                        onClick={() => handleTripClick(trip)}
                         className="bg-[#FFD233] hover:bg-[#FFD233]/90 text-black px-4 py-2 rounded-full transition-colors"
                       >
                         Configura paquete
