@@ -8,7 +8,7 @@ const QuienesSomos = () => {
       
       {/* Hero Section */}
       <div className="relative h-[500px] bg-gray-100">
-        <img src="https://res.cloudinary.com/dwtgmf1a7/image/upload/c_fill,g_auto,h_250,w_970/b_rgb:000000,e_gradient_fade,y_-0.50/c_scale,co_rgb:ffffff,fl_relative,l_text:montserrat_25_style_light_align_center:Shop%20Now,w_0.5,y_0.18/v1740689980/sacha-verheij-X0rRYtJy0R8-unsplash_v5morp.jpg" alt="Amigos disfrutando en una playa paradisíaca" className="w-full h-full object-cover" />
+        <img src="https://res.cloudinary.com/dwtgmf1a7/image/upload/v1740689980/sacha-verheij-X0rRYtJy0R8-unsplash_v5morp.jpg" alt="Amigos disfrutando en una playa paradisíaca" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-4">
