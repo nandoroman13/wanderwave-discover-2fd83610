@@ -86,7 +86,7 @@ export const Destinos = () => {
                 
                 <div className="flex items-center justify-between">
                   <Link
-                    to={`/destino/${destinos[0].slug}`}
+                    to={`/${destinos[0].slug}`}
                     className="text-white hover:underline flex items-center gap-2"
                   >
                     Ver todos los viajes
@@ -129,7 +129,7 @@ export const Destinos = () => {
                 
                 <div className="flex items-center justify-between">
                   <Link
-                    to={`/destino/${destinos[1].slug}`}
+                    to={`/${destinos[1].slug}`}
                     className="text-white hover:underline flex items-center gap-2"
                   >
                     Ver todos los viajes
@@ -174,7 +174,7 @@ export const Destinos = () => {
                   
                   <div className="flex items-center justify-between">
                     <Link
-                      to={`/destino/${destinos[2].slug}`}
+                      to={`/${destinos[2].slug}`}
                       className="text-white hover:underline flex items-center gap-2"
                     >
                       Ver todos los viajes
@@ -217,7 +217,7 @@ export const Destinos = () => {
                   
                   <div className="flex items-center justify-between">
                     <Link
-                      to={`/destino/${destinos[3].slug}`}
+                      to={`/${destinos[3].slug}`}
                       className="text-white hover:underline flex items-center gap-2"
                     >
                       Ver todos los viajes
@@ -236,4 +236,3 @@ export const Destinos = () => {
     </section>
   );
 };
-
