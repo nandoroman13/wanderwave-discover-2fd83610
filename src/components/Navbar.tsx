@@ -1,3 +1,4 @@
+
 import { Menu, Globe, UserCircle, Navigation, Users, PlusCircle, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -6,12 +7,17 @@ import { Dialog, DialogContent, DialogTitle, DialogHeader, DialogDescription } f
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+
 export const Navbar = () => {
-  const [loginOpen, setLoginOpen] = useState(false);
-  const handleLoginClick = e => {
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
+  
+  const handleAuthClick = (e, mode: 'login' | 'register') => {
     e.preventDefault();
-    setLoginOpen(true);
+    setAuthMode(mode);
+    setAuthModalOpen(true);
   };
+  
   return <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
       <div className="container mx-auto px-4">
         <div className="flex items-center h-16">
@@ -58,12 +64,12 @@ export const Navbar = () => {
                   <div className="flex flex-col divide-y divide-gray-100">
                     <Link to="/ayuda" className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">Centro de ayuda</Link>
                     <Link to="/recursos" className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">Recursos para wavers</Link>
-                    <a href="#" onClick={handleLoginClick} className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
+                    <a href="#" onClick={(e) => handleAuthClick(e, 'login')} className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
                       Inicia sesión
                     </a>
-                    <Link to="/registro" className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
+                    <a href="#" onClick={(e) => handleAuthClick(e, 'register')} className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
                       Regístrate
-                    </Link>
+                    </a>
                   </div>
                 </PopoverContent>
               </Popover>
@@ -75,13 +81,15 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Modal de Inicio de Sesión */}
-      <Dialog open={loginOpen} onOpenChange={setLoginOpen}>
+      {/* Modal de Autenticación (Login/Registro) */}
+      <Dialog open={authModalOpen} onOpenChange={setAuthModalOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader className="mb-4">
             <div className="flex justify-between items-center">
-              <DialogTitle className="text-center flex-1">Inicia sesión o regístrate</DialogTitle>
-              <Button variant="ghost" size="icon" onClick={() => setLoginOpen(false)} className="h-6 w-6">
+              <DialogTitle className="text-center flex-1">
+                {authMode === 'login' ? 'Inicia sesión' : 'Regístrate'} en WanderWave
+              </DialogTitle>
+              <Button variant="ghost" size="icon" onClick={() => setAuthModalOpen(false)} className="h-6 w-6">
                 <X size={18} />
               </Button>
             </div>
@@ -92,11 +100,23 @@ export const Navbar = () => {
             
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="phone">Número de teléfono</Label>
-                <Input id="phone" placeholder="+34 600 000 000" className="h-12" />
-                <p className="text-xs text-gray-500 mt-1">
-                  Te llamaremos o enviaremos un SMS para confirmar tu número. Se aplican las tarifas estándar de mensajes y datos.
-                </p>
+                {authMode === 'login' ? (
+                  <>
+                    <Label htmlFor="phone">Número de teléfono</Label>
+                    <Input id="phone" placeholder="+34 600 000 000" className="h-12" />
+                    <p className="text-xs text-gray-500 mt-1">
+                      Te llamaremos o enviaremos un SMS para confirmar tu número. Se aplican las tarifas estándar de mensajes y datos.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <Label htmlFor="email">Correo electrónico</Label>
+                    <Input id="email" type="email" placeholder="ejemplo@correo.com" className="h-12" />
+                    <p className="text-xs text-gray-500 mt-1">
+                      Te enviaremos un correo para confirmar tu cuenta y darte acceso a todas las funcionalidades.
+                    </p>
+                  </>
+                )}
               </div>
 
               <Button className="w-full bg-primary hover:bg-primary/90 h-12">
