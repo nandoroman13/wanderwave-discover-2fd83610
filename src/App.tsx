@@ -15,6 +15,9 @@ function App() {
         <Route path="/viajes/:slug" element={<TripDetails />} />
         <Route path="/wavers/:slug" element={<WaverProfile />} />
         <Route path="/quienes-somos" element={<QuienesSomos />} />
+        <Route path="/registro" element={<NotFound />} /> {/* Placeholder para registro */}
+        <Route path="/ayuda" element={<NotFound />} /> {/* Placeholder para ayuda */}
+        <Route path="/recursos" element={<NotFound />} /> {/* Placeholder para recursos */}
         {/* Ruta para páginas de destino */}
         <Route path="/:slug" element={<DestinoPage />} />
         <Route path="*" element={<NotFound />} />
