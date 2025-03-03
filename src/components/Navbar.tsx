@@ -56,9 +56,7 @@ export const Navbar = () => {
                 </PopoverTrigger>
                 <PopoverContent className="w-64 p-0 rounded-lg shadow-lg border border-gray-200 bg-white">
                   <div className="flex flex-col divide-y divide-gray-100">
-                    <Link to="/ayuda" className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
-                      Todos los temas de ayuda
-                    </Link>
+                    <Link to="/ayuda" className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">Centro de ayuda</Link>
                     <Link to="/recursos" className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">Recursos para wavers</Link>
                     <a href="#" onClick={handleLoginClick} className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
                       Inicia sesión
