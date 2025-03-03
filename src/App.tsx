@@ -6,6 +6,7 @@ import TripDetails from "@/pages/TripDetails";
 import { WaverProfile } from "@/pages/WaverProfile";
 import QuienesSomos from "@/pages/QuienesSomos";
 import DestinoPage from "@/pages/DestinoPage";
+import ContinentPage from "@/pages/ContinentPage";
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
         <Route path="/registro" element={<NotFound />} /> {/* Placeholder para registro */}
         <Route path="/ayuda" element={<NotFound />} /> {/* Placeholder para ayuda */}
         <Route path="/recursos" element={<NotFound />} /> {/* Placeholder para recursos */}
+        
+        {/* Rutas para continentes */}
+        <Route path="/:continente" element={<ContinentPage />} />
+        
         {/* Ruta para páginas de destino */}
         <Route path="/:slug" element={<DestinoPage />} />
         <Route path="*" element={<NotFound />} />
