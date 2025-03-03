@@ -1,6 +1,8 @@
 
 import { Menu, Globe, UserCircle, Navigation, Users, PlusCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 export const Navbar = () => {
   return (
@@ -49,9 +51,41 @@ export const Navbar = () => {
             </button>
             
             <div className="flex items-center bg-gray-100 rounded-full px-4 py-2 gap-3">
-              <button className="text-gray-600 hover:text-primary transition-colors">
-                <Menu size={20} />
-              </button>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <button className="text-gray-600 hover:text-primary transition-colors">
+                    <Menu size={20} />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent className="w-64 p-0 rounded-lg shadow-lg border border-gray-200">
+                  <div className="flex flex-col divide-y divide-gray-100">
+                    <Link 
+                      to="/ayuda"
+                      className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                      Todos los temas de ayuda
+                    </Link>
+                    <Link 
+                      to="/recursos"
+                      className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                      Recursos para anfitriones
+                    </Link>
+                    <Link 
+                      to="/iniciar-sesion"
+                      className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                      Inicia sesión
+                    </Link>
+                    <Link 
+                      to="/registro"
+                      className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                      Regístrate
+                    </Link>
+                  </div>
+                </PopoverContent>
+              </Popover>
               <button className="text-gray-600 hover:text-primary transition-colors">
                 <UserCircle size={24} />
               </button>
