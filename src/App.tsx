@@ -7,6 +7,7 @@ import { WaverProfile } from "@/pages/WaverProfile";
 import QuienesSomos from "@/pages/QuienesSomos";
 import DestinoPage from "@/pages/DestinoPage";
 import EuropaPage from "@/pages/EuropaPage";
+import DropPage from "@/pages/DropPage";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
           <Route path="/recursos" element={<NotFound />} /> {/* Placeholder para recursos */}
           {/* Ruta específica para Europa */}
           <Route path="/europa" element={<EuropaPage />} />
+          {/* Ruta para Drops */}
+          <Route path="/drops/:slug" element={<DropPage />} />
           {/* Ruta genérica para otros destinos */}
           <Route path="/:slug" element={<DestinoPage />} />
           <Route path="*" element={<NotFound />} />
