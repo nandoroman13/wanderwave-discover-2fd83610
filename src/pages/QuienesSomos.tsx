@@ -2,7 +2,11 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Users, Heart, Flag, Award } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const QuienesSomos = () => {
+  const { t } = useLanguage();
+  
   return <div className="min-h-screen bg-white">
       <Navbar />
       
@@ -12,9 +16,9 @@ const QuienesSomos = () => {
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-4">
-            <h1 className="text-5xl font-bold mb-4">Quiénes Somos</h1>
+            <h1 className="text-5xl font-bold mb-4">{t("quienesSomos")}</h1>
             <p className="text-xl max-w-2xl mx-auto">
-              Transformando la manera de viajar, conectando personas y creando experiencias únicas
+              {t("transformando")}
             </p>
           </div>
         </div>
@@ -23,9 +27,9 @@ const QuienesSomos = () => {
       {/* About Us Section */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">About Us</h2>
+          <h2 className="text-3xl font-bold mb-6">{t("aboutUs")}</h2>
           <p className="text-gray-600 text-lg leading-relaxed">
-            En WanderWave, creemos en transformar la manera en que las personas viajan y experimentan el mundo. Nacimos de la pasión por los viajes auténticos y la convicción de que las mejores experiencias surgen cuando conectas con personas locales que comparten tu amor por la aventura. Nuestra plataforma une a viajeros aventureros con expertos locales apasionados, creando experiencias únicas y memorables que van más allá del turismo tradicional.
+            {t("quienesSomosTexto")}
           </p>
         </div>
       </div>
@@ -37,9 +41,9 @@ const QuienesSomos = () => {
             <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Users className="text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Nuestra Misión</h3>
+            <h3 className="text-xl font-semibold mb-3">{t("nuestraMision")}</h3>
             <p className="text-gray-600">
-              Conectar viajeros con expertos locales para crear experiencias auténticas y memorables en cada destino.
+              {t("nuestraMisionTexto")}
             </p>
           </div>
 
@@ -47,9 +51,9 @@ const QuienesSomos = () => {
             <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Heart className="text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Nuestros Valores</h3>
+            <h3 className="text-xl font-semibold mb-3">{t("nuestrosValores")}</h3>
             <p className="text-gray-600">
-              Autenticidad, sostenibilidad y pasión por descubrir el mundo de una manera responsable.
+              {t("nuestrosValoresTexto")}
             </p>
           </div>
 
@@ -57,9 +61,9 @@ const QuienesSomos = () => {
             <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Flag className="text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Nuestro Impacto</h3>
+            <h3 className="text-xl font-semibold mb-3">{t("nuestroImpacto")}</h3>
             <p className="text-gray-600">
-              Promovemos el turismo sostenible y apoyamos a las comunidades locales en cada destino.
+              {t("nuestroImpactoTexto")}
             </p>
           </div>
 
@@ -67,9 +71,9 @@ const QuienesSomos = () => {
             <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Award className="text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Nuestro Compromiso</h3>
+            <h3 className="text-xl font-semibold mb-3">{t("nuestroCompromiso")}</h3>
             <p className="text-gray-600">
-              Garantizamos experiencias únicas y personalizadas para cada viajero.
+              {t("nuestroCompromisoTexto")}
             </p>
           </div>
         </div>
@@ -77,15 +81,15 @@ const QuienesSomos = () => {
 
       {/* Founders Section */}
       <div className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold mb-12 text-center">Nuestros Fundadores</h2>
+        <h2 className="text-3xl font-bold mb-12 text-center">{t("nuestrosFundadores")}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="rounded-lg overflow-hidden">
             <img src="/lovable-uploads/bc56bfef-0711-41bf-a428-0e62ae6e1e36.png" alt="Nando Román" className="w-full aspect-square object-cover" />
             <div className="p-6 bg-white">
               <h3 className="text-xl font-semibold mb-2">Nando Román</h3>
-              <p className="text-gray-600 mb-2">Co-fundador y CEO</p>
+              <p className="text-gray-600 mb-2">{t("fundadorCEO")}</p>
               <p className="text-gray-500 text-sm">
-                Apasionado viajero con más de 10 años de experiencia en el sector turístico. Lidera la visión estratégica de WanderWave.
+                {t("fundadorCEOTexto")}
               </p>
             </div>
           </div>
@@ -94,9 +98,9 @@ const QuienesSomos = () => {
             <img src="/lovable-uploads/0088c1eb-fcbf-4e6b-8c81-543e932a2398.png" alt="Ana García" className="w-full aspect-square object-cover" />
             <div className="p-6 bg-white">
               <h3 className="text-xl font-semibold mb-2">Ana García</h3>
-              <p className="text-gray-600 mb-2">Co-fundadora y COO</p>
+              <p className="text-gray-600 mb-2">{t("fundadorCOO")}</p>
               <p className="text-gray-500 text-sm">
-                Experta en operaciones y desarrollo de productos turísticos. Supervisa la calidad de todas las experiencias WanderWave.
+                {t("fundadorCOOTexto")}
               </p>
             </div>
           </div>
@@ -105,9 +109,9 @@ const QuienesSomos = () => {
             <img src="/lovable-uploads/bc56bfef-0711-41bf-a428-0e62ae6e1e36.png" alt="Miguel Torres" className="w-full aspect-square object-cover" />
             <div className="p-6 bg-white">
               <h3 className="text-xl font-semibold mb-2">Miguel Torres</h3>
-              <p className="text-gray-600 mb-2">Co-fundador y CTO</p>
+              <p className="text-gray-600 mb-2">{t("fundadorCTO")}</p>
               <p className="text-gray-500 text-sm">
-                Ingeniero de software con experiencia en startups. Lidera el desarrollo tecnológico de la plataforma.
+                {t("fundadorCTOTexto")}
               </p>
             </div>
           </div>
@@ -120,19 +124,19 @@ const QuienesSomos = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-4xl font-bold text-primary mb-2">1000+</div>
-              <p className="text-gray-600">Viajes organizados</p>
+              <p className="text-gray-600">{t("viajesOrganizados")}</p>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-primary mb-2">50+</div>
-              <p className="text-gray-600">Destinos</p>
+              <p className="text-gray-600">{t("destinos")}</p>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-primary mb-2">100+</div>
-              <p className="text-gray-600">Wavers expertos</p>
+              <p className="text-gray-600">{t("waversExpertos")}</p>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-primary mb-2">5000+</div>
-              <p className="text-gray-600">Viajeros felices</p>
+              <p className="text-gray-600">{t("viajerosfelices")}</p>
             </div>
           </div>
         </div>

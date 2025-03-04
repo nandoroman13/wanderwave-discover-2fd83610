@@ -7,25 +7,28 @@ import { WaverProfile } from "@/pages/WaverProfile";
 import QuienesSomos from "@/pages/QuienesSomos";
 import DestinoPage from "@/pages/DestinoPage";
 import EuropaPage from "@/pages/EuropaPage";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/viajes/:slug" element={<TripDetails />} />
-        <Route path="/wavers/:slug" element={<WaverProfile />} />
-        <Route path="/quienes-somos" element={<QuienesSomos />} />
-        <Route path="/registro" element={<NotFound />} /> {/* Placeholder para registro */}
-        <Route path="/ayuda" element={<NotFound />} /> {/* Placeholder para ayuda */}
-        <Route path="/recursos" element={<NotFound />} /> {/* Placeholder para recursos */}
-        {/* Ruta específica para Europa */}
-        <Route path="/europa" element={<EuropaPage />} />
-        {/* Ruta genérica para otros destinos */}
-        <Route path="/:slug" element={<DestinoPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/viajes/:slug" element={<TripDetails />} />
+          <Route path="/wavers/:slug" element={<WaverProfile />} />
+          <Route path="/quienes-somos" element={<QuienesSomos />} />
+          <Route path="/registro" element={<NotFound />} /> {/* Placeholder para registro */}
+          <Route path="/ayuda" element={<NotFound />} /> {/* Placeholder para ayuda */}
+          <Route path="/recursos" element={<NotFound />} /> {/* Placeholder para recursos */}
+          {/* Ruta específica para Europa */}
+          <Route path="/europa" element={<EuropaPage />} />
+          {/* Ruta genérica para otros destinos */}
+          <Route path="/:slug" element={<DestinoPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    </LanguageProvider>
   );
 }
 

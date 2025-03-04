@@ -7,10 +7,12 @@ import { Dialog, DialogContent, DialogTitle, DialogHeader, DialogDescription } f
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Navbar = () => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
+  const { language, setLanguage, t } = useLanguage();
   
   const handleAuthClick = (e, mode: 'login' | 'register') => {
     e.preventDefault();
@@ -35,23 +37,46 @@ export const Navbar = () => {
           <div className="flex-1 flex items-center justify-center gap-12">
             <Link to="/quienes-somos" className="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors">
               <Users size={20} />
-              <span>Quiénes somos</span>
+              <span>{t("quienesSomos")}</span>
             </Link>
             <Link to="/explora" className="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors">
               <Navigation size={20} />
-              <span>Explora</span>
+              <span>{t("explora")}</span>
             </Link>
           </div>
           
           <div className="flex-1 flex items-center justify-end gap-4">
             <Link to="/crear-viaje" className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full hover:bg-primary/90 transition-colors">
               <PlusCircle size={20} />
-              <span>Crea tu viaje</span>
+              <span>{t("creaViaje")}</span>
             </Link>
 
-            <button className="text-gray-600 hover:text-primary transition-colors">
-              <Globe size={20} />
-            </button>
+            {/* Selector de idiomas */}
+            <Popover>
+              <PopoverTrigger asChild>
+                <button className="text-gray-600 hover:text-primary transition-colors">
+                  <Globe size={20} />
+                </button>
+              </PopoverTrigger>
+              <PopoverContent className="w-40 p-0 rounded-lg shadow-lg border border-gray-200 bg-white">
+                <div className="flex flex-col divide-y divide-gray-100">
+                  <button 
+                    onClick={() => setLanguage('es')} 
+                    className={`px-4 py-3 hover:bg-gray-50 transition-colors flex items-center gap-2 ${language === 'es' ? 'text-primary' : 'text-gray-700'}`}
+                  >
+                    🇪🇸 Español
+                    {language === 'es' && <span className="ml-auto text-primary">✓</span>}
+                  </button>
+                  <button 
+                    onClick={() => setLanguage('en')} 
+                    className={`px-4 py-3 hover:bg-gray-50 transition-colors flex items-center gap-2 ${language === 'en' ? 'text-primary' : 'text-gray-700'}`}
+                  >
+                    🇬🇧 English
+                    {language === 'en' && <span className="ml-auto text-primary">✓</span>}
+                  </button>
+                </div>
+              </PopoverContent>
+            </Popover>
             
             <div className="flex items-center bg-gray-100 rounded-full px-4 py-2 gap-3">
               <Popover>
@@ -62,13 +87,13 @@ export const Navbar = () => {
                 </PopoverTrigger>
                 <PopoverContent className="w-64 p-0 rounded-lg shadow-lg border border-gray-200 bg-white">
                   <div className="flex flex-col divide-y divide-gray-100">
-                    <Link to="/ayuda" className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">Centro de ayuda</Link>
-                    <Link to="/recursos" className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">Recursos para wavers</Link>
+                    <Link to="/ayuda" className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">{t("ayuda")}</Link>
+                    <Link to="/recursos" className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">{t("recursos")}</Link>
                     <a href="#" onClick={(e) => handleAuthClick(e, 'login')} className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
-                      Inicia sesión
+                      {t("iniciarSesion")}
                     </a>
                     <a href="#" onClick={(e) => handleAuthClick(e, 'register')} className="px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
-                      Regístrate
+                      {t("registrarse")}
                     </a>
                   </div>
                 </PopoverContent>
@@ -87,7 +112,7 @@ export const Navbar = () => {
           <DialogHeader className="mb-4">
             <div className="flex justify-between items-center">
               <DialogTitle className="text-center flex-1">
-                {authMode === 'login' ? 'Inicia sesión' : 'Regístrate'} en WanderWave
+                {authMode === 'login' ? t("iniciarSesion") : t("registrarse")} en WanderWave
               </DialogTitle>
               <Button variant="ghost" size="icon" onClick={() => setAuthModalOpen(false)} className="h-6 w-6">
                 <X size={18} />
@@ -96,31 +121,31 @@ export const Navbar = () => {
           </DialogHeader>
           
           <div className="py-4">
-            <h2 className="text-xl font-semibold mb-6">¡Te damos la bienvenida a WanderWave!</h2>
+            <h2 className="text-xl font-semibold mb-6">{t("bienvenidaWanderWave")}</h2>
             
             <div className="space-y-4">
               <div className="space-y-2">
                 {authMode === 'login' ? (
                   <>
-                    <Label htmlFor="phone">Número de teléfono</Label>
+                    <Label htmlFor="phone">{t("numeroTelefono")}</Label>
                     <Input id="phone" placeholder="+34 600 000 000" className="h-12" />
                     <p className="text-xs text-gray-500 mt-1">
-                      Te llamaremos o enviaremos un SMS para confirmar tu número. Se aplican las tarifas estándar de mensajes y datos.
+                      {t("tarifasEstandar")}
                     </p>
                   </>
                 ) : (
                   <>
-                    <Label htmlFor="email">Correo electrónico</Label>
+                    <Label htmlFor="email">{t("correoElectronico")}</Label>
                     <Input id="email" type="email" placeholder="ejemplo@correo.com" className="h-12" />
                     <p className="text-xs text-gray-500 mt-1">
-                      Te enviaremos un correo para confirmar tu cuenta y darte acceso a todas las funcionalidades.
+                      {t("enviarCorreo")}
                     </p>
                   </>
                 )}
               </div>
 
               <Button className="w-full bg-primary hover:bg-primary/90 h-12">
-                Continúa
+                {t("continua")}
               </Button>
 
               <div className="relative flex items-center justify-center py-2">
@@ -137,7 +162,7 @@ export const Navbar = () => {
                   <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z" />
                   <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z" />
                 </svg>
-                Continúa con Google
+                {t("continuaConGoogle")}
               </Button>
 
               <Button variant="outline" className="w-full flex items-center justify-center gap-2 h-12 border-gray-300">
@@ -146,14 +171,14 @@ export const Navbar = () => {
                   <path d="M16.6668 8.5H14.1668C13.3334 8.5 12.6668 9.16667 12.6668 10V22H15.5002V15.5H16.6668C17.0835 15.5 17.3335 15.25 17.3335 14.8333V9.16667C17.3335 8.75 17.0835 8.5 16.6668 8.5Z" fill="white" />
                   <path d="M10.3334 10.3333H8.3334V12.3333H10.3334V22.0000H13.3334V12.3333H15.3334L15.6667 10.3333H13.3334V9.33333C13.3334 8.83333 13.5001 8.66667 14.0001 8.66667H15.6667V6.00000H13.6667C11.5001 6.00000 10.3334 7.16667 10.3334 9.00000V10.3333Z" fill="white" />
                 </svg>
-                Continúa con Facebook
+                {t("continuaConFacebook")}
               </Button>
 
               <Button variant="outline" className="w-full flex items-center justify-center gap-2 h-12 border-gray-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                 </svg>
-                Continúa con Email
+                {t("continuaConEmail")}
               </Button>
             </div>
           </div>
