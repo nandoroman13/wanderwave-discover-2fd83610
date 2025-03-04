@@ -91,7 +91,7 @@ const translations: TranslationsType = {
     es: "Descubre",
     en: "Discover"
   },
-  "explora": {
+  "exploraNuestrosViajes": {
     es: "Explora nuestros viajes a",
     en: "Explore our trips to"
   },

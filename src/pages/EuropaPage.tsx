@@ -221,7 +221,7 @@ const EuropaPage = () => {
               {t("descubre")} {europaInfo.nombre[language]}
             </h1>
             <p className="text-white text-xl max-w-2xl">
-              {t("explora")} {europaInfo.nombre[language]} {t("viveExperiencias")}.
+              {t("exploraNuestrosViajes")} {europaInfo.nombre[language]} {t("viveExperiencias")}.
             </p>
           </div>
         </div>

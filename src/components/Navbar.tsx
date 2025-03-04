@@ -64,14 +64,14 @@ export const Navbar = () => {
                     onClick={() => setLanguage('es')} 
                     className={`px-4 py-3 hover:bg-gray-50 transition-colors flex items-center gap-2 ${language === 'es' ? 'text-primary' : 'text-gray-700'}`}
                   >
-                    🇪🇸 Español
+                    Español
                     {language === 'es' && <span className="ml-auto text-primary">✓</span>}
                   </button>
                   <button 
                     onClick={() => setLanguage('en')} 
                     className={`px-4 py-3 hover:bg-gray-50 transition-colors flex items-center gap-2 ${language === 'en' ? 'text-primary' : 'text-gray-700'}`}
                   >
-                    🇬🇧 English
+                    English
                     {language === 'en' && <span className="ml-auto text-primary">✓</span>}
                   </button>
                 </div>
@@ -186,3 +186,4 @@ export const Navbar = () => {
       </Dialog>
     </nav>;
 };
+
