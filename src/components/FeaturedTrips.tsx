@@ -1,6 +1,7 @@
 
-import { Share2, Star } from "lucide-react";
+import { Share2, Star, Play } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -206,6 +207,7 @@ const trips = [
 
 export const FeaturedTrips = () => {
   const navigate = useNavigate();
+  const [hoveredTrip, setHoveredTrip] = useState<number | null>(null);
 
   return (
     <section className="py-16 bg-muted">
@@ -219,7 +221,11 @@ export const FeaturedTrips = () => {
           <CarouselContent className="-ml-4">
             {trips.map((trip) => (
               <CarouselItem key={trip.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                <div className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[3/5] p-4">
+                <div 
+                  className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[3/5] p-4"
+                  onMouseEnter={() => setHoveredTrip(trip.id)}
+                  onMouseLeave={() => setHoveredTrip(null)}
+                >
                   <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm rounded-full pl-1 pr-3 py-0.5 whitespace-nowrap max-w-[90%] overflow-hidden">
                     <img
                       src={trip.userImage}
@@ -233,11 +239,29 @@ export const FeaturedTrips = () => {
                   </div>
                   
                   <div className="relative h-full rounded-2xl overflow-hidden">
-                    <img
-                      src={trip.image}
-                      alt={trip.title}
-                      className="w-full h-full object-cover"
-                    />
+                    {hoveredTrip === trip.id ? (
+                      <video
+                        src={trip.videos[0]} 
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="relative w-full h-full">
+                        <img
+                          src={trip.image}
+                          alt={trip.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="bg-black/25 rounded-full p-2 backdrop-blur-sm">
+                            <Play className="fill-white text-white" size={24} />
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   
                   <div className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-sm p-4 rounded-2xl">
