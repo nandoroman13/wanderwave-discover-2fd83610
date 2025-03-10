@@ -9,7 +9,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogTitle,
+  DialogDescription,
+  DialogClose 
+} from "@/components/ui/dialog";
 
 const trips = [
   {
@@ -26,9 +32,9 @@ const trips = [
     duration: "9 días, 7 noches",
     configTime: "7",
     videos: [
-      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
-      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd",
-      "https://images.unsplash.com/photo-1551918120-9739cb430c6d"
+      "https://player.vimeo.com/external/321805508.sd.mp4?s=95abff35c7322d1f70e2708631181585e3926fd8&profile_id=164&oauth2_token_id=57447761",
+      "https://player.vimeo.com/external/363625327.sd.mp4?s=12ab3b2f56e703ca2216adeb9ea528c7cbf35467&profile_id=164&oauth2_token_id=57447761",
+      "https://player.vimeo.com/external/339240136.sd.mp4?s=99e733f8fa8b2d5ca499d45d6e20767fee1be47f&profile_id=164&oauth2_token_id=57447761"
     ],
     itinerary: [{
       day: 1,
@@ -58,9 +64,9 @@ const trips = [
     duration: "7 días, 5 noches",
     configTime: "5",
     videos: [
-      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
-      "https://images.unsplash.com/photo-1494522358652-f30e61a60313",
-      "https://images.unsplash.com/photo-1507992781348-310259076fe0"
+      "https://player.vimeo.com/external/408412129.sd.mp4?s=dacb9e82fcd98823ada100eb84c82703806f215f&profile_id=164&oauth2_token_id=57447761",
+      "https://player.vimeo.com/external/295482071.sd.mp4?s=49c9384b25c73fb5007d9a2a0e9a6e40ca6fe666&profile_id=164&oauth2_token_id=57447761",
+      "https://player.vimeo.com/external/209264345.sd.mp4?s=481acf3e78f5a66acee29595d9e52077fbe7cc8f&profile_id=164&oauth2_token_id=57447761"
     ],
     itinerary: [{
       day: 1,
@@ -90,9 +96,9 @@ const trips = [
     duration: "8 días, 6 noches",
     configTime: "6",
     videos: [
-      "https://images.unsplash.com/photo-1520769669658-f07657f5a307",
-      "https://images.unsplash.com/photo-1506967554329-2626e0f7d9e4",
-      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38"
+      "https://player.vimeo.com/external/270245628.sd.mp4?s=6c344454bedd85b49ff9dc4ce8919332cea69645&profile_id=164&oauth2_token_id=57447761",
+      "https://player.vimeo.com/external/493174780.sd.mp4?s=e08a4be71e4a40c50a3a8d5b1e4aed4ded6af98d&profile_id=164&oauth2_token_id=57447761",
+      "https://player.vimeo.com/external/514370080.sd.mp4?s=ab5cb7ac0952f3f6f0f0d8ee9ede6a7fdab84ab5&profile_id=164&oauth2_token_id=57447761"
     ],
     itinerary: [{
       day: 1,
@@ -122,9 +128,9 @@ const trips = [
     duration: "10 días, 8 noches",
     configTime: "8",
     videos: [
-      "https://images.unsplash.com/photo-1516426122078-c23e76319801",
-      "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e",
-      "https://images.unsplash.com/photo-1528485238486-507cca6f992c"
+      "https://player.vimeo.com/external/349775864.sd.mp4?s=c69f22f2ad5f15e26093672aa8a98614e5b7add9&profile_id=164&oauth2_token_id=57447761",
+      "https://player.vimeo.com/external/317154844.sd.mp4?s=95e95db5fcefc6fe403c74ef0f402b28e01d01b6&profile_id=164&oauth2_token_id=57447761",
+      "https://player.vimeo.com/external/347956585.sd.mp4?s=54d8b887092f87d7ad93c7a7bd65a3f7c27c4ccb&profile_id=164&oauth2_token_id=57447761"
     ],
     itinerary: [{
       day: 1,
@@ -154,9 +160,9 @@ const trips = [
     duration: "12 días, 10 noches",
     configTime: "9",
     videos: [
-      "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e",
-      "https://images.unsplash.com/photo-1545569341-9eb8b30979d9",
-      "https://images.unsplash.com/photo-1528360983277-13d401cdc186"
+      "https://player.vimeo.com/external/430198225.sd.mp4?s=d30978eb36c738b59a299d81cc9bf0c94cc1db5e&profile_id=164&oauth2_token_id=57447761",
+      "https://player.vimeo.com/external/350623292.sd.mp4?s=ee7e1ff1d7469f85dbd33adbf0de0df2cff34128&profile_id=164&oauth2_token_id=57447761",
+      "https://player.vimeo.com/external/400197112.sd.mp4?s=d9e6c693bc34322029587da895fb03406c5c3a29&profile_id=164&oauth2_token_id=57447761"
     ],
     itinerary: [{
       day: 1,
@@ -186,9 +192,9 @@ const trips = [
     duration: "15 días, 13 noches",
     configTime: "10",
     videos: [
-      "https://images.unsplash.com/photo-1469521669194-babb45599def",
-      "https://images.unsplash.com/photo-1507699622108-4be3abd695ad",
-      "https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5"
+      "https://player.vimeo.com/external/317154844.sd.mp4?s=95e95db5fcefc6fe403c74ef0f402b28e01d01b6&profile_id=164&oauth2_token_id=57447761",
+      "https://player.vimeo.com/external/349775864.sd.mp4?s=c69f22f2ad5f15e26093672aa8a98614e5b7add9&profile_id=164&oauth2_token_id=57447761",
+      "https://player.vimeo.com/external/350623292.sd.mp4?s=ee7e1ff1d7469f85dbd33adbf0de0df2cff34128&profile_id=164&oauth2_token_id=57447761"
     ],
     itinerary: [{
       day: 1,
@@ -214,7 +220,7 @@ export const FeaturedTrips = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const dialogVideoRef = useRef<HTMLVideoElement>(null);
 
   // Reset video state when dialog closes
@@ -222,6 +228,13 @@ export const FeaturedTrips = () => {
     setOpenDialog(false);
     setIsPlaying(true);
     setProgress(0);
+    
+    // Pause all hover videos when dialog closes
+    videoRefs.current.forEach(video => {
+      if (video) {
+        video.pause();
+      }
+    });
   };
 
   // Handle time update for progress bar
@@ -229,22 +242,34 @@ export const FeaturedTrips = () => {
     const video = e.currentTarget;
     const progress = (video.currentTime / video.duration) * 100;
     setProgress(progress);
+    
+    // Loop the video when it ends
+    if (video.currentTime >= video.duration) {
+      video.currentTime = 0;
+      video.play().catch(e => console.error("Failed to play video:", e));
+    }
   };
 
   // Toggle play/pause state
-  const togglePlayPause = () => {
+  const togglePlayPause = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setIsPlaying(!isPlaying);
+    
     if (dialogVideoRef.current) {
       if (isPlaying) {
         dialogVideoRef.current.pause();
       } else {
-        dialogVideoRef.current.play();
+        dialogVideoRef.current.play().catch(e => {
+          console.error("Failed to play video:", e);
+          setIsPlaying(false);
+        });
       }
     }
   };
 
   // Navigate to next video
-  const handleNextVideo = () => {
+  const handleNextVideo = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (!selectedTrip) return;
     
     const trip = trips.find(t => t.id === selectedTrip);
@@ -253,10 +278,12 @@ export const FeaturedTrips = () => {
     const nextIndex = (currentVideoIndex + 1) % trip.videos.length;
     setCurrentVideoIndex(nextIndex);
     setProgress(0);
+    setIsPlaying(true);
   };
 
   // Navigate to previous video
-  const handlePrevVideo = () => {
+  const handlePrevVideo = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (!selectedTrip) return;
     
     const trip = trips.find(t => t.id === selectedTrip);
@@ -265,6 +292,7 @@ export const FeaturedTrips = () => {
     const prevIndex = (currentVideoIndex - 1 + trip.videos.length) % trip.videos.length;
     setCurrentVideoIndex(prevIndex);
     setProgress(0);
+    setIsPlaying(true);
   };
 
   // Get the currently selected trip object
@@ -273,8 +301,18 @@ export const FeaturedTrips = () => {
     return trips.find(trip => trip.id === selectedTrip) || null;
   };
 
+  // Handle card click to expand video
+  const handleCardClick = (tripId: number) => {
+    setSelectedTrip(tripId);
+    setCurrentVideoIndex(0);
+    setOpenDialog(true);
+    setProgress(0);
+    setIsPlaying(true);
+  };
+
   // Handle opening dialog and setting selected trip
-  const handleOpenVideo = (tripId: number, videoIndex: number = 0) => {
+  const handleOpenVideo = (e: React.MouseEvent, tripId: number, videoIndex: number = 0) => {
+    e.stopPropagation();
     setSelectedTrip(tripId);
     setCurrentVideoIndex(videoIndex);
     setOpenDialog(true);
@@ -292,6 +330,38 @@ export const FeaturedTrips = () => {
     }
   }, [openDialog, currentVideoIndex]);
 
+  // Handle hover effects for trip cards
+  useEffect(() => {
+    // Play the hovered video
+    if (hoveredTrip !== null) {
+      const videoElement = videoRefs.current[hoveredTrip];
+      if (videoElement) {
+        videoElement.muted = true;
+        videoElement.play().catch(e => console.error("Failed to play hover video:", e));
+      }
+    }
+    
+    // Pause all videos except the hovered one
+    videoRefs.current.forEach((video, index) => {
+      if (video && index !== hoveredTrip) {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+    
+    return () => {
+      // Clean up by pausing all videos when component unmounts
+      videoRefs.current.forEach(video => {
+        if (video) video.pause();
+      });
+    };
+  }, [hoveredTrip]);
+
+  // Initialize video refs array
+  useEffect(() => {
+    videoRefs.current = Array(trips.length).fill(null);
+  }, []);
+
   return (
     <section className="py-16 bg-muted">
       <div className="container">
@@ -302,13 +372,13 @@ export const FeaturedTrips = () => {
         
         <Carousel className="w-full">
           <CarouselContent className="-ml-4">
-            {trips.map((trip) => (
+            {trips.map((trip, index) => (
               <CarouselItem key={trip.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
                 <div 
                   className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[3/5] p-4 cursor-pointer"
-                  onMouseEnter={() => setHoveredTrip(trip.id)}
+                  onMouseEnter={() => setHoveredTrip(index)}
                   onMouseLeave={() => setHoveredTrip(null)}
-                  onClick={() => handleOpenVideo(trip.id)}
+                  onClick={() => handleCardClick(trip.id)}
                 >
                   <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm rounded-full pl-1 pr-3 py-0.5 whitespace-nowrap max-w-[90%] overflow-hidden">
                     <img
@@ -323,23 +393,18 @@ export const FeaturedTrips = () => {
                   </div>
                   
                   <div className="relative h-full rounded-2xl overflow-hidden">
-                    {hoveredTrip === trip.id ? (
+                    {hoveredTrip === index ? (
                       <div className="relative w-full h-full">
                         <video
-                          ref={hoveredTrip === trip.id ? videoRef : undefined}
+                          ref={(el) => videoRefs.current[index] = el}
                           src={trip.videos[0]} 
-                          autoPlay
                           muted
-                          loop
                           playsInline
                           className="w-full h-full object-cover"
                           onTimeUpdate={handleTimeUpdate}
                         />
                         <button 
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleOpenVideo(trip.id, 0);
-                          }}
+                          onClick={(e) => handleOpenVideo(e, trip.id, 0)}
                           className="absolute inset-0 w-full h-full flex items-center justify-center"
                         >
                           <div className="bg-black/25 rounded-full p-3 backdrop-blur-sm hover:bg-black/40 transition-colors">
@@ -433,6 +498,9 @@ export const FeaturedTrips = () => {
       {/* Video Dialog */}
       <Dialog open={openDialog} onOpenChange={(open) => !open && handleDialogClose()}>
         <DialogContent className="sm:max-w-3xl max-h-[90vh] p-0 bg-black border-none">
+          <DialogTitle className="sr-only">Video del viaje</DialogTitle>
+          <DialogDescription className="sr-only">Vista detallada del video del viaje</DialogDescription>
+          
           <DialogClose className="absolute right-4 top-4 z-30 rounded-full p-2 bg-black/50 text-white hover:bg-black/70">
             <X className="h-5 w-5" />
           </DialogClose>
@@ -477,7 +545,8 @@ export const FeaturedTrips = () => {
                   <div 
                     key={i} 
                     className={`h-1.5 flex-1 ${i === currentVideoIndex ? 'bg-white/40' : 'bg-white/20'} rounded-full overflow-hidden cursor-pointer`}
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setCurrentVideoIndex(i);
                       setProgress(0);
                     }}
