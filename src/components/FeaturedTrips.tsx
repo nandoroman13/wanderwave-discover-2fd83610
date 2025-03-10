@@ -1,7 +1,6 @@
-
-import { Share2, Star, Play } from "lucide-react";
+import { Share2, Star, Play, Pause, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -9,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
 
 const trips = [
   {
@@ -208,6 +208,68 @@ const trips = [
 export const FeaturedTrips = () => {
   const navigate = useNavigate();
   const [hoveredTrip, setHoveredTrip] = useState<number | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<{ tripId: number, videoIndex: number } | null>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const expandedVideoRef = useRef<HTMLVideoElement>(null);
+
+  const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget;
+    const progress = (video.currentTime / video.duration) * 100;
+    setProgress(progress);
+  };
+
+  const togglePlayPause = () => {
+    setIsPlaying(!isPlaying);
+    if (expandedVideoRef.current) {
+      if (isPlaying) {
+        expandedVideoRef.current.pause();
+      } else {
+        expandedVideoRef.current.play();
+      }
+    }
+  };
+
+  const handleNextVideo = () => {
+    if (!selectedVideo) return;
+    
+    const trip = trips.find(t => t.id === selectedVideo.tripId);
+    if (!trip) return;
+    
+    const nextIndex = (selectedVideo.videoIndex + 1) % trip.videos.length;
+    setSelectedVideo({ ...selectedVideo, videoIndex: nextIndex });
+    setProgress(0);
+  };
+
+  const handlePrevVideo = () => {
+    if (!selectedVideo) return;
+    
+    const trip = trips.find(t => t.id === selectedVideo.tripId);
+    if (!trip) return;
+    
+    const prevIndex = (selectedVideo.videoIndex - 1 + trip.videos.length) % trip.videos.length;
+    setSelectedVideo({ ...selectedVideo, videoIndex: prevIndex });
+    setProgress(0);
+  };
+
+  useEffect(() => {
+    if (selectedVideo && expandedVideoRef.current) {
+      expandedVideoRef.current.play();
+      setIsPlaying(true);
+    }
+  }, [selectedVideo]);
+
+  const handleDialogClose = () => {
+    setSelectedVideo(null);
+    setProgress(0);
+    setIsPlaying(true);
+  };
+
+  const getSelectedTrip = () => {
+    if (!selectedVideo) return null;
+    return trips.find(trip => trip.id === selectedVideo.tripId) || null;
+  };
 
   return (
     <section className="py-16 bg-muted">
@@ -240,14 +302,38 @@ export const FeaturedTrips = () => {
                   
                   <div className="relative h-full rounded-2xl overflow-hidden">
                     {hoveredTrip === trip.id ? (
-                      <video
-                        src={trip.videos[0]} 
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        className="w-full h-full object-cover"
-                      />
+                      <div className="relative w-full h-full">
+                        <video
+                          ref={hoveredTrip === trip.id ? videoRef : undefined}
+                          src={trip.videos[0]} 
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          className="w-full h-full object-cover"
+                          onTimeUpdate={handleTimeUpdate}
+                        />
+                        <button 
+                          onClick={() => setSelectedVideo({ tripId: trip.id, videoIndex: 0 })}
+                          className="absolute inset-0 w-full h-full flex items-center justify-center"
+                        >
+                          <div className="bg-black/25 rounded-full p-3 backdrop-blur-sm hover:bg-black/40 transition-colors">
+                            <Play className="fill-white text-white" size={24} />
+                          </div>
+                        </button>
+                        <div className="absolute bottom-4 left-4 right-4 flex space-x-1">
+                          {trip.videos.map((_, i) => (
+                            <div key={i} className="h-1 flex-1 bg-white/40 rounded-full overflow-hidden">
+                              {i === 0 && (
+                                <div 
+                                  className="h-full bg-white rounded-full" 
+                                  style={{ width: `${progress}%` }}
+                                />
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     ) : (
                       <div className="relative w-full h-full">
                         <img
@@ -310,6 +396,82 @@ export const FeaturedTrips = () => {
           <CarouselNext />
         </Carousel>
       </div>
+
+      <Dialog open={selectedVideo !== null} onOpenChange={(open) => !open && handleDialogClose()}>
+        <DialogContent className="sm:max-w-3xl max-h-[90vh] p-0 bg-black border-none">
+          <DialogClose className="absolute right-4 top-4 z-30 rounded-full p-2 bg-black/50 text-white hover:bg-black/70">
+            <X className="h-5 w-5" />
+          </DialogClose>
+          
+          {selectedVideo && getSelectedTrip() && (
+            <div className="relative w-full h-full aspect-video">
+              <video
+                ref={expandedVideoRef}
+                src={getSelectedTrip()?.videos[selectedVideo.videoIndex]}
+                className="w-full h-full object-cover"
+                autoPlay
+                playsInline
+                onTimeUpdate={handleTimeUpdate}
+                onClick={togglePlayPause}
+              />
+              
+              <div className="absolute inset-0 flex items-center justify-center">
+                {!isPlaying && (
+                  <button onClick={togglePlayPause} className="bg-black/30 rounded-full p-4 backdrop-blur-sm">
+                    <Play className="fill-white text-white" size={32} />
+                  </button>
+                )}
+              </div>
+              
+              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4">
+                <button 
+                  onClick={handlePrevVideo}
+                  className="bg-black/30 rounded-full p-2 backdrop-blur-sm hover:bg-black/50 transition-colors"
+                >
+                  <ChevronLeft className="text-white" size={24} />
+                </button>
+                <button 
+                  onClick={handleNextVideo}
+                  className="bg-black/30 rounded-full p-2 backdrop-blur-sm hover:bg-black/50 transition-colors"
+                >
+                  <ChevronRight className="text-white" size={24} />
+                </button>
+              </div>
+              
+              <div className="absolute bottom-4 left-4 right-4 flex space-x-2">
+                {getSelectedTrip()?.videos.map((_, i) => (
+                  <div 
+                    key={i} 
+                    className={`h-1.5 flex-1 ${i === selectedVideo.videoIndex ? 'bg-white/40' : 'bg-white/20'} rounded-full overflow-hidden cursor-pointer`}
+                    onClick={() => setSelectedVideo({ ...selectedVideo, videoIndex: i })}
+                  >
+                    {i === selectedVideo.videoIndex && (
+                      <div 
+                        className="h-full bg-white rounded-full" 
+                        style={{ width: `${progress}%` }}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+              
+              <div className="absolute top-0 left-0 right-0 p-4 bg-gradient-to-b from-black/70 to-transparent">
+                <div className="flex items-center gap-2">
+                  <img
+                    src={getSelectedTrip()?.userImage}
+                    alt={getSelectedTrip()?.username}
+                    className="w-8 h-8 rounded-full border-2 border-white object-cover"
+                  />
+                  <div className="text-white">
+                    <span className="font-medium">{getSelectedTrip()?.title}</span>
+                    <span className="opacity-80"> como {getSelectedTrip()?.username}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
