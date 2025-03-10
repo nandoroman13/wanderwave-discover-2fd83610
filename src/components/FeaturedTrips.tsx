@@ -209,73 +209,88 @@ const trips = [
 export const FeaturedTrips = () => {
   const navigate = useNavigate();
   const [hoveredTrip, setHoveredTrip] = useState<number | null>(null);
-  const [selectedVideo, setSelectedVideo] = useState<{ tripId: number, videoIndex: number } | null>(null);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedTrip, setSelectedTrip] = useState<number | null>(null);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const expandedVideoRef = useRef<HTMLVideoElement>(null);
+  const dialogVideoRef = useRef<HTMLVideoElement>(null);
 
+  // Reset video state when dialog closes
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+    setIsPlaying(true);
+    setProgress(0);
+  };
+
+  // Handle time update for progress bar
   const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
     const video = e.currentTarget;
     const progress = (video.currentTime / video.duration) * 100;
     setProgress(progress);
   };
 
+  // Toggle play/pause state
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
-    if (expandedVideoRef.current) {
+    if (dialogVideoRef.current) {
       if (isPlaying) {
-        expandedVideoRef.current.pause();
+        dialogVideoRef.current.pause();
       } else {
-        expandedVideoRef.current.play();
+        dialogVideoRef.current.play();
       }
     }
   };
 
+  // Navigate to next video
   const handleNextVideo = () => {
-    if (!selectedVideo) return;
+    if (!selectedTrip) return;
     
-    const trip = trips.find(t => t.id === selectedVideo.tripId);
+    const trip = trips.find(t => t.id === selectedTrip);
     if (!trip) return;
     
-    const nextIndex = (selectedVideo.videoIndex + 1) % trip.videos.length;
-    setSelectedVideo({ ...selectedVideo, videoIndex: nextIndex });
+    const nextIndex = (currentVideoIndex + 1) % trip.videos.length;
+    setCurrentVideoIndex(nextIndex);
     setProgress(0);
   };
 
+  // Navigate to previous video
   const handlePrevVideo = () => {
-    if (!selectedVideo) return;
+    if (!selectedTrip) return;
     
-    const trip = trips.find(t => t.id === selectedVideo.tripId);
+    const trip = trips.find(t => t.id === selectedTrip);
     if (!trip) return;
     
-    const prevIndex = (selectedVideo.videoIndex - 1 + trip.videos.length) % trip.videos.length;
-    setSelectedVideo({ ...selectedVideo, videoIndex: prevIndex });
+    const prevIndex = (currentVideoIndex - 1 + trip.videos.length) % trip.videos.length;
+    setCurrentVideoIndex(prevIndex);
     setProgress(0);
   };
 
-  useEffect(() => {
-    if (selectedVideo && expandedVideoRef.current) {
-      expandedVideoRef.current.play();
-      setIsPlaying(true);
-    }
-  }, [selectedVideo]);
+  // Get the currently selected trip object
+  const getSelectedTrip = () => {
+    if (!selectedTrip) return null;
+    return trips.find(trip => trip.id === selectedTrip) || null;
+  };
 
-  const handleDialogClose = () => {
-    setSelectedVideo(null);
+  // Handle opening dialog and setting selected trip
+  const handleOpenVideo = (tripId: number, videoIndex: number = 0) => {
+    setSelectedTrip(tripId);
+    setCurrentVideoIndex(videoIndex);
+    setOpenDialog(true);
     setProgress(0);
     setIsPlaying(true);
   };
 
-  const getSelectedTrip = () => {
-    if (!selectedVideo) return null;
-    return trips.find(trip => trip.id === selectedVideo.tripId) || null;
-  };
-
-  // Handler para expandir la card y mostrar el video
-  const handleCardClick = (tripId: number, videoIndex: number = 0) => {
-    setSelectedVideo({ tripId, videoIndex });
-  };
+  // Start playing video when dialog opens
+  useEffect(() => {
+    if (openDialog && dialogVideoRef.current) {
+      dialogVideoRef.current.play().catch(error => {
+        console.error("Video play failed:", error);
+        setIsPlaying(false);
+      });
+    }
+  }, [openDialog, currentVideoIndex]);
 
   return (
     <section className="py-16 bg-muted">
@@ -293,7 +308,7 @@ export const FeaturedTrips = () => {
                   className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[3/5] p-4 cursor-pointer"
                   onMouseEnter={() => setHoveredTrip(trip.id)}
                   onMouseLeave={() => setHoveredTrip(null)}
-                  onClick={() => handleCardClick(trip.id)}
+                  onClick={() => handleOpenVideo(trip.id)}
                 >
                   <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm rounded-full pl-1 pr-3 py-0.5 whitespace-nowrap max-w-[90%] overflow-hidden">
                     <img
@@ -323,7 +338,7 @@ export const FeaturedTrips = () => {
                         <button 
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleCardClick(trip.id, 0);
+                            handleOpenVideo(trip.id, 0);
                           }}
                           className="absolute inset-0 w-full h-full flex items-center justify-center"
                         >
@@ -415,17 +430,18 @@ export const FeaturedTrips = () => {
         </Carousel>
       </div>
 
-      <Dialog open={selectedVideo !== null} onOpenChange={(open) => !open && handleDialogClose()}>
+      {/* Video Dialog */}
+      <Dialog open={openDialog} onOpenChange={(open) => !open && handleDialogClose()}>
         <DialogContent className="sm:max-w-3xl max-h-[90vh] p-0 bg-black border-none">
           <DialogClose className="absolute right-4 top-4 z-30 rounded-full p-2 bg-black/50 text-white hover:bg-black/70">
             <X className="h-5 w-5" />
           </DialogClose>
           
-          {selectedVideo && getSelectedTrip() && (
+          {selectedTrip && getSelectedTrip() && (
             <div className="relative w-full h-full aspect-video">
               <video
-                ref={expandedVideoRef}
-                src={getSelectedTrip()?.videos[selectedVideo.videoIndex]}
+                ref={dialogVideoRef}
+                src={getSelectedTrip()?.videos[currentVideoIndex]}
                 className="w-full h-full object-cover"
                 autoPlay
                 playsInline
@@ -460,10 +476,13 @@ export const FeaturedTrips = () => {
                 {getSelectedTrip()?.videos.map((_, i) => (
                   <div 
                     key={i} 
-                    className={`h-1.5 flex-1 ${i === selectedVideo.videoIndex ? 'bg-white/40' : 'bg-white/20'} rounded-full overflow-hidden cursor-pointer`}
-                    onClick={() => setSelectedVideo({ ...selectedVideo, videoIndex: i })}
+                    className={`h-1.5 flex-1 ${i === currentVideoIndex ? 'bg-white/40' : 'bg-white/20'} rounded-full overflow-hidden cursor-pointer`}
+                    onClick={() => {
+                      setCurrentVideoIndex(i);
+                      setProgress(0);
+                    }}
                   >
-                    {i === selectedVideo.videoIndex && (
+                    {i === currentVideoIndex && (
                       <div 
                         className="h-full bg-white rounded-full" 
                         style={{ width: `${progress}%` }}
