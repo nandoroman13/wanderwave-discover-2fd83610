@@ -1,3 +1,4 @@
+
 import { Share2, Star, Play, Pause, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
@@ -271,6 +272,11 @@ export const FeaturedTrips = () => {
     return trips.find(trip => trip.id === selectedVideo.tripId) || null;
   };
 
+  // Handler para expandir la card y mostrar el video
+  const handleCardClick = (tripId: number, videoIndex: number = 0) => {
+    setSelectedVideo({ tripId, videoIndex });
+  };
+
   return (
     <section className="py-16 bg-muted">
       <div className="container">
@@ -284,9 +290,10 @@ export const FeaturedTrips = () => {
             {trips.map((trip) => (
               <CarouselItem key={trip.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
                 <div 
-                  className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[3/5] p-4"
+                  className="relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up aspect-[3/5] p-4 cursor-pointer"
                   onMouseEnter={() => setHoveredTrip(trip.id)}
                   onMouseLeave={() => setHoveredTrip(null)}
+                  onClick={() => handleCardClick(trip.id)}
                 >
                   <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm rounded-full pl-1 pr-3 py-0.5 whitespace-nowrap max-w-[90%] overflow-hidden">
                     <img
@@ -314,7 +321,10 @@ export const FeaturedTrips = () => {
                           onTimeUpdate={handleTimeUpdate}
                         />
                         <button 
-                          onClick={() => setSelectedVideo({ tripId: trip.id, videoIndex: 0 })}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCardClick(trip.id, 0);
+                          }}
                           className="absolute inset-0 w-full h-full flex items-center justify-center"
                         >
                           <div className="bg-black/25 rounded-full p-3 backdrop-blur-sm hover:bg-black/40 transition-colors">
@@ -359,7 +369,12 @@ export const FeaturedTrips = () => {
                         </div>
                         <span className="text-sm text-gray-600">+{trip.purchases} comprados</span>
                       </div>
-                      <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                      <button 
+                        className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
                         <Share2 size={20} className="text-gray-600" />
                       </button>
                     </div>
@@ -381,7 +396,10 @@ export const FeaturedTrips = () => {
                         <p className="text-xl font-semibold">{trip.price} €</p>
                       </div>
                       <button 
-                        onClick={() => navigate(`/viajes/${trip.slug}`)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/viajes/${trip.slug}`);
+                        }}
                         className="bg-[#FFD233] hover:bg-[#FFD233]/90 text-black px-4 py-2 rounded-full transition-colors"
                       >
                         Configura paquete
